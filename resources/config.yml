@@ -1,0 +1,610 @@
+Habilidades:
+  SWORDS:
+    Name: 'Espada'
+    MaxCounter: 600
+    MaxDodge: 600
+    Bleed:
+      1:
+        Damage: 0.5
+        MinLevel: 0
+        Amount: 3
+        Time: 3
+      2:
+        Damage: 0.5
+        MinLevel: 50
+        Amount: 3
+        Time: 2
+      3:
+        Damage: 1.0
+        MinLevel: 100
+        Amount: 3
+        Time: 3      
+      4:
+        Damage: 1.0
+        MinLevel: 150
+        Amount: 3
+        Time: 2        
+    Entities:
+      PLAYER:
+        XP: 1.0
+  ARCHERY:
+    Name: 'Arqueiro'
+    Impact:
+      Chance: 0.1
+      Bonus: 10
+      PerLevel: 50
+      MaxDamage: 9
+      MaxIncrease: 200
+    Daze:
+      Potion:
+        Type: 'CONFUSION'
+        Duration: 10
+        Level: 10
+    ArrowRetrieval:
+      Chance: 0.1
+      PerLevel: 1
+      MaxIncrease: 100
+    SkillShot:
+      PerLevel: 50
+      Increase: 10
+      MaxIncrease: 100
+  UNARMED:
+    Name: 'Desarmado'
+    Disarmor:
+      PerLevel: 5
+      Chance: 1
+      MaxIncrease: 100      
+    Entities:
+      PLAYER: 1.0
+  AXES:
+    Name: 'Machado'
+    DamageModifier: 
+      Damage: 0.5
+      PerLevel: 50
+      MaxLevel: 500
+    Tools:
+    - 'WOOD_AXE'
+    - 'STONE_AXE'
+    - 'IRON_AXE'
+    - 'GOLD_AXE'
+    - 'DIAMOND_AXE'   
+    Entities:
+      PLAYER:
+        XP: 1.0
+  FISHING:
+    Name: 'Pescador'
+    Fishs:
+      FISH:
+        XP: 0.5
+      SALMON:
+        XP: 0.5
+      CLOWNFISH:
+        XP: 0.5
+      PUFFERFISH:
+        XP: 0.5
+    Drops:
+      wood_sword:
+        Chance: 5
+        MinLevel: 0
+        Item:
+          ID: '268'    
+      wood_shovel:
+        Chance: 5
+        MinLevel: 0
+        Item:
+          ID: '269'
+      wood_pickaxe:
+        Chance: 5
+        MinLevel: 0
+        Item:
+          ID: '270' 
+      wood_axe:
+        Chance: 5
+        MinLevel: 0
+        Item:
+          ID: '271'
+      wood_hoe:
+        Chance: 5
+        MinLevel: 0
+        Item:
+          ID: '290'     
+      stone_sword:
+        Chance: 5
+        MinLevel: 0
+        Item:
+          ID: '272'    
+      stone_shovel:
+        Chance: 5
+        MinLevel: 0
+        Item:
+          ID: '273'
+      stone_pickaxe:
+        Chance: 5
+        MinLevel: 0
+        Item:
+          ID: '274' 
+      stone_axe:
+        Chance: 5
+        MinLevel: 0
+        Item:
+          ID: '275'
+      stone_hoe:
+        Chance: 5
+        MinLevel: 0
+        Item:
+          ID: '291'        
+  ACROBATICS:
+    Name: 'Acrobacia'
+    FallExperience:
+      1:
+        MinDistance: 4
+        XP: 2
+      2:
+        MinDistance: 5
+        XP: 4      
+      3:
+        MinDistance: 6
+        XP: 6
+      4:
+        MinDistance: 7
+        XP: 8
+      5:
+        MinDistance: 8
+        XP: 10
+      6:
+        MinDistance: 9
+        XP: 12
+      7:
+        MinDistance: 10
+        XP: 14
+      8:
+        MinDistance: 11
+        XP: 16        
+      9:
+        MinDistance: 12
+        XP: 16
+      10:
+        MinDistance: 13
+        XP: 20   
+      10:
+        MinDistance: 14
+        XP: 22 
+      10:
+        MinDistance: 15
+        XP: 24 
+      10:
+        MinDistance: 16
+        XP: 26 
+      10:
+        MinDistance: 17
+        XP: 26
+      10:
+        MinDistance: 18
+        XP: 30 
+      10:
+        MinDistance: 19
+        XP: 32 
+      10:
+        MinDistance: 20
+        XP: 32         
+  HERBALISM:
+    Name: 'Herbalismo'
+    DoubleDrop: 
+      Chance: 0.1
+      Blocks:
+      - 'CROPS'
+      - 'PUMPKIN'
+      - 'MELON_BLOCK'
+      - 'CARROT'
+      - 'SUGAR_CANE_BLOCK'
+      - 'CACTUS'
+      - 'COCOA'
+      - 'NETHER_WARTS'
+    Blocks:
+      CROPS:
+        XP: 0.5
+      PUMPKIN:
+        XP: 0.5
+      MELON_BLOCK:
+        XP: 0.5
+      CARROT:
+        XP: 0.5
+      POTATO:
+        XP: 0.5
+      SUGAR_CANE_BLOCK:
+        XP: 0.5
+      CACTUS:
+        XP: 0.5
+      COCOA:
+        XP: 0.5
+      NETHER_WARTS:
+        XP: 0.5
+  EXCAVATION:
+    Name: 'Excavação'
+    Tools:
+    - 'WOOD_SPADE'
+    - 'STONE_SPADE'
+    - 'IRON_SPADE'
+    - 'GOLD_SPADE'
+    - 'DIAMOND_SPADE'
+    Drops:
+      glowstone:
+        Chance: 5
+        MinLevel: 25
+        Item:
+          ID: '348'
+      gunpowder:
+        Chance: 10
+        MinLevel: 75
+        Item:
+          ID: '289'
+      slimeball:
+        Chance: 5
+        MinLevel: 150
+        Item:
+          ID: '341' 
+      bone:
+        Chance: 10
+        MinLevel: 175
+        Item:
+          ID: '352'
+      egg:
+        Chance: 1
+        MinLevel: 250
+        Item:
+          ID: '352'   
+      music_disc:
+        Chance: 0.05
+        MinLevel: 250
+        Item:
+          ID: '2267'
+      apple:
+        Chance: 0.1
+        MinLevel: 250
+        Item:
+          ID: '260'
+      string:
+        Chance: 5
+        MinLevel: 250
+        Item:
+          ID: '287'
+      cocoa:
+        Chance: 1.33
+        MinLevel: 350
+        Item:
+          ID: '351:3'    
+      diamond:
+        Chance: 0.13
+        MinLevel: 350
+        Item:
+          ID: '264'
+      mushroom_brown:
+        Chance: 0.5
+        MinLevel: 500
+        Item:
+          ID: '39'       
+      mushroom_red:
+        Chance: 0.5
+        MinLevel: 500
+        Item:
+          ID: '40' 
+      clock:
+        Chance: 0.1
+        MinLevel: 500
+        Item:
+          ID: '347'
+      bucket:
+        Chance: 0.5
+        MinLevel: 500
+        Item:
+          ID: '325'  
+      soul_sand:
+        Chance: 0.1
+        MinLevel: 650
+        Item:
+          ID: '88'   
+      cake:
+        Chance: 0.5
+        MinLevel: 750
+        Item:
+          ID: '354'
+      web:
+        Chance: 0.5
+        MinLevel: 750
+        Item:
+          ID: '30'   
+      netherrack:
+        Chance: 0.5
+        MinLevel: 850
+        Item:
+          ID: '87'          
+    Blocks:
+      DIRT:
+        XP: 0.5
+        Drops:
+        - 'glowstone'
+        - 'music_disc'
+        - 'cocoa'
+        - 'diamond'
+        - 'mushroom_brown'
+        - 'mushroom_red'
+      GRAVEL:
+        XP: 0.5
+        Drops:
+        - 'gunpowder'
+        - 'bone'
+        - 'music_disc'     
+        - 'diamond'        
+        - 'netherrack'
+      CLAY:
+        XP: 0.5
+        Drops:
+        - 'slimeball'
+        - 'music_disc'   
+        - 'string'        
+        - 'diamond'    
+        - 'clock'
+        - 'bucket'
+        - 'cake'      
+        - 'web'
+      SAND:
+        XP: 0.5
+        Drops:
+        - 'glowstone'
+        - 'music_disc'
+        - 'diamond'
+        - 'soul_sand'
+        - 'cake'
+      GRASS:
+        XP: 0.5
+        Drops:
+        - 'glowstone'
+        - 'egg'
+        - 'music_disc'  
+        - 'apple'  
+        - 'cocoa'
+        - 'diamond'  
+        - 'mushroom_brown'
+        - 'mushroom_red'        
+        - 'cake'        
+      SOUL_SAND:
+        XP: 0.5
+        Drops:
+        - 'music_disc'
+        - 'diamond'      
+        - 'cake'        
+      MYCEL:
+        XP: 0.5
+        Drops:
+        - 'glowstone'
+        - 'music_disc'  
+        - 'apple'        
+        - 'diamond'       
+        - 'mushroom_brown'
+        - 'mushroom_red'        
+        - 'cake'        
+  MINING:
+    Name: 'Mineração'
+    Tools:
+    - 'WOOD_PICKAXE'
+    - 'STONE_PICKAXE'
+    - 'IRON_PICKAXE'
+    - 'GOLD_PICKAXE'
+    - 'DIAMOND_PICKAXE'   
+    DoubleDrop: 
+      Chance: 0.1
+      Blocks:
+      - 'COAL_ORE'
+      - 'IRON_ORE'
+      - 'GOLD_ORE'
+      - 'LAPIS_ORE'
+      - 'REDSTONE_ORE'
+      - 'DIAMOND_ORE'
+      - 'EMERALD_ORE'
+      - 'QUARTZ_ORE'
+    Blocks:
+      STONE: 
+        XP: 0.5
+      COAL_ORE: 
+        XP: 0.5
+      IRON_ORE: 
+        XP: 0.5
+      GOLD_ORE: 
+        XP: 0.5
+      LAPIS_ORE: 
+        XP: 0.5
+      REDSTONE_ORE: 
+        XP: 0.5
+      DIAMOND_ORE: 
+        XP: 0.5
+      EMERALD_ORE: 
+        XP: 0.5
+      QUARTZ_ORE: 
+        XP: 0.5
+Menus:
+  Habilidades:
+    Name: 'Habilidades'
+    Rows: 1
+    Items:
+      SWORDS:
+        ID: '276'
+        Name: '&eEspadas'
+        Lore:
+        - '&7Aumenta seu dano ao atacar com'
+        - '&7uma espada. Chance de fazer o'
+        - '&7inimigo sangrar e de realizar um'
+        - '&7contra-ataque no inimigo.'
+        - ''
+        - '&eComo utilizar:'
+        - '&7Batendo em jogadores e mobs'
+        - '&7utilizando uma espada.'
+        - ''
+        - '&eInformações da habilidade:'
+        - '&fNível: &a%skill_level% &8(&f%skill_rank%&8)'
+        - '&fXP: &a%skill_xp%&f/&c%skill_xpmax% &8(%skill_percent%%&8)'
+        - ''
+        - '&eClique aqui para receber as'
+        - '&einformações adicionais.'
+        Slot: 0
+      ARCHERY:
+        ID: '261'
+        Name: '&eArqueiro'
+        Lore:
+        - '&7Sua eficácia aumenta de acordo com o'
+        - '&7seu nível. Você poderá dar mais dano,'
+        - '&7atacar jogadores ao redor e até mesmo'
+        - '&7atordoar inimigos!'
+        - ''
+        - '&eComo utilizar:'
+        - '&7Atacando inimigos e mobs utilizando'
+        - '&7arco e flecha.'
+        - ''
+        - '&eInformações da habilidade:'
+        - '&fNível: &a%skill_level% &8(&f%skill_rank%&8)'
+        - '&fXP: &a%skill_xp%&f/&c%skill_xpmax% &8(%skill_percent%%&8)'
+        - ''
+        - '&eClique aqui para receber as'
+        - '&einformações adicionais.'
+        Slot: 1
+      AXES:
+        ID: '279'
+        Name: '&eMachado'
+        Lore:
+        - '&7Aumente sua chance de quebrar'
+        - '&7uma árvore inteira quebrando'
+        - '&7apenas um bloco de madeira de'
+        - '&7acordo com o seu nível.'
+        - ''
+        - '&eComo utilizar:'
+        - '&7Quebrando blocos de madeira'
+        - '&7com um machado.'
+        - ''
+        - '&eInformações da habilidade:'
+        - '&fNível: &a%skill_level% &8(&f%skill_rank%&8)'
+        - '&fXP: &a%skill_xp%&f/&c%skill_xpmax% &8(%skill_percent%%&8)'
+        - ''
+        - '&eClique aqui para receber as'
+        - '&einformações adicionais.'
+        Slot: 2
+      MINING:
+        ID: '276'
+        Name: '&eMineração'
+        Lore:
+        - '&7Quanto maior o seu nível, maior sua'
+        - '&7chance de dropar mais minérios!'
+        - ''
+        - '&eComo utilizar:'
+        - '&7Quebrando blocos de pedra e'
+        - '&7minérios com uma picareta.'
+        - ''
+        - '&eInformações da habilidade:'
+        - '&fNível: &a%skill_level% &8(&f%skill_rank%&8)'
+        - '&fXP: &a%skill_xp%&f/&c%skill_xpmax% &8(%skill_percent%%&8)'
+        - ''
+        - '&eClique aqui para receber as'
+        - '&einformações adicionais.'
+        Slot: 3
+      EXCAVATION:
+        ID: '277'
+        Name: '&eExcavação'
+        Lore:
+        - '&7Possibilita encontrar itens'
+        - '&7especiais ao escavar. Quanto'
+        - '&7maior seu nível, maior será'
+        - '&7a chance de conseguir algo'
+        - '&7de valor elevado.'
+        - ''
+        - '&eComo utilizar:'
+        - '&7Escavando blocos.'
+        - ''
+        - '&eInformações da habilidade:'
+        - '&fNível: &a%skill_level% &8(&f%skill_rank%&8)'
+        - '&fXP: &a%skill_xp%&f/&c%skill_xpmax% &8(%skill_percent%%&8)'
+        - ''
+        - '&eClique aqui para receber as'
+        - '&einformações adicionais.'   
+        Slot: 4
+      ACROBATICS:
+        ID: '313'
+        Name: '&eAcrobacia'
+        Lore:
+        - '&7Aumenta suas chances de'
+        - '&7tomar menos dano ou não'
+        - '&7tomar nenhum ao cair.'
+        - ''
+        - '&eComo utilizar:'
+        - '&7Pulando de lugares altos'
+        - '&7segurando shift.'
+        - ''
+        - '&eInformações da habilidade:'
+        - '&fNível: &a%skill_level% &8(&f%skill_rank%&8)'
+        - '&fXP: &a%skill_xp%&f/&c%skill_xpmax% &8(%skill_percent%%&8)'
+        - ''
+        - '&eClique aqui para receber as'
+        - '&einformações adicionais.'
+        Slot: 5
+      HERBALISM:
+        ID: '353'
+        Name: '&eHerbalismo'
+        Lore:
+        - '&7Aumenta o drop do item que foi'
+        - '&7colhido de acordo com o nível.'
+        - ''
+        - '&eComo utilizar:'
+        - '&7Colhendo plantações.'
+        - ''
+        - '&eInformações da habilidade:'
+        - '&fNível: &a%skill_level% &8(&f%skill_rank%&8)'
+        - '&fXP: &a%skill_xp%&f/&c%skill_xpmax% &8(%skill_percent%%&8)'
+        - ''
+        - '&eClique aqui para receber as'
+        - '&einformações adicionais.'
+        Slot: 6        
+LevelMessage:
+- ''
+- '&6%player% &eatingiu level &6%level% &ena skill &e%habilidade%'
+- ''
+HabilidadesInfo:
+- '&aServidor - Habilidades'
+- '&7Suas habilidades'
+- ''
+- '  &6Habilidades de combate'
+- ''
+- '    &eEspadas: &a%swords_level% &3XP(&7%swords_xp%&3/&7%swords_max%&3)'
+- '    &eArqueiro: &archery_level% &3XP(&7%archery_xp%&3/&7%archery_max%&3)'
+- '    &eMachado: &axes_level% &3XP(&7%axes_xp%&3/&7%axes_max%&3)'
+- ''
+- '  &6Habilidades gerais'
+- ''
+- '    &eMineração: &a%mining_level% &3XP(&7%mining_xp%&3/&7%mining_max%&3)'
+- '    &ePescaria: &a%fishing_level% &3XP(&7%fishing_xp%&3/&7%fishing_max%&3)'
+- '    &eEscavação: &a%excavation_level% &3XP(&7%excavation_xp%&3/&7%excavation_max%&3)'
+- '    &eHerbalismo: &a%herbalism_level% &3XP(&7%herbalism_xp%&3/&7%herbalism_max%&3)'
+- '    &eAcrobacia: &acrobatics_level% &3XP(&7%acrobatics_xp%&3/&7%acrobatics_max%&3)'
+- ''
+- '&eNível total: &6%level%'
+UseSet: '&eUso: &f/skill set <nick> <skill> <level>'
+UseAdd: '&eUso: &f/skill add <nick> <skill> <level>'
+UseAddXp: '&eUso: &f/skill addxp <nick> <skill> <xp>'
+UseRemove: '&eUso: &f/skill remove <nick> <skill> <level>'
+UseRemoveXp: '&eUso: &f/skill removexp <nick> <skill> <xp>'
+UseBonus: '&eUso: &f/skill bonus <skill> <bonus> <tempo>'
+LevelUp: '&aVoce upou para o nivel &f%level% &ade &f%habilidade%'
+ActionBar: '&e%habilidade% &a%level% &3XP(&7%xp%&3/&7%max%&3) &a+%received% &8(%percent%%)'
+Roll: '&a* Rolou *'
+PerfectRoll: '&a* Rolou Perfeitamente *'
+Dodge: '&a* Esquivou *'
+CounterAttacked: '&a* Voce recebeu um contra ataque de: &f%player%'
+CounterAttack: '&a* Voce deu um contra atauq em: &f%player%'
+Bleed: '&aVoce fez &f%player% &asangrar'
+Bleeding: '&c* %player% deixou voce sangrando'
+InvalidAmount: '&cQuantidade invalida'
+PlayerNotFound: '&cJogador nao encontrado'
+HabilidadeNotFound: '&cHabilidade nao encontrada'
+XpAdded: '&aVoce adicionou &f%xp% &apara &f%player%'
+CriticalHit: '&a* Dano critico em %player% *'
+TargetCriticalHit: '&cVoce recebeu um hit critico de %player%'
+DoubleDropHerbalism: '&aVoce recebeu o dobro da colheita'
+DoubleDropMining: '&aVoce recebeu o dobro da mineracao'
+TargetDisarmed: '&aVoce desarmou &f%player%'
+Disarmed: '&aVoce foi desarmado por &f%player%'
