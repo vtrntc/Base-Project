@@ -8,6 +8,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import com.vtr.api.commands.CustomCommand;
+import com.vtr.api.message.MessageUtils;
 import com.vtr.api.utils.StringUtils;
 import com.vtr.habilidades.HabilidadePlugin;
 import com.vtr.habilidades.habilidades.Habilidade;
@@ -30,17 +31,17 @@ public class HabilidadeCommand extends CustomCommand {
 			HabilidadesInventory.open(p, p.getName());
 		}else if(args[0].equalsIgnoreCase("addxp")) {
 			if(args.length < 4) {
-				StringUtils.getMessage(HabilidadePlugin.getYamlConfig(), "UseAddXp").send(p);
+				MessageUtils.getMessage(HabilidadePlugin.getYamlConfig(), "UseAddXp").send(p);
 			}else if(!HabilidadePlugin.getManager().isPlayer(args[1])) {
-				StringUtils.getMessage(HabilidadePlugin.getYamlConfig(), "PlayerNotFound").send(p);
+				MessageUtils.getMessage(HabilidadePlugin.getYamlConfig(), "PlayerNotFound").send(p);
 			}else if(!StringUtils.isInteger(args[3])) {
-				StringUtils.getMessage(HabilidadePlugin.getYamlConfig(), "InvalidAmount").send(p);
+				MessageUtils.getMessage(HabilidadePlugin.getYamlConfig(), "InvalidAmount").send(p);
 			}else{
 				//          [0]   [1]  [2]    [3]
 //				/habilidade addxp vtr_ mining 10
 				Habilidade habilidade = HabilidadePlugin.getManager().getHabilidadeByTypeName(args[2]);
 				if(habilidade == null) {
-					StringUtils.getMessage(HabilidadePlugin.getYamlConfig(), "HabilidadeNotFound").send(p);
+					MessageUtils.getMessage(HabilidadePlugin.getYamlConfig(), "HabilidadeNotFound").send(p);
 				}else{
 					int xp = Integer.parseInt(args[3]);
 					
@@ -48,7 +49,7 @@ public class HabilidadeCommand extends CustomCommand {
 					
 					HabilidadeInfo habilidadeInfo = targetPlayer.getHabilidade(habilidade.getType());
 					if(habilidadeInfo == null) {
-						StringUtils.getMessage(HabilidadePlugin.getYamlConfig(), "HabilidadeNotFound").send(p);
+						MessageUtils.getMessage(HabilidadePlugin.getYamlConfig(), "HabilidadeNotFound").send(p);
 					}else{
 						habilidadeInfo.setXp(habilidadeInfo.getXp() + xp);
 						habilidadeInfo.getHabilidade().canLevelUP(habilidadePlayer);
@@ -58,19 +59,19 @@ public class HabilidadeCommand extends CustomCommand {
 						replacers.put("%xp%", Integer.toString(xp));
 						replacers.put("%player%", targetPlayer.getPlayer());
 						
-						StringUtils.getMessage(HabilidadePlugin.getYamlConfig(), "XpAdded").replace(replacers).send(p);
+						MessageUtils.getMessage(HabilidadePlugin.getYamlConfig(), "XpAdded").replace(replacers).send(p);
 					}
 				}
 			}
 		}else if(args[0].equalsIgnoreCase("set")) {
 			if(args.length < 3) {
-				StringUtils.getMessage(HabilidadePlugin.getYamlConfig(), "UseSet").send(p);
+				MessageUtils.getMessage(HabilidadePlugin.getYamlConfig(), "UseSet").send(p);
 			}else if(!HabilidadePlugin.getManager().isPlayer(args[0])) {
-				StringUtils.getMessage(HabilidadePlugin.getYamlConfig(), "PlayerNotFound").send(p);
+				MessageUtils.getMessage(HabilidadePlugin.getYamlConfig(), "PlayerNotFound").send(p);
 			}else if(!StringUtils.isInteger(args[2])) {
-				StringUtils.getMessage(HabilidadePlugin.getYamlConfig(), "InvalidAmount").send(p);
+				MessageUtils.getMessage(HabilidadePlugin.getYamlConfig(), "InvalidAmount").send(p);
 			}else{
-				StringUtils.getMessage(HabilidadePlugin.getYamlConfig(), "InvalidAmount").send(p);
+				MessageUtils.getMessage(HabilidadePlugin.getYamlConfig(), "InvalidAmount").send(p);
 			}
 		}else{
 			HabilidadesInventory.open(p, p.getName());
@@ -94,6 +95,6 @@ public class HabilidadeCommand extends CustomCommand {
 		
 		replacers.put("%level%", Integer.toString(level));
 		
-		StringUtils.getMessage(HabilidadePlugin.getYamlConfig(), "HabilidadesInfo").replace(replacers).send(player);
+		MessageUtils.getMessage(HabilidadePlugin.getYamlConfig(), "HabilidadesInfo").replace(replacers).send(player);
 	}
 }

@@ -13,8 +13,8 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.inventory.ItemStack;
 
+import com.vtr.api.message.MessageUtils;
 import com.vtr.api.utils.MathUtils;
-import com.vtr.api.utils.StringUtils;
 import com.vtr.habilidades.HabilidadePlugin;
 import com.vtr.habilidades.habilidades.Habilidade;
 import com.vtr.habilidades.objects.HabilidadeDrop;
@@ -64,11 +64,11 @@ public class Unarmed extends Habilidade {
 										Map<String, String> replacers = new HashMap<>();
 										replacers.put("%player%", target.getName());
 										
-										StringUtils.getMessage(HabilidadePlugin.getYamlConfig(), "TargetDisarmed").replace(replacers).send(p);
+										MessageUtils.getMessage(HabilidadePlugin.getYamlConfig(), "TargetDisarmed").replace(replacers).send(p);
 										
 										replacers.put("%player%", p.getName());
 										
-										StringUtils.getMessage(HabilidadePlugin.getYamlConfig(), "Disarmed").replace(replacers).send(p);
+										MessageUtils.getMessage(HabilidadePlugin.getYamlConfig(), "Disarmed").replace(replacers).send(p);
 									}
 								}
 							}

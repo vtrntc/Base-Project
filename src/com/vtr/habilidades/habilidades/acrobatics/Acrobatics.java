@@ -11,10 +11,10 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
 
+import com.vtr.api.message.MessageUtils;
 import com.vtr.api.utils.LocationUtils;
 import com.vtr.api.utils.MathUtils;
 import com.vtr.api.utils.PlayerUtils;
-import com.vtr.api.utils.StringUtils;
 import com.vtr.habilidades.HabilidadePlugin;
 import com.vtr.habilidades.habilidades.Habilidade;
 import com.vtr.habilidades.objects.HabilidadeDrop;
@@ -43,7 +43,7 @@ public class Acrobatics extends Habilidade {
 				HabilidadeInfo habilidadeInfo = habilidadePlayer.getHabilidade(type);
 				if(habilidadeInfo != null) {
 					if(MathUtils.percentDouble(habilidadeInfo.getLevel() * 0.025, 100)) {
-						StringUtils.getMessage(HabilidadePlugin.getYamlConfig(), "Dodge").send(p);
+						MessageUtils.getMessage(HabilidadePlugin.getYamlConfig(), "Dodge").send(p);
 						e.setDamage(e.getDamage() / 2);
 					}
 				}
@@ -69,13 +69,13 @@ public class Acrobatics extends Habilidade {
 							if(MathUtils.percentDouble(habilidadeInfo.getLevel() * 0.2, 100)) {
 								roll = true;
 								
-								StringUtils.getMessage(HabilidadePlugin.getYamlConfig(), "PerfectRoll").send(p);
+								MessageUtils.getMessage(HabilidadePlugin.getYamlConfig(), "PerfectRoll").send(p);
 								e.setCancelled(true);
 							}
 						}else if(MathUtils.percentDouble(habilidadeInfo.getLevel() * 0.1, 100)) {
 							roll = true;
 							
-							StringUtils.getMessage(HabilidadePlugin.getYamlConfig(), "Roll").send(p);
+							MessageUtils.getMessage(HabilidadePlugin.getYamlConfig(), "Roll").send(p);
 							e.setCancelled(true);
 							
 						}

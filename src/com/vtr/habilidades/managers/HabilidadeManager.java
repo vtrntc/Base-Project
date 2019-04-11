@@ -33,9 +33,12 @@ import com.vtr.habilidades.habilidades.fishing.Fishing;
 import com.vtr.habilidades.habilidades.herbalism.DoubleDrop;
 import com.vtr.habilidades.habilidades.herbalism.Herbalism;
 import com.vtr.habilidades.habilidades.mining.Mining;
-import com.vtr.habilidades.habilidades.swords.Bleed;
 import com.vtr.habilidades.habilidades.swords.Swords;
 import com.vtr.habilidades.habilidades.swords.SwordsInfo;
+import com.vtr.habilidades.habilidades.swords.extras.CounterAttack;
+import com.vtr.habilidades.habilidades.swords.extras.Dodge;
+import com.vtr.habilidades.habilidades.swords.extras.bleed.Bleed;
+import com.vtr.habilidades.habilidades.swords.extras.bleed.BleedLevel;
 import com.vtr.habilidades.habilidades.unarmed.Disarmor;
 import com.vtr.habilidades.habilidades.unarmed.Unarmed;
 import com.vtr.habilidades.objects.HabilidadeBlock;
@@ -91,14 +94,33 @@ public class HabilidadeManager {
 							habilidades.add(new Unarmed(name, drops, tools, loadEntitiesExperience(config, e), disarmor));
 							break;
 						case SWORDS:
-							List<Bleed> bleed = new ArrayList<>();
-							if(config.isSet("Habilidades." + e + ".Bleed")) {
-								for(String b : config.getConfigurationSection("Habilidades." + e + ".Bleed").getKeys(false)) {
-									bleed.add(new Bleed(config.getInt("Habilidades." + e + ".Bleed." + b + ".MinLevel"), config.getInt("Habilidades." + e + ".Bleed." + b + ".Amount"), config.getInt("Habilidades." + e + ".Bleed." + b + ".Time"), config.getDouble("Habilidades." + e + ".Bleed." + b + ".Damage")));
+							Swords swords = new Swords(name, drops, tools, loadEntitiesExperience(config, e));
+							habilidades.add(swords);
+							
+							if(config.isSet("Habilidades." + e + ".Extras")) {
+								for(String x : config.getConfigurationSection("Habilidades." + e + ".Extras").getKeys(false)) {
+									switch(x) {
+										case "Bleed":
+											List<BleedLevel> bleed = new ArrayList<>();
+											
+											for(String b : config.getConfigurationSection("Habilidades." + e + ".Extras." + x + ".Levels").getKeys(false)) {
+												bleed.add(new BleedLevel(config.getInt("Habilidades." + e + ".Extras." + x + ".Levels." + b + ".MinLevel"), config.getInt("Habilidades." + e + ".Extras." + x + ".Levels." + b + ".Amount"), config.getInt("Habilidades." + e + ".Extras." + x + ".Levels." + b + ".Time"), config.getDouble("Habilidades." + e + "." + x + ".Levels." + b + ".Damage")));
+											}
+											
+											swords.registerHabilidadeExtra(new Bleed(config.getDouble("Habilidades." + e + ".Extras." + x + ".PerLevel"), bleed));
+											break;
+										case "Dodge":
+											swords.registerHabilidadeExtra(new Dodge(config.getInt("Habilidades." + e + ".Extras." + x + ".Max")));
+											break;
+										case "Counter":
+											swords.registerHabilidadeExtra(new CounterAttack(config.getDouble("Habilidades." + e + ".Extras." + x + ".PerLevel"), config.getDouble("Habilidades." + e + ".Extras." + x + ".MaxChance")));
+											break;
+										default:
+											break;
+									}
 								}
 							}
 							
-							habilidades.add(new Swords(name, drops, tools, config.getInt("Habilidades." + e + ".MaxDodge"), config.getInt("Habilidades." + e + ".MaxCounter"), bleed, loadEntitiesExperience(config, e)));
 							break;
 						case FISHING:
 							Map<FishType, Double> fishs = new HashMap<>();

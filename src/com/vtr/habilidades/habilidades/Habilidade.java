@@ -1,5 +1,6 @@
 package com.vtr.habilidades.habilidades;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -12,6 +13,7 @@ import org.bukkit.event.Listener;
 
 import com.vtr.api.SoloAPI;
 import com.vtr.api.message.AbstractMessage;
+import com.vtr.api.message.MessageUtils;
 import com.vtr.api.misc.ActionBar;
 import com.vtr.api.misc.RandomChooser;
 import com.vtr.api.utils.StringUtils;
@@ -29,6 +31,8 @@ public abstract class Habilidade implements Listener {
 	
 	protected List<HabilidadeDrop> drops;
 	
+	private List<HabilidadeExtra> extras;
+	
 	private List<Material> tools;
 	
 	protected RandomChooser<HabilidadeDrop> dropsRandomChooser;
@@ -38,7 +42,9 @@ public abstract class Habilidade implements Listener {
 		this.name = name;
 		this.tools = tools;
 		this.drops = drops;
+		this.extras = new ArrayList<>();
 		this.dropsRandomChooser = new RandomChooser<>();
+		
 		for(HabilidadeDrop drop : drops) {
 			dropsRandomChooser.option(drop, drop.getChance());
 		}
@@ -73,6 +79,14 @@ public abstract class Habilidade implements Listener {
 		habilidadePlayer.setNeedUpdate(true);
 	}
 	
+	public void registerHabilidadeExtra(HabilidadeExtra extra) {
+		this.extras.add(extra);
+	}
+	
+	public HabilidadeExtra getHabilidadeExtra(HabilidadeExtraType extraType) {
+		return extras.stream().filter(e -> e.getExtraType() == extraType).findFirst().orElse(null);
+	}
+	
 	public boolean canLevelUP(HabilidadePlayer habilidadePlayer) {
 		HabilidadeInfo habilidadeInfo = habilidadePlayer.getHabilidade(type);
 		if(habilidadeInfo != null) {
@@ -83,7 +97,7 @@ public abstract class Habilidade implements Listener {
 				replacers.put("%level%", Integer.toString(habilidadeInfo.getLevel() + 1));
 				replacers.put("%habilidade%", habilidadeInfo.getHabilidade().getName());
 				
-				AbstractMessage abstractMessage = StringUtils.getMessage(HabilidadePlugin.getYamlConfig(), "LevelMessage");
+				AbstractMessage abstractMessage = MessageUtils.getMessage(HabilidadePlugin.getYamlConfig(), "LevelMessage");
 				abstractMessage.replace(replacers);
 				
 				for(Player on : Bukkit.getOnlinePlayers()) {
@@ -115,7 +129,7 @@ public abstract class Habilidade implements Listener {
 		replacers.put("%received%", StringUtils.formatDouble(xpWon));
 		replacers.put("%percent%", Integer.toString((int) ((habilidadeInfo.getXp() / maxXp) * 100)));
 		
-		ActionBar.sendActionBar(player, StringUtils.getMessage(HabilidadePlugin.getYamlConfig(), "ActionBar").replace(replacers).asString());
+		ActionBar.sendActionBar(player, MessageUtils.getMessage(HabilidadePlugin.getYamlConfig(), "ActionBar").replace(replacers).asString());
 	}
 	
 	public int getXPToNextLevel(HabilidadeInfo habilidadeInfo) {

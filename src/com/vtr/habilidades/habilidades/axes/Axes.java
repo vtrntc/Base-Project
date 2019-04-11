@@ -10,8 +10,8 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 
+import com.vtr.api.message.MessageUtils;
 import com.vtr.api.utils.MathUtils;
-import com.vtr.api.utils.StringUtils;
 import com.vtr.habilidades.HabilidadePlugin;
 import com.vtr.habilidades.habilidades.Habilidade;
 import com.vtr.habilidades.objects.HabilidadeDrop;
@@ -52,8 +52,8 @@ public class Axes extends Habilidade {
 							if(MathUtils.percentDouble((habilidadeInfo.getLevel() > maxLevel ? maxLevel : habilidadeInfo.getLevel()) * 0.1, 100)) {
 								target.damage(e.getDamage() / 4);
 								
-								StringUtils.getMessage(HabilidadePlugin.getYamlConfig(), "CriticalHit").replace("%player%", target.getName()).send(p);
-								StringUtils.getMessage(HabilidadePlugin.getYamlConfig(), "TargetCriticalHit").replace("%player%", p.getName()).send(target);
+								MessageUtils.getMessage(HabilidadePlugin.getYamlConfig(), "CriticalHit").replace("%player%", target.getName()).send(p);
+								MessageUtils.getMessage(HabilidadePlugin.getYamlConfig(), "TargetCriticalHit").replace("%player%", p.getName()).send(target);
 							}
 							
 							e.setDamage(e.getDamage() + ((habilidadeInfo.getLevel() / perLevel) * damage));

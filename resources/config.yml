@@ -1,29 +1,35 @@
 Habilidades:
   SWORDS:
     Name: 'Espada'
-    MaxCounter: 600
-    MaxDodge: 600
-    Bleed:
-      1:
-        Damage: 0.5
-        MinLevel: 0
-        Amount: 3
-        Time: 3
-      2:
-        Damage: 0.5
-        MinLevel: 50
-        Amount: 3
-        Time: 2
-      3:
-        Damage: 1.0
-        MinLevel: 100
-        Amount: 3
-        Time: 3      
-      4:
-        Damage: 1.0
-        MinLevel: 150
-        Amount: 3
-        Time: 2        
+    Extras:
+      Counter:
+        PerLevel: 0.05
+        MaxChance: 30
+      Dodge:
+        MaxChance: 30
+      Bleed:
+        PerLevel: 0.1
+        Levels:
+          1:
+            Damage: 0.5
+            MinLevel: 0
+            Amount: 3
+            Time: 3
+          2:
+            Damage: 0.5
+            MinLevel: 50
+            Amount: 3
+            Time: 2
+          3:
+            Damage: 1.0
+            MinLevel: 100
+            Amount: 3
+            Time: 3      
+          4:
+            Damage: 1.0
+            MinLevel: 150
+            Amount: 3
+            Time: 2       
     Entities:
       PLAYER:
         XP: 1.0

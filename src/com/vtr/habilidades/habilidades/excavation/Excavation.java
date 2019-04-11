@@ -13,8 +13,8 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.inventory.ItemStack;
 
+import com.vtr.api.message.MessageUtils;
 import com.vtr.api.utils.MathUtils;
-import com.vtr.api.utils.StringUtils;
 import com.vtr.habilidades.HabilidadePlugin;
 import com.vtr.habilidades.habilidades.Habilidade;
 import com.vtr.habilidades.objects.HabilidadeBlock;
@@ -73,7 +73,7 @@ public class Excavation extends Habilidade {
 								replacers.put("%habilidade%", habilidadeInfo.getHabilidade().getName());
 								replacers.put("%level%", Integer.toString(habilidadeInfo.getLevel()));
 								
-								StringUtils.getMessage(HabilidadePlugin.getYamlConfig(), "LevelUp").replace(replacers).send(p);
+								MessageUtils.getMessage(HabilidadePlugin.getYamlConfig(), "LevelUp").replace(replacers).send(p);
 							}
 						}
 					}
