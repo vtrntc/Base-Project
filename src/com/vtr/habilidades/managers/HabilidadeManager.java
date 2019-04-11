@@ -27,6 +27,7 @@ import com.vtr.habilidades.habilidades.archery.ArrowRetrieval;
 import com.vtr.habilidades.habilidades.archery.Daze;
 import com.vtr.habilidades.habilidades.archery.SkillShot;
 import com.vtr.habilidades.habilidades.axes.Axes;
+import com.vtr.habilidades.habilidades.axes.extras.TreeCut;
 import com.vtr.habilidades.habilidades.excavation.Excavation;
 import com.vtr.habilidades.habilidades.fishing.FishType;
 import com.vtr.habilidades.habilidades.fishing.Fishing;
@@ -136,7 +137,20 @@ public class HabilidadeManager {
 							habilidades.add(new Fishing(name, drops, tools, fishs));
 							break;
 						case AXES:
-							habilidades.add(new Axes(name, drops, tools, config.getInt("Habilidades." + e + ".DamageModifier.MaxLevel"), config.getInt("Habilidades." + e + ".DamageModifier.PerLevel"), config.getDouble("Habilidades." + e + ".DamageModifier.Damage"), loadEntitiesExperience(config, e)));
+							Axes axes = new Axes(name, drops, tools, loadEntitiesExperience(config, e));
+							if(config.isSet("Habilidades." + e + ".Extras")) {
+								for(String x : config.getConfigurationSection("Habilidades." + e + ".Extras").getKeys(false)) {
+									switch(x) {
+										case "TreeCut":
+											axes.registerHabilidadeExtra(new TreeCut(config.getDouble("Habilidades." + e + "." + x + ".PerLevel"), config.getDouble("Habilidades." + e + "." + x + ".MaxChance")));
+											break;
+										default:
+											break;
+									}
+								}
+							}
+							
+							habilidades.add(axes);
 							break;
 						case ARCHERY:
 							Daze daze = null;

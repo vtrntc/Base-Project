@@ -68,7 +68,7 @@ public abstract class Habilidade implements Listener {
 		return habilidadeDrops.stream().filter(hd -> level >= hd.getMinLevel()).collect(Collectors.toList());
 	}
 	
-	protected boolean isTool(Material material) {
+	public boolean isTool(Material material) {
 		return tools.contains(material);
 	}
 	

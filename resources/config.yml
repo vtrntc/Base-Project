@@ -63,17 +63,17 @@ Habilidades:
     Entities:
       PLAYER: 1.0
   AXES:
-    Name: 'Machado'
-    DamageModifier: 
-      Damage: 0.5
-      PerLevel: 50
-      MaxLevel: 500
+    Name: 'Lenhador'
     Tools:
     - 'WOOD_AXE'
     - 'STONE_AXE'
     - 'IRON_AXE'
     - 'GOLD_AXE'
-    - 'DIAMOND_AXE'   
+    - 'DIAMOND_AXE' 
+    Extras:
+      TreeCut:
+        PerLevel: 0.1
+        MaxChance: 100
     Entities:
       PLAYER:
         XP: 1.0
@@ -626,8 +626,6 @@ InvalidAmount: '&cQuantidade invalida'
 PlayerNotFound: '&cJogador nao encontrado'
 HabilidadeNotFound: '&cHabilidade nao encontrada'
 XpAdded: '&aVoce adicionou &f%xp% &apara &f%player%'
-CriticalHit: '&a* Dano critico em %player% *'
-TargetCriticalHit: '&cVoce recebeu um hit critico de %player%'
 DoubleDropHerbalism: '&aVoce recebeu o dobro da colheita'
 DoubleDropMining: '&aVoce recebeu o dobro da mineracao'
 TargetDisarmed: '&aVoce desarmou &f%player%'
