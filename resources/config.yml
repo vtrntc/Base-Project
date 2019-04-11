@@ -236,91 +236,109 @@ Habilidades:
     Drops:
       glowstone:
         Chance: 5
+        MaxChance: 75
         MinLevel: 25
         Item:
           ID: '348'
       gunpowder:
         Chance: 10
+        MaxChance: 75
         MinLevel: 75
         Item:
           ID: '289'
       slimeball:
         Chance: 5
+        MaxChance: 75        
         MinLevel: 150
         Item:
           ID: '341' 
       bone:
         Chance: 10
+        MaxChance: 75        
         MinLevel: 175
         Item:
           ID: '352'
       egg:
         Chance: 1
+        MaxChance: 75       
         MinLevel: 250
         Item:
           ID: '352'   
       music_disc:
         Chance: 0.05
+        MaxChance: 75        
         MinLevel: 250
         Item:
           ID: '2267'
       apple:
         Chance: 0.1
+        MaxChance: 75        
         MinLevel: 250
         Item:
           ID: '260'
       string:
         Chance: 5
+        MaxChance: 75        
         MinLevel: 250
         Item:
           ID: '287'
       cocoa:
         Chance: 1.33
+        MaxChance: 75        
         MinLevel: 350
         Item:
           ID: '351:3'    
       diamond:
         Chance: 0.13
+        MaxChance: 75        
         MinLevel: 350
         Item:
           ID: '264'
       mushroom_brown:
         Chance: 0.5
+        MaxChance: 75        
         MinLevel: 500
         Item:
           ID: '39'       
       mushroom_red:
         Chance: 0.5
+        MaxChance: 75        
         MinLevel: 500
         Item:
           ID: '40' 
       clock:
         Chance: 0.1
+        MaxChance: 75        
         MinLevel: 500
         Item:
           ID: '347'
       bucket:
         Chance: 0.5
+        MaxChance: 75        
         MinLevel: 500
         Item:
           ID: '325'  
       soul_sand:
         Chance: 0.1
+        MaxChance: 75        
         MinLevel: 650
         Item:
           ID: '88'   
       cake:
         Chance: 0.5
+        MaxChance: 75        
         MinLevel: 750
         Item:
           ID: '354'
       web:
         Chance: 0.5
+        MaxChance: 75        
         MinLevel: 750
         Item:
           ID: '30'   
       netherrack:
         Chance: 0.5
+        MaxChance: 75        
         MinLevel: 850
         Item:
           ID: '87'          
@@ -602,8 +620,8 @@ PerfectRoll: '&a* Rolou Perfeitamente *'
 Dodge: '&a* Esquivou *'
 CounterAttacked: '&a* Voce recebeu um contra ataque de: &f%player%'
 CounterAttack: '&a* Voce deu um contra atauq em: &f%player%'
-Bleed: '&aVoce fez &f%player% &asangrar'
-Bleeding: '&c* %player% deixou voce sangrando'
+Bleed: '&aVoce fez &f%player% &asangrar por &f%time%'
+Bleeding: '&c* %player% deixou voce sangrando por &f%time%'
 InvalidAmount: '&cQuantidade invalida'
 PlayerNotFound: '&cJogador nao encontrado'
 HabilidadeNotFound: '&cHabilidade nao encontrada'

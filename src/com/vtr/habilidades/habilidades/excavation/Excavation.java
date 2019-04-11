@@ -56,6 +56,9 @@ public class Excavation extends Habilidade {
 							if(!drops.isEmpty()) {
 								for(HabilidadeDrop drop : drops) {
 									double activationChance = drop.getChance() * ((habilidadeInfo.getLevel() / drop.getMinLevel()));
+									if(activationChance > drop.getMaxChance()) {
+										activationChance = drop.getMaxChance();
+									}
 									
 									if(activationChance >= 100) {
 										p.getWorld().dropItemNaturally(block.getLocation().clone().add(0.5, 0, 0.5), drop.getItem());

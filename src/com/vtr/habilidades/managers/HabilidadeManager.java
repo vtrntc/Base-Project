@@ -80,7 +80,7 @@ public class HabilidadeManager {
 					List<HabilidadeDrop> drops = new ArrayList<>();
 					if(config.isSet("Habilidades." + e + ".Drops")) {
 						for(String d : config.getConfigurationSection("Habilidades." + e + ".Drops").getKeys(false)) {
-							drops.add(new HabilidadeDrop(d, InventoryUtils.loadItemFromPath(config, "Habilidades." + e + ".Drops." + d + ".Item"), config.getDouble("Habilidades." + e + ".Drops." + d + ".Chance"), config.getInt("Habilidades." + e + ".Drops." + d + ".MinLevel")));
+							drops.add(new HabilidadeDrop(d, InventoryUtils.loadItemFromPath(config, "Habilidades." + e + ".Drops." + d + ".Item"), config.getDouble("Habilidades." + e + ".Drops." + d + ".Chance"), config.getDouble("Habilidades." + e + ".Drops." + d + ".MaxChance"), config.getInt("Habilidades." + e + ".Drops." + d + ".MinLevel")));
 						}
 					}
 					

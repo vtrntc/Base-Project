@@ -92,8 +92,15 @@ public class Bleed extends HabilidadeExtra {
 								
 								playersBleeding.put(target, bleedInfo);
 								
-								MessageUtils.getMessage(HabilidadePlugin.getYamlConfig(), "Bleeding").replace("%player%", p.getName()).send(target);
-								MessageUtils.getMessage(HabilidadePlugin.getYamlConfig(), "Bleed").replace("%player%", target.getName()).send(p);
+								Map<String, String> replacers = new HashMap<>();
+								replacers.put("%player%", p.getName());
+								replacers.put("%time%", Integer.toString(bleed.getTime()));
+								
+								MessageUtils.getMessage(HabilidadePlugin.getYamlConfig(), "Bleeding").replace(replacers).send(target);
+								
+								replacers.put("%player%", target.getName());
+								
+								MessageUtils.getMessage(HabilidadePlugin.getYamlConfig(), "Bleed").replace(replacers).send(p);
 							}
 						}
 					}
