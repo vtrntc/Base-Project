@@ -6,21 +6,18 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 
 import com.vtr.api.spigot.message.MessageUtils;
-import com.vtr.api.spigot.utils.MathUtils;
 import com.vtr.api.spigot.utils.PlayerUtils;
 import com.vtr.habilidades.HabilidadePlugin;
-import com.vtr.habilidades.habilidades.HabilidadeExtra;
 import com.vtr.habilidades.habilidades.HabilidadeExtraType;
+import com.vtr.habilidades.habilidades.extra.HabilidadeExtraPercent;
 import com.vtr.habilidades.objects.HabilidadeInfo;
 import com.vtr.habilidades.objects.HabilidadePlayer;
 import com.vtr.habilidades.objects.HabilidadeType;
 
-public class Dodge extends HabilidadeExtra {
+public class Dodge extends HabilidadeExtraPercent {
 
-	private int maxLevel;
-	
-	public Dodge(int maxLevel) {
-		super(HabilidadeType.SWORDS, HabilidadeExtraType.DODGE);
+	public Dodge(double chance, double maxChance) {
+		super(HabilidadeType.SWORDS, HabilidadeExtraType.DODGE, chance, maxChance);
 	}
 
 	@EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
@@ -34,9 +31,7 @@ public class Dodge extends HabilidadeExtra {
 				
 				HabilidadeInfo targetInfo = targetPlayer.getHabilidade(habilidade.getType());
 				if(targetInfo != null) {
-					int level = targetInfo.getLevel();
-					
-					if(MathUtils.percentDouble((level > maxLevel ? maxLevel : level) * 0.1, 100)) {
+					if(use(targetPlayer)) {
 						MessageUtils.getMessage(HabilidadePlugin.getYamlConfig(), "Dodge").send(target);
 						e.setCancelled(true);
 					}

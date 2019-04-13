@@ -15,26 +15,22 @@ import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scheduler.BukkitTask;
 
 import com.vtr.api.spigot.message.MessageUtils;
-import com.vtr.api.spigot.utils.MathUtils;
 import com.vtr.api.spigot.utils.PlayerUtils;
 import com.vtr.habilidades.HabilidadePlugin;
-import com.vtr.habilidades.habilidades.HabilidadeExtra;
 import com.vtr.habilidades.habilidades.HabilidadeExtraType;
+import com.vtr.habilidades.habilidades.extra.HabilidadeExtraPercent;
 import com.vtr.habilidades.objects.HabilidadeInfo;
 import com.vtr.habilidades.objects.HabilidadePlayer;
 import com.vtr.habilidades.objects.HabilidadeType;
 
-public class Bleed extends HabilidadeExtra {
+public class Bleed extends HabilidadeExtraPercent {
 
-	private double perLevel;
-	
 	private List<BleedLevel> bleeds;
 	
 	private Map<Player, BleedInfo> playersBleeding;
 	
-	public Bleed(double perLevel, List<BleedLevel> bleeds) {
-		super(HabilidadeType.SWORDS, HabilidadeExtraType.BLEED);
-		this.perLevel = perLevel;
+	public Bleed(double perLevel, double maxChance, List<BleedLevel> bleeds) {
+		super(HabilidadeType.SWORDS, HabilidadeExtraType.BLEED, perLevel, maxChance);
 		this.playersBleeding = new HashMap<>();
 		this.bleeds = bleeds;
 		this.bleeds.sort((b1, b2) -> {
@@ -80,9 +76,8 @@ public class Bleed extends HabilidadeExtra {
 				
 				HabilidadeInfo habilidadeInfo = habilidadePlayer.getHabilidade(habilidade.getType());
 				if(habilidadeInfo != null) {
-					int level = habilidadeInfo.getLevel();
-					if(MathUtils.percentDouble(level * perLevel, 100)) {
-						BleedLevel bleed = getBleed(level);
+					if(use(habilidadePlayer)) {
+						BleedLevel bleed = getBleed(habilidadeInfo.getLevel());
 						if(bleed != null) {	
 							Player target = (Player) e.getEntity();
 							

@@ -108,10 +108,10 @@ public class HabilidadeManager {
 												bleed.add(new BleedLevel(config.getInt("Habilidades." + e + ".Extras." + x + ".Levels." + b + ".MinLevel"), config.getInt("Habilidades." + e + ".Extras." + x + ".Levels." + b + ".Amount"), config.getInt("Habilidades." + e + ".Extras." + x + ".Levels." + b + ".Time"), config.getDouble("Habilidades." + e + "." + x + ".Levels." + b + ".Damage")));
 											}
 											
-											swords.registerHabilidadeExtra(new Bleed(config.getDouble("Habilidades." + e + ".Extras." + x + ".PerLevel"), bleed));
+											swords.registerHabilidadeExtra(new Bleed(config.getDouble("Habilidades." + e + ".Extras." + x + ".PerLevel"), config.getDouble("Habilidades." + e + ".Extras." + x + ".MaxChance"), bleed));
 											break;
 										case "Dodge":
-											swords.registerHabilidadeExtra(new Dodge(config.getInt("Habilidades." + e + ".Extras." + x + ".Max")));
+											swords.registerHabilidadeExtra(new Dodge(config.getDouble("Habilidades." + e + ".Extras." + x + ".PerLevel"), config.getDouble("Habilidades." + e + ".Extras." + x + ".MaxChance")));
 											break;
 										case "Counter":
 											swords.registerHabilidadeExtra(new CounterAttack(config.getDouble("Habilidades." + e + ".Extras." + x + ".PerLevel"), config.getDouble("Habilidades." + e + ".Extras." + x + ".MaxChance")));
@@ -138,11 +138,13 @@ public class HabilidadeManager {
 							break;
 						case AXES:
 							Axes axes = new Axes(name, drops, tools, loadEntitiesExperience(config, e));
+							habilidades.add(axes);
+							
 							if(config.isSet("Habilidades." + e + ".Extras")) {
 								for(String x : config.getConfigurationSection("Habilidades." + e + ".Extras").getKeys(false)) {
 									switch(x) {
 										case "TreeCut":
-											axes.registerHabilidadeExtra(new TreeCut(config.getDouble("Habilidades." + e + "." + x + ".PerLevel"), config.getDouble("Habilidades." + e + "." + x + ".MaxChance")));
+											axes.registerHabilidadeExtra(new TreeCut(config.getDouble("Habilidades." + e + ".Extras." + x + ".PerLevel"), config.getDouble("Habilidades." + e + ".Extras." + x + ".MaxChance")));
 											break;
 										default:
 											break;
@@ -150,7 +152,6 @@ public class HabilidadeManager {
 								}
 							}
 							
-							habilidades.add(axes);
 							break;
 						case ARCHERY:
 							Daze daze = null;

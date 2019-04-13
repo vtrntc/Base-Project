@@ -12,26 +12,20 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.inventory.ItemStack;
 
-import com.vtr.api.spigot.utils.MathUtils;
+import com.vtr.api.spigot.message.MessageUtils;
 import com.vtr.habilidades.HabilidadePlugin;
-import com.vtr.habilidades.habilidades.HabilidadeExtra;
 import com.vtr.habilidades.habilidades.HabilidadeExtraType;
+import com.vtr.habilidades.habilidades.extra.HabilidadeExtraPercent;
 import com.vtr.habilidades.objects.HabilidadeInfo;
 import com.vtr.habilidades.objects.HabilidadePlayer;
 import com.vtr.habilidades.objects.HabilidadeType;
 
-public class TreeCut extends HabilidadeExtra {
+public class TreeCut extends HabilidadeExtraPercent {
 
-	private double perLevel;
-	
-	private double maxChance;
-	
 	private List<Material> wood = Arrays.asList(Material.LOG, Material.LOG_2);
 	
-	public TreeCut(double perLevel, double maxChance) {
-		super(HabilidadeType.AXES, HabilidadeExtraType.TREE_CUT);
-		this.perLevel = perLevel;
-		this.maxChance = maxChance;
+	public TreeCut(double chance, double maxChance) {
+		super(HabilidadeType.AXES, HabilidadeExtraType.TREE_CUT, chance, maxChance);
 	}
 	
 	private boolean isWood(Material material) {
@@ -52,16 +46,13 @@ public class TreeCut extends HabilidadeExtra {
 						
 						HabilidadeInfo habilidadeInfo = habilidadePlayer.getHabilidade(habilidade.getType());
 						if(habilidadeInfo != null) {
-							double chance = habilidadeInfo.getLevel() * perLevel;
-							if(chance > maxChance) {
-								chance = maxChance;
-							}
-							
-							if(MathUtils.percentDouble(chance, 100)) {
+							if(use(habilidadePlayer)) {
 								while(isWood(block.getType())) {
 									block.breakNaturally();
 									block = block.getRelative(BlockFace.UP);
 								}
+								
+								MessageUtils.getMessage(HabilidadePlugin.getYamlConfig(), "TreeCut").send(p);
 							}
 						}
 					}

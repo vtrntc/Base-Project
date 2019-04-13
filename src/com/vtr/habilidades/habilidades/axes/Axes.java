@@ -26,6 +26,7 @@ public class Axes extends Habilidade {
 		this.entitiesXp = entitiesXp;
 	}
 	
+	//TODO change that
 	@EventHandler(priority = EventPriority.MONITOR, ignoreCancelled= true)
 	private void onDamage(EntityDamageByEntityEvent e) {
 		if(e.getDamager() instanceof Player) {

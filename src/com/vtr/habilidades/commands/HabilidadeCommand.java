@@ -12,6 +12,8 @@ import com.vtr.api.spigot.commands.CustomCommand;
 import com.vtr.api.spigot.message.MessageUtils;
 import com.vtr.habilidades.HabilidadePlugin;
 import com.vtr.habilidades.habilidades.Habilidade;
+import com.vtr.habilidades.habilidades.extra.HabilidadeExtra;
+import com.vtr.habilidades.habilidades.extra.HabilidadeExtraPercent;
 import com.vtr.habilidades.inventories.HabilidadesInventory;
 import com.vtr.habilidades.objects.HabilidadeInfo;
 import com.vtr.habilidades.objects.HabilidadePlayer;
@@ -29,6 +31,19 @@ public class HabilidadeCommand extends CustomCommand {
 		if(args.length == 0 || !p.hasPermission("habilidades.admin")) {
 			sendHabilidades(p, habilidadePlayer);
 			HabilidadesInventory.open(p, p.getName());
+		}else if(args[0].equalsIgnoreCase("tst")) {
+			for(Habilidade habilidade : HabilidadePlugin.getManager().getHabilidades()) {
+				if(!habilidade.getExtras().isEmpty()) {
+					p.sendMessage(habilidade.getName() + ":");
+					
+					for(HabilidadeExtra extra : habilidade.getExtras()) {
+						if(extra instanceof HabilidadeExtraPercent) {
+							HabilidadeExtraPercent a = (HabilidadeExtraPercent) extra;
+							p.sendMessage(extra.getExtraType().name() + ": " + a.getChance(habilidadePlayer));
+						}
+					}
+				}
+			}
 		}else if(args[0].equalsIgnoreCase("addxp")) {
 			if(args.length < 4) {
 				MessageUtils.getMessage(HabilidadePlugin.getYamlConfig(), "UseAddXp").send(p);

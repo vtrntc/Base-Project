@@ -6,9 +6,11 @@ Habilidades:
         PerLevel: 0.05
         MaxChance: 30
       Dodge:
+        PerLevel: 0.1
         MaxChance: 30
       Bleed:
         PerLevel: 0.1
+        MaxChance: 100
         Levels:
           1:
             Damage: 0.5
@@ -630,3 +632,4 @@ DoubleDropHerbalism: '&aVoce recebeu o dobro da colheita'
 DoubleDropMining: '&aVoce recebeu o dobro da mineracao'
 TargetDisarmed: '&aVoce desarmou &f%player%'
 Disarmed: '&aVoce foi desarmado por &f%player%'
+TreeCut: '&aVoce quebrou a arvore inteira!'

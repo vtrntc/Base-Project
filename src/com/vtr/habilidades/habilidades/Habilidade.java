@@ -18,6 +18,7 @@ import com.vtr.api.spigot.message.MessageUtils;
 import com.vtr.api.spigot.misc.ActionBar;
 import com.vtr.api.spigot.misc.RandomChooser;
 import com.vtr.habilidades.HabilidadePlugin;
+import com.vtr.habilidades.habilidades.extra.HabilidadeExtra;
 import com.vtr.habilidades.objects.HabilidadeDrop;
 import com.vtr.habilidades.objects.HabilidadeInfo;
 import com.vtr.habilidades.objects.HabilidadePlayer;
@@ -58,6 +59,10 @@ public abstract class Habilidade implements Listener {
 	
 	public HabilidadeType getType() {
 		return type;
+	}
+	
+	public List<HabilidadeExtra> getExtras() {
+		return extras;
 	}
 	
 	protected List<HabilidadeDrop> getDropsForLevel(int level) {
