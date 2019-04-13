@@ -5,7 +5,6 @@ import org.bukkit.event.Listener;
 import com.vtr.api.spigot.APISpigot;
 import com.vtr.habilidades.HabilidadePlugin;
 import com.vtr.habilidades.habilidades.Habilidade;
-import com.vtr.habilidades.habilidades.HabilidadeExtraType;
 import com.vtr.habilidades.objects.HabilidadeType;
 
 public abstract class HabilidadeExtra implements Listener {

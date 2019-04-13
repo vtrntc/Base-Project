@@ -19,6 +19,7 @@ import com.vtr.api.spigot.misc.ActionBar;
 import com.vtr.api.spigot.misc.RandomChooser;
 import com.vtr.habilidades.HabilidadePlugin;
 import com.vtr.habilidades.habilidades.extra.HabilidadeExtra;
+import com.vtr.habilidades.habilidades.extra.HabilidadeExtraType;
 import com.vtr.habilidades.objects.HabilidadeDrop;
 import com.vtr.habilidades.objects.HabilidadeInfo;
 import com.vtr.habilidades.objects.HabilidadePlayer;

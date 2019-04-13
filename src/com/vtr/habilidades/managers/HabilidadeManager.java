@@ -172,7 +172,7 @@ public class HabilidadeManager {
 								arrowRetrieval = new ArrowRetrieval(config.getInt("Habilidades." + e + ".ArrowRetrieval.PerLevel"), config.getInt("Habilidades." + e + ".ArrowRetrieval.MaxIncrease"), config.getDouble("Habilidades." + e + ".ArrowRetrieval.Chance"));
 							}
 							
-							habilidades.add(new Archery(name, drops, tools, null, daze, skillShot, arrowRetrieval));
+							habilidades.add(new Archery(name, drops, tools));
 							break;
 						case ACROBATICS:
 							List<AcrobaticsFallExperience> fallExperience = new ArrayList<>();

@@ -1,7 +1,6 @@
 package com.vtr.habilidades.habilidades.extra;
 
 import com.vtr.api.spigot.utils.MathUtils;
-import com.vtr.habilidades.habilidades.HabilidadeExtraType;
 import com.vtr.habilidades.objects.HabilidadeInfo;
 import com.vtr.habilidades.objects.HabilidadePlayer;
 import com.vtr.habilidades.objects.HabilidadeType;
