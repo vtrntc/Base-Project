@@ -13,6 +13,7 @@ import com.vtr.api.spigot.message.MessageUtils;
 import com.vtr.habilidades.HabilidadePlugin;
 import com.vtr.habilidades.habilidades.Habilidade;
 import com.vtr.habilidades.habilidades.extra.HabilidadeExtra;
+import com.vtr.habilidades.habilidades.extra.HabilidadeExtraPerLevel;
 import com.vtr.habilidades.habilidades.extra.HabilidadeExtraPercent;
 import com.vtr.habilidades.inventories.HabilidadesInventory;
 import com.vtr.habilidades.objects.HabilidadeInfo;
@@ -39,6 +40,9 @@ public class HabilidadeCommand extends CustomCommand {
 					for(HabilidadeExtra extra : habilidade.getExtras()) {
 						if(extra instanceof HabilidadeExtraPercent) {
 							HabilidadeExtraPercent a = (HabilidadeExtraPercent) extra;
+							p.sendMessage(extra.getExtraType().name() + ": " + a.getChance(habilidadePlayer));
+						}else if(extra instanceof HabilidadeExtraPerLevel) {
+							HabilidadeExtraPerLevel a = (HabilidadeExtraPerLevel) extra;
 							p.sendMessage(extra.getExtraType().name() + ": " + a.getChance(habilidadePlayer));
 						}
 					}

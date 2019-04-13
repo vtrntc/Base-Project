@@ -417,17 +417,6 @@ Habilidades:
     - 'IRON_PICKAXE'
     - 'GOLD_PICKAXE'
     - 'DIAMOND_PICKAXE'   
-    DoubleDrop: 
-      Chance: 0.1
-      Blocks:
-      - 'COAL_ORE'
-      - 'IRON_ORE'
-      - 'GOLD_ORE'
-      - 'LAPIS_ORE'
-      - 'REDSTONE_ORE'
-      - 'DIAMOND_ORE'
-      - 'EMERALD_ORE'
-      - 'QUARTZ_ORE'
     Blocks:
       STONE: 
         XP: 0.5
@@ -447,6 +436,19 @@ Habilidades:
         XP: 0.5
       QUARTZ_ORE: 
         XP: 0.5
+    Extras:
+      DoubleDrop:
+        PerLevel: 0.1
+        MaxLevel: 0 
+        Blocks:
+        - 'COAL_ORE'
+        - 'IRON_ORE'
+        - 'GOLD_ORE'
+        - 'LAPIS_ORE'
+        - 'REDSTONE_ORE'
+        - 'DIAMOND_ORE'
+        - 'EMERALD_ORE'
+        - 'QUARTZ_ORE'       
 Menus:
   Habilidades:
     Name: 'Habilidades'

@@ -9,6 +9,9 @@ public enum HabilidadeExtraType {
 	IMPACT,
 	DAZE,
 	
+	//MINING
+	DOUBLE_DROP,
+	
 	//SWORDS
 	COUNTER_ATTACK, DODGE, BLEED;
 }

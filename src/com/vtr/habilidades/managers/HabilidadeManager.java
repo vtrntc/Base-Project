@@ -221,6 +221,29 @@ public class HabilidadeManager {
 								}
 							}
 							
+							Mining mining = new Mining(name, tools, drops, miningBlocks);
+							habilidades.add(mining);
+							
+							if(config.isSet("Habilidades." + e + ".Extras")) {
+								for(String x : config.getConfigurationSection("Habilidades." + e + ".Extras").getKeys(false)) {
+									switch(x) {
+										case "DoubleDrop":
+											List<Material> allowed = new ArrayList<>();
+											for(String m : config.getStringList("Habilidades." + e + ".Extras." + x + ".Blocks")) {
+												Material material = Material.getMaterial(m);
+												if(material != null) {
+													allowed.add(material);
+												}
+											}
+											
+											mining.registerHabilidadeExtra(new com.vtr.habilidades.habilidades.mining.DoubleDrop(config.getDouble("Habilidades." + e + ".Extras." + x + ".PerLevel"), config.getInt("Habilidades." + e + ".Extras." + x + ".MaxLevel"), allowed));
+											break;
+										default:
+											break;
+									}
+								}
+							}
+							
 							List<Material> doubleDrop = new ArrayList<>();
 							if(config.isSet("Habilidades." + e + ".DoubleDrop")) {
 								if(config.isSet("Habilidades." + e + ".DoubleDrop.Blocks")) {
@@ -233,7 +256,7 @@ public class HabilidadeManager {
 								}
 							}
 							
-							habilidades.add(new Mining(name, tools, drops, miningBlocks, new com.vtr.habilidades.habilidades.mining.DoubleDrop(config.getDouble("Habilidades." + e + ".DoubleDrop.Chance"), doubleDrop)));
+							habilidades.add(new Mining(name, tools, drops, miningBlocks));
 							break;
 						default:
 							break;

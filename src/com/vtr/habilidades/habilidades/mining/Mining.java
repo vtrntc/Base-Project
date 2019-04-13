@@ -14,7 +14,6 @@ import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.inventory.ItemStack;
 
 import com.vtr.api.spigot.message.MessageUtils;
-import com.vtr.api.spigot.utils.MathUtils;
 import com.vtr.api.spigot.utils.PlayerUtils;
 import com.vtr.habilidades.HabilidadePlugin;
 import com.vtr.habilidades.habilidades.Habilidade;
@@ -26,14 +25,11 @@ import com.vtr.habilidades.objects.HabilidadeType;
 
 public class Mining extends Habilidade {
 	
-	private DoubleDrop doubleDrop;
-	
 	private Map<Material, HabilidadeBlock> miningBlocks;
 	
-	public Mining(String name, List<Material> tools, List<HabilidadeDrop> drops, Map<Material, HabilidadeBlock> miningBlocks, DoubleDrop doubleDrop) {
+	public Mining(String name, List<Material> tools, List<HabilidadeDrop> drops, Map<Material, HabilidadeBlock> miningBlocks) {
 		super(HabilidadeType.MINING, name, drops, tools);
 		this.miningBlocks = miningBlocks;
-		this.doubleDrop = doubleDrop;
 	}
 
 	@EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
@@ -59,24 +55,6 @@ public class Mining extends Habilidade {
 							HabilidadeDrop drop = dropsRandomChooser.choose();
 							if(drop != null) {
 								PlayerUtils.addItemToInventoryOrDrop(p, drop.getItem());
-							}
-							
-							if(doubleDrop.isAllowed(block.getType())) {
-								if(MathUtils.percentDouble(habilidadeInfo.getLevel() * doubleDrop.getChance(), 100)) {
-									for(ItemStack atual : block.getDrops(p.getItemInHand())) {
-										if(atual != null && atual.getType() != Material.AIR) {
-											ItemStack clone = atual.clone();
-											clone.setAmount(clone.getAmount() * 2);
-											
-											PlayerUtils.addItemToInventoryOrDrop(p, clone);
-										}
-									}
-									
-									MessageUtils.getMessage(HabilidadePlugin.getYamlConfig(), "DoubleDropMining").send(p);
-									
-									block.setType(Material.AIR);
-									e.setCancelled(true);
-								}
 							}
 							
 							if(canLevelUP(habilidadePlayer)) {
