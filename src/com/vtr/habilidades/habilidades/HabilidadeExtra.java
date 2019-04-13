@@ -2,7 +2,7 @@ package com.vtr.habilidades.habilidades;
 
 import org.bukkit.event.Listener;
 
-import com.vtr.api.SoloAPI;
+import com.vtr.api.spigot.APISpigot;
 import com.vtr.habilidades.HabilidadePlugin;
 import com.vtr.habilidades.objects.HabilidadeType;
 
@@ -20,7 +20,7 @@ public abstract class HabilidadeExtra implements Listener {
 			habilidade.registerHabilidadeExtra(this);
 		}
 		
-		SoloAPI.registerListener(HabilidadePlugin.getInstance(), this);
+		APISpigot.registerListener(HabilidadePlugin.getInstance(), this);
 	}
 	
 	public HabilidadeExtraType getExtraType() {

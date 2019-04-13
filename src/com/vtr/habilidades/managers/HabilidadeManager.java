@@ -12,11 +12,11 @@ import org.bukkit.Material;
 import org.bukkit.entity.EntityType;
 import org.bukkit.scheduler.BukkitRunnable;
 
-import com.vtr.api.misc.PotionInfo;
-import com.vtr.api.misc.YamlConfig;
-import com.vtr.api.utils.DatabaseUtils;
-import com.vtr.api.utils.InventoryUtils;
-import com.vtr.api.utils.PotionUtils;
+import com.vtr.api.shared.utils.DatabaseUtils;
+import com.vtr.api.spigot.inventory.loader.ItemLoader;
+import com.vtr.api.spigot.misc.PotionInfo;
+import com.vtr.api.spigot.misc.YamlConfig;
+import com.vtr.api.spigot.utils.PotionUtils;
 import com.vtr.habilidades.HabilidadePlugin;
 import com.vtr.habilidades.habilidades.Habilidade;
 import com.vtr.habilidades.habilidades.acrobatics.Acrobatics;
@@ -81,7 +81,7 @@ public class HabilidadeManager {
 					List<HabilidadeDrop> drops = new ArrayList<>();
 					if(config.isSet("Habilidades." + e + ".Drops")) {
 						for(String d : config.getConfigurationSection("Habilidades." + e + ".Drops").getKeys(false)) {
-							drops.add(new HabilidadeDrop(d, InventoryUtils.loadItemFromPath(config, "Habilidades." + e + ".Drops." + d + ".Item"), config.getDouble("Habilidades." + e + ".Drops." + d + ".Chance"), config.getDouble("Habilidades." + e + ".Drops." + d + ".MaxChance"), config.getInt("Habilidades." + e + ".Drops." + d + ".MinLevel")));
+							drops.add(new HabilidadeDrop(d, ItemLoader.loadItemFromPath(config, "Habilidades." + e + ".Drops." + d + ".Item"), config.getDouble("Habilidades." + e + ".Drops." + d + ".Chance"), config.getDouble("Habilidades." + e + ".Drops." + d + ".MaxChance"), config.getInt("Habilidades." + e + ".Drops." + d + ".MinLevel")));
 						}
 					}
 					

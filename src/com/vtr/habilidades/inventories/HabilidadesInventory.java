@@ -5,11 +5,11 @@ import java.util.Map;
 
 import org.bukkit.entity.Player;
 
-import com.vtr.api.builders.ItemBuilder;
-import com.vtr.api.inventory.CustomInventory;
-import com.vtr.api.inventory.InventoryItem;
-import com.vtr.api.utils.InventoryUtils;
-import com.vtr.api.utils.StringUtils;
+import com.vtr.api.shared.utils.StringUtils;
+import com.vtr.api.spigot.builders.ItemBuilder;
+import com.vtr.api.spigot.inventory.CustomInventory;
+import com.vtr.api.spigot.inventory.InventoryItem;
+import com.vtr.api.spigot.inventory.loader.InventoryLoader;
 import com.vtr.habilidades.HabilidadePlugin;
 import com.vtr.habilidades.objects.HabilidadeInfo;
 import com.vtr.habilidades.objects.HabilidadePlayer;
@@ -18,7 +18,7 @@ import com.vtr.habilidades.objects.HabilidadeType;
 public class HabilidadesInventory {
 
 	public static void open(Player player, String target) {
-		CustomInventory customInventory = InventoryUtils.loadInventory(HabilidadePlugin.getYamlConfig(), "Menus.Habilidades");
+		CustomInventory customInventory = InventoryLoader.loadInventory(HabilidadePlugin.getYamlConfig(), "Menus.Habilidades");
 		customInventory.setExpire(true);
 		
 		customInventory.setInventoryAction((e) -> {

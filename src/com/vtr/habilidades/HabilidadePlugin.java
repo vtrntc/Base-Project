@@ -2,8 +2,8 @@ package com.vtr.habilidades;
 
 import org.bukkit.plugin.java.JavaPlugin;
 
-import com.vtr.api.SoloAPI;
-import com.vtr.api.misc.YamlConfig;
+import com.vtr.api.spigot.APISpigot;
+import com.vtr.api.spigot.misc.YamlConfig;
 import com.vtr.habilidades.commands.HabilidadeCommand;
 import com.vtr.habilidades.listeners.HabilidadeListener;
 import com.vtr.habilidades.managers.HabilidadeManager;
@@ -25,9 +25,9 @@ public class HabilidadePlugin extends JavaPlugin {
 		manager = new HabilidadeManager();
 		manager.enable();
 		
-		SoloAPI.registerListener(plugin, new HabilidadeListener());
+		APISpigot.registerListener(plugin, new HabilidadeListener());
 		
-		SoloAPI.registerCommand(new HabilidadeCommand());
+		APISpigot.registerCommand(new HabilidadeCommand());
 	}
 	
 	public static HabilidadePlugin getInstance() {

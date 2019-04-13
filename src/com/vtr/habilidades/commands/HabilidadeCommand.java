@@ -7,9 +7,9 @@ import java.util.Map;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import com.vtr.api.commands.CustomCommand;
-import com.vtr.api.message.MessageUtils;
-import com.vtr.api.utils.StringUtils;
+import com.vtr.api.shared.utils.StringUtils;
+import com.vtr.api.spigot.commands.CustomCommand;
+import com.vtr.api.spigot.message.MessageUtils;
 import com.vtr.habilidades.HabilidadePlugin;
 import com.vtr.habilidades.habilidades.Habilidade;
 import com.vtr.habilidades.inventories.HabilidadesInventory;

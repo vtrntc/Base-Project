@@ -11,10 +11,10 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
 
-import com.vtr.api.message.MessageUtils;
-import com.vtr.api.utils.LocationUtils;
-import com.vtr.api.utils.MathUtils;
-import com.vtr.api.utils.PlayerUtils;
+import com.vtr.api.spigot.message.MessageUtils;
+import com.vtr.api.spigot.utils.LocationUtils;
+import com.vtr.api.spigot.utils.MathUtils;
+import com.vtr.api.spigot.utils.PlayerUtils;
 import com.vtr.habilidades.HabilidadePlugin;
 import com.vtr.habilidades.habilidades.Habilidade;
 import com.vtr.habilidades.objects.HabilidadeDrop;

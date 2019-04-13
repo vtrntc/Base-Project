@@ -12,7 +12,7 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.inventory.ItemStack;
 
-import com.vtr.api.utils.MathUtils;
+import com.vtr.api.spigot.utils.MathUtils;
 import com.vtr.habilidades.HabilidadePlugin;
 import com.vtr.habilidades.habilidades.HabilidadeExtra;
 import com.vtr.habilidades.habilidades.HabilidadeExtraType;

@@ -11,12 +11,12 @@ import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 
-import com.vtr.api.SoloAPI;
-import com.vtr.api.message.AbstractMessage;
-import com.vtr.api.message.MessageUtils;
-import com.vtr.api.misc.ActionBar;
-import com.vtr.api.misc.RandomChooser;
-import com.vtr.api.utils.StringUtils;
+import com.vtr.api.shared.utils.StringUtils;
+import com.vtr.api.spigot.APISpigot;
+import com.vtr.api.spigot.message.AbstractMessage;
+import com.vtr.api.spigot.message.MessageUtils;
+import com.vtr.api.spigot.misc.ActionBar;
+import com.vtr.api.spigot.misc.RandomChooser;
 import com.vtr.habilidades.HabilidadePlugin;
 import com.vtr.habilidades.objects.HabilidadeDrop;
 import com.vtr.habilidades.objects.HabilidadeInfo;
@@ -49,7 +49,7 @@ public abstract class Habilidade implements Listener {
 			dropsRandomChooser.option(drop, drop.getChance());
 		}
 		
-		SoloAPI.registerListener(HabilidadePlugin.getInstance(), this);
+		APISpigot.registerListener(HabilidadePlugin.getInstance(), this);
 	}
 	
 	public String getName() {

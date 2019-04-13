@@ -13,9 +13,9 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.inventory.ItemStack;
 
-import com.vtr.api.message.MessageUtils;
-import com.vtr.api.utils.MathUtils;
-import com.vtr.api.utils.PlayerUtils;
+import com.vtr.api.spigot.message.MessageUtils;
+import com.vtr.api.spigot.utils.MathUtils;
+import com.vtr.api.spigot.utils.PlayerUtils;
 import com.vtr.habilidades.HabilidadePlugin;
 import com.vtr.habilidades.habilidades.Habilidade;
 import com.vtr.habilidades.objects.HabilidadeBlock;

@@ -3,7 +3,7 @@ package com.vtr.habilidades.objects;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import com.vtr.api.utils.DatabaseUtils;
+import com.vtr.api.shared.utils.DatabaseUtils;
 import com.vtr.habilidades.habilidades.Habilidade;
 
 public class HabilidadeInfo {
