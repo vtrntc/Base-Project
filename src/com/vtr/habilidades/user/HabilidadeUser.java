@@ -1,13 +1,16 @@
-package com.vtr.habilidades.objects;
+package com.vtr.habilidades.user;
 
 import java.util.HashMap;
 import java.util.Map;
 
+import com.vtr.api.shared.user.module.UserModule;
 import com.vtr.habilidades.HabilidadePlugin;
 import com.vtr.habilidades.habilidades.Habilidade;
 import com.vtr.habilidades.habilidades.acrobatics.AcrobaticsInfo;
+import com.vtr.habilidades.objects.HabilidadeInfo;
+import com.vtr.habilidades.objects.HabilidadeType;
 
-public class HabilidadePlayer {
+public class HabilidadeUser extends UserModule {
 
 	private String player;
 	
@@ -15,7 +18,7 @@ public class HabilidadePlayer {
 	
 	private Map<HabilidadeType, HabilidadeInfo> habilidades;
 
-	public HabilidadePlayer(String player, Map<HabilidadeType, HabilidadeInfo> habilidades) {
+	public HabilidadeUser(String player, Map<HabilidadeType, HabilidadeInfo> habilidades) {
 		this.player = player;
 		this.habilidades = habilidades;
 		
@@ -33,7 +36,7 @@ public class HabilidadePlayer {
 		}
 	}
 	
-	public HabilidadePlayer(String player) {
+	public HabilidadeUser(String player) {
 		this(player, new HashMap<>());
 	}
 	

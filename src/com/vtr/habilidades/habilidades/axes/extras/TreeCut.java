@@ -18,8 +18,8 @@ import com.vtr.habilidades.HabilidadePlugin;
 import com.vtr.habilidades.habilidades.extra.HabilidadeExtraPercent;
 import com.vtr.habilidades.habilidades.extra.HabilidadeExtraType;
 import com.vtr.habilidades.objects.HabilidadeInfo;
-import com.vtr.habilidades.objects.HabilidadePlayer;
 import com.vtr.habilidades.objects.HabilidadeType;
+import com.vtr.habilidades.user.HabilidadeUser;
 
 public class TreeCut extends HabilidadeExtraPercent {
 
@@ -42,7 +42,7 @@ public class TreeCut extends HabilidadeExtraPercent {
 			if(habilidade.isTool(item.getType())) {
 				Block block = e.getBlock();
 				if(isWood(block.getType())) {
-					HabilidadePlayer habilidadePlayer = HabilidadePlugin.getManager().getPlayer(p.getName());
+					HabilidadeUser habilidadePlayer = HabilidadePlugin.getManager().getPlayer(p.getName());
 					
 					HabilidadeInfo habilidadeInfo = habilidadePlayer.getHabilidade(habilidade.getType());
 					if(habilidadeInfo != null) {

@@ -19,8 +19,8 @@ import com.vtr.habilidades.HabilidadePlugin;
 import com.vtr.habilidades.habilidades.Habilidade;
 import com.vtr.habilidades.objects.HabilidadeDrop;
 import com.vtr.habilidades.objects.HabilidadeInfo;
-import com.vtr.habilidades.objects.HabilidadePlayer;
 import com.vtr.habilidades.objects.HabilidadeType;
+import com.vtr.habilidades.user.HabilidadeUser;
 
 public class Acrobatics extends Habilidade {
 
@@ -38,7 +38,7 @@ public class Acrobatics extends Habilidade {
 			if(damager != null) {
 				Player p = (Player) e.getEntity();
 				
-				HabilidadePlayer habilidadePlayer = HabilidadePlugin.getManager().getPlayer(p.getName());
+				HabilidadeUser habilidadePlayer = HabilidadePlugin.getManager().getPlayer(p.getName());
 				
 				HabilidadeInfo habilidadeInfo = habilidadePlayer.getHabilidade(type);
 				if(habilidadeInfo != null) {
@@ -57,7 +57,7 @@ public class Acrobatics extends Habilidade {
 			if(e.getEntity() instanceof Player) {
 				Player p = (Player) e.getEntity();
 				
-				HabilidadePlayer habilidadePlayer = HabilidadePlugin.getManager().getPlayer(p.getName());
+				HabilidadeUser habilidadePlayer = HabilidadePlugin.getManager().getPlayer(p.getName());
 				
 				HabilidadeInfo habilidadeInfo = habilidadePlayer.getHabilidade(type);
 				if(habilidadeInfo != null) {

@@ -45,14 +45,14 @@ import com.vtr.habilidades.habilidades.unarmed.Unarmed;
 import com.vtr.habilidades.objects.HabilidadeBlock;
 import com.vtr.habilidades.objects.HabilidadeDrop;
 import com.vtr.habilidades.objects.HabilidadeInfo;
-import com.vtr.habilidades.objects.HabilidadePlayer;
 import com.vtr.habilidades.objects.HabilidadeType;
+import com.vtr.habilidades.user.HabilidadeUser;
 
 public class HabilidadeManager {
 
 	private List<Habilidade> habilidades;
 	
-	private Map<String, HabilidadePlayer> players;
+	private Map<String, HabilidadeUser> players;
 	
 	public HabilidadeManager() {
 		this.habilidades = new ArrayList<>();
@@ -305,7 +305,7 @@ public class HabilidadeManager {
 				}
 				
 				for(Entry<String, Map<HabilidadeType, HabilidadeInfo>> e : infos.entrySet()) {
-					players.put(e.getKey().toLowerCase(), new HabilidadePlayer(e.getKey(), e.getValue()));
+					players.put(e.getKey().toLowerCase(), new HabilidadeUser(e.getKey(), e.getValue()));
 				}
 			}catch(SQLException e) {
 				e.printStackTrace();
@@ -314,7 +314,7 @@ public class HabilidadeManager {
 		
 		new BukkitRunnable() {
 			public void run() {
-				for(HabilidadePlayer habilidadePlayer : players.values()) {
+				for(HabilidadeUser habilidadePlayer : players.values()) {
 					if(habilidadePlayer.isNeedUpdate()) {
 						for(HabilidadeInfo habilidadeInfo : habilidadePlayer.getHabilidades().values()) {
 							if(habilidadeInfo.isNeedUpdate()) {
@@ -346,9 +346,9 @@ public class HabilidadeManager {
 		return players.containsKey(player.toLowerCase());
 	}
 	
-	public HabilidadePlayer getPlayer(String player) {
+	public HabilidadeUser getPlayer(String player) {
 		if(!players.containsKey(player.toLowerCase())) {
-			players.put(player.toLowerCase(), new HabilidadePlayer(player));
+			players.put(player.toLowerCase(), new HabilidadeUser(player));
 		}
 		
 		return players.get(player.toLowerCase());

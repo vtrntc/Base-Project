@@ -16,8 +16,8 @@ import com.vtr.habilidades.HabilidadePlugin;
 import com.vtr.habilidades.habilidades.Habilidade;
 import com.vtr.habilidades.objects.HabilidadeDrop;
 import com.vtr.habilidades.objects.HabilidadeInfo;
-import com.vtr.habilidades.objects.HabilidadePlayer;
 import com.vtr.habilidades.objects.HabilidadeType;
+import com.vtr.habilidades.user.HabilidadeUser;
 
 public class Fishing extends Habilidade {
 	
@@ -33,7 +33,7 @@ public class Fishing extends Habilidade {
 	private void onFish(PlayerFishEvent e) {
 		Player p = e.getPlayer();
 		
-		HabilidadePlayer habilidadePlayer = HabilidadePlugin.getManager().getPlayer(p.getName());
+		HabilidadeUser habilidadePlayer = HabilidadePlugin.getManager().getPlayer(p.getName());
 		
 		
 		HabilidadeInfo habilidadeInfo = habilidadePlayer.getHabilidade(type);

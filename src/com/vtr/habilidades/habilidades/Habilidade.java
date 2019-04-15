@@ -22,8 +22,8 @@ import com.vtr.habilidades.habilidades.extra.HabilidadeExtra;
 import com.vtr.habilidades.habilidades.extra.HabilidadeExtraType;
 import com.vtr.habilidades.objects.HabilidadeDrop;
 import com.vtr.habilidades.objects.HabilidadeInfo;
-import com.vtr.habilidades.objects.HabilidadePlayer;
 import com.vtr.habilidades.objects.HabilidadeType;
+import com.vtr.habilidades.user.HabilidadeUser;
 
 public abstract class Habilidade implements Listener {
 
@@ -51,7 +51,7 @@ public abstract class Habilidade implements Listener {
 			dropsRandomChooser.option(drop, drop.getChance());
 		}
 		
-		APISpigot.registerListener(HabilidadePlugin.getInstance(), this);
+		APISpigot.getInstance().registerListener(HabilidadePlugin.getInstance(), this);
 	}
 	
 	public String getName() {
@@ -78,7 +78,7 @@ public abstract class Habilidade implements Listener {
 		return tools.contains(material);
 	}
 	
-	protected void giveXp(HabilidadePlayer habilidadePlayer, HabilidadeInfo habilidadeInfo, double xp) {
+	protected void giveXp(HabilidadeUser habilidadePlayer, HabilidadeInfo habilidadeInfo, double xp) {
 		habilidadeInfo.setXp(habilidadeInfo.getXp() + xp);
 		habilidadeInfo.setNeedUpdate(true);
 		
@@ -93,7 +93,7 @@ public abstract class Habilidade implements Listener {
 		return extras.stream().filter(e -> e.getExtraType() == extraType).findFirst().orElse(null);
 	}
 	
-	public boolean canLevelUP(HabilidadePlayer habilidadePlayer) {
+	public boolean canLevelUP(HabilidadeUser habilidadePlayer) {
 		HabilidadeInfo habilidadeInfo = habilidadePlayer.getHabilidade(type);
 		if(habilidadeInfo != null) {
 			int xpToNextLevel = getXpToLevel(habilidadeInfo.getLevel(), habilidadeInfo.getLevel() + 1);

@@ -1,5 +1,6 @@
 package com.vtr.habilidades.habilidades.extra;
 
+import org.bukkit.event.Event;
 import org.bukkit.event.Listener;
 
 import com.vtr.api.spigot.APISpigot;
@@ -17,8 +18,10 @@ public abstract class HabilidadeExtra implements Listener {
 		this.extraType = extraType;
 		this.habilidade = HabilidadePlugin.getManager().getHabilidadeByTypeName(habilidadeType.name());
 		
-		APISpigot.registerListener(HabilidadePlugin.getInstance(), this);
+		APISpigot.getInstance().registerListener(HabilidadePlugin.getInstance(), this);
 	}
+	
+	public abstract boolean activate(Event event);
 	
 	public HabilidadeExtraType getExtraType() {
 		return extraType;

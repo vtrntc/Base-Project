@@ -2,8 +2,8 @@ package com.vtr.habilidades.habilidades.extra;
 
 import com.vtr.api.spigot.utils.MathUtils;
 import com.vtr.habilidades.objects.HabilidadeInfo;
-import com.vtr.habilidades.objects.HabilidadePlayer;
 import com.vtr.habilidades.objects.HabilidadeType;
+import com.vtr.habilidades.user.HabilidadeUser;
 
 public abstract class HabilidadeExtraPerLevel extends HabilidadeExtra {
 
@@ -17,7 +17,7 @@ public abstract class HabilidadeExtraPerLevel extends HabilidadeExtra {
 		this.perLevel = perLevel;
 	}
 	
-	public double getChance(HabilidadePlayer habilidadePlayer) {
+	public double getChance(HabilidadeUser habilidadePlayer) {
 		HabilidadeInfo habilidadeInfo = habilidadePlayer.getHabilidade(habilidade.getType());
 		if(habilidadeInfo != null) {
 			return habilidadeInfo.getLevel() * perLevel;
@@ -26,7 +26,7 @@ public abstract class HabilidadeExtraPerLevel extends HabilidadeExtra {
 		return 0;
 	}
 	
-	public boolean use(HabilidadePlayer habilidadePlayer) {
+	public boolean use(HabilidadeUser habilidadePlayer) {
 		return MathUtils.percentDouble(getChance(habilidadePlayer), 100);
 	}
 	

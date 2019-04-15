@@ -14,8 +14,8 @@ import com.vtr.habilidades.HabilidadePlugin;
 import com.vtr.habilidades.habilidades.Habilidade;
 import com.vtr.habilidades.objects.HabilidadeDrop;
 import com.vtr.habilidades.objects.HabilidadeInfo;
-import com.vtr.habilidades.objects.HabilidadePlayer;
 import com.vtr.habilidades.objects.HabilidadeType;
+import com.vtr.habilidades.user.HabilidadeUser;
 
 public class Axes extends Habilidade {
 
@@ -33,7 +33,7 @@ public class Axes extends Habilidade {
 			Player p = (Player) e.getDamager();
 			if(p.getItemInHand() != null && p.getItemInHand().getType() != Material.AIR) {
 				if(isTool(p.getItemInHand().getType())) {
-					HabilidadePlayer habilidadePlayer = HabilidadePlugin.getManager().getPlayer(p.getName());
+					HabilidadeUser habilidadePlayer = HabilidadePlugin.getManager().getPlayer(p.getName());
 					
 					HabilidadeInfo habilidadeInfo = habilidadePlayer.getHabilidade(type);
 					if(habilidadeInfo != null) {

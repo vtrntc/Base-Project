@@ -12,8 +12,8 @@ import com.vtr.api.spigot.inventory.InventoryItem;
 import com.vtr.api.spigot.inventory.loader.InventoryLoader;
 import com.vtr.habilidades.HabilidadePlugin;
 import com.vtr.habilidades.objects.HabilidadeInfo;
-import com.vtr.habilidades.objects.HabilidadePlayer;
 import com.vtr.habilidades.objects.HabilidadeType;
+import com.vtr.habilidades.user.HabilidadeUser;
 
 public class HabilidadesInventory {
 
@@ -25,7 +25,7 @@ public class HabilidadesInventory {
 			e.setCancelled(true);
 		});
 		
-		HabilidadePlayer habilidadePlayer = HabilidadePlugin.getManager().getPlayer(target);
+		HabilidadeUser habilidadePlayer = HabilidadePlugin.getManager().getPlayer(target);
 		
 		for(InventoryItem inventoryItem : customInventory.getItems()) {
 			switch(inventoryItem.getName()) {

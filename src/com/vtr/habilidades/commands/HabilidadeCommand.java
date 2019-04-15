@@ -17,7 +17,7 @@ import com.vtr.habilidades.habilidades.extra.HabilidadeExtraPerLevel;
 import com.vtr.habilidades.habilidades.extra.HabilidadeExtraPercent;
 import com.vtr.habilidades.inventories.HabilidadesInventory;
 import com.vtr.habilidades.objects.HabilidadeInfo;
-import com.vtr.habilidades.objects.HabilidadePlayer;
+import com.vtr.habilidades.user.HabilidadeUser;
 
 public class HabilidadeCommand extends CustomCommand {
 
@@ -28,7 +28,7 @@ public class HabilidadeCommand extends CustomCommand {
 	public boolean execute(CommandSender sender, String label, String[] args) {
 		Player p = (Player) sender;
 		
-		HabilidadePlayer habilidadePlayer = HabilidadePlugin.getManager().getPlayer(p.getName());
+		HabilidadeUser habilidadePlayer = HabilidadePlugin.getManager().getPlayer(p.getName());
 		if(args.length == 0 || !p.hasPermission("habilidades.admin")) {
 			sendHabilidades(p, habilidadePlayer);
 			HabilidadesInventory.open(p, p.getName());
@@ -64,7 +64,7 @@ public class HabilidadeCommand extends CustomCommand {
 				}else{
 					int xp = Integer.parseInt(args[3]);
 					
-					HabilidadePlayer targetPlayer = HabilidadePlugin.getManager().getPlayer(args[1]);
+					HabilidadeUser targetPlayer = HabilidadePlugin.getManager().getPlayer(args[1]);
 					
 					HabilidadeInfo habilidadeInfo = targetPlayer.getHabilidade(habilidade.getType());
 					if(habilidadeInfo == null) {
@@ -100,7 +100,7 @@ public class HabilidadeCommand extends CustomCommand {
 		return false;
 	}
 	
-	private void sendHabilidades(Player player, HabilidadePlayer habilidadePlayer) {
+	private void sendHabilidades(Player player, HabilidadeUser habilidadePlayer) {
 		Map<String, String> replacers = new HashMap<>();
 		
 		int level = 0;

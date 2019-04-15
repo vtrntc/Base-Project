@@ -5,6 +5,10 @@ public enum HabilidadeExtraType {
 	//AXES
 	TREE_CUT, 
 	
+	//ACROBATICS
+	ROLL,
+	PERFECT_ROLL,
+	
 	//ARCHERY
 	IMPACT,
 	DAZE,

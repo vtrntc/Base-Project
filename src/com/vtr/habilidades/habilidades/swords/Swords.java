@@ -13,12 +13,21 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import com.vtr.api.spigot.utils.PlayerUtils;
 import com.vtr.habilidades.HabilidadePlugin;
 import com.vtr.habilidades.habilidades.Habilidade;
+import com.vtr.habilidades.habilidades.swords.extras.CounterAttack;
+import com.vtr.habilidades.habilidades.swords.extras.Dodge;
+import com.vtr.habilidades.habilidades.swords.extras.bleed.Bleed;
 import com.vtr.habilidades.objects.HabilidadeDrop;
 import com.vtr.habilidades.objects.HabilidadeInfo;
-import com.vtr.habilidades.objects.HabilidadePlayer;
 import com.vtr.habilidades.objects.HabilidadeType;
+import com.vtr.habilidades.user.HabilidadeUser;
 
 public class Swords extends Habilidade {
+	
+	private Bleed bleed;
+	
+	private Dodge dodge;
+	
+	private CounterAttack counterAttack;
 
 	private Map<EntityType, Double> entitiesXp;
 	
@@ -33,7 +42,7 @@ public class Swords extends Habilidade {
 		if(p != null) {
 			if(p.getItemInHand() != null && p.getItemInHand().getType() != Material.AIR) {
 				if(isTool(p.getItemInHand().getType())) {
-					HabilidadePlayer habilidadePlayer = HabilidadePlugin.getManager().getPlayer(p.getName());
+					HabilidadeUser habilidadePlayer = HabilidadePlugin.getManager().getPlayer(p.getName());
 					
 					HabilidadeInfo habilidadeInfo = habilidadePlayer.getHabilidade(type);
 					if(habilidadeInfo != null) {
@@ -44,6 +53,8 @@ public class Swords extends Habilidade {
 							
 							sendActionBar(p, habilidadeInfo, xp);
 						}
+						
+						
 					}
 				}
 			}

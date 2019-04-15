@@ -16,8 +16,8 @@ import com.vtr.api.spigot.utils.PlayerUtils;
 import com.vtr.habilidades.HabilidadePlugin;
 import com.vtr.habilidades.habilidades.extra.HabilidadeExtraPerLevel;
 import com.vtr.habilidades.habilidades.extra.HabilidadeExtraType;
-import com.vtr.habilidades.objects.HabilidadePlayer;
 import com.vtr.habilidades.objects.HabilidadeType;
+import com.vtr.habilidades.user.HabilidadeUser;
 
 public class DoubleDrop extends HabilidadeExtraPerLevel {
 
@@ -40,7 +40,7 @@ public class DoubleDrop extends HabilidadeExtraPerLevel {
 			if(!block.hasMetadata("playerPlaced")) {
 				ItemStack item = p.getItemInHand();
 				if(item != null && item.getType() != Material.AIR && habilidade.isTool(item.getType())) {
-					HabilidadePlayer habilidadePlayer = HabilidadePlugin.getManager().getPlayer(p.getName());
+					HabilidadeUser habilidadePlayer = HabilidadePlugin.getManager().getPlayer(p.getName());
 					
 					if(isAllowed(block.getType())) {
 						if(use(habilidadePlayer)) {

@@ -6,8 +6,8 @@ import java.util.Map;
 
 import org.bukkit.Effect;
 import org.bukkit.entity.Player;
+import org.bukkit.event.Event;
 import org.bukkit.event.EventHandler;
-import org.bukkit.event.EventPriority;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
@@ -20,8 +20,8 @@ import com.vtr.habilidades.HabilidadePlugin;
 import com.vtr.habilidades.habilidades.extra.HabilidadeExtraPercent;
 import com.vtr.habilidades.habilidades.extra.HabilidadeExtraType;
 import com.vtr.habilidades.objects.HabilidadeInfo;
-import com.vtr.habilidades.objects.HabilidadePlayer;
 import com.vtr.habilidades.objects.HabilidadeType;
+import com.vtr.habilidades.user.HabilidadeUser;
 
 public class Bleed extends HabilidadeExtraPercent {
 
@@ -47,32 +47,12 @@ public class Bleed extends HabilidadeExtraPercent {
 		return bleeds.stream().filter(fe -> level >= fe.getMinLevel() && level <= fe.getMinLevel()).findFirst().orElse(null);
 	}
 	
-	@EventHandler
-	private void onQuit(PlayerQuitEvent e) {
-		Player p = e.getPlayer();
-		
-		if(playersBleeding.containsKey(p)) {
-			BleedInfo bleedInfo = playersBleeding.get(p);
-			bleedInfo.stop();
-		}
-	}
-	
-	@EventHandler
-	private void onDeath(PlayerDeathEvent e) {
-		Player p = e.getEntity();
-		
-		if(playersBleeding.containsKey(p)) {
-			BleedInfo bleedInfo = playersBleeding.get(p);
-			bleedInfo.stop();
-		}
-	}
-
-	@EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
-	private void onDamage(EntityDamageByEntityEvent e) {
+	public boolean activate(Event event) {
+		EntityDamageByEntityEvent e = (EntityDamageByEntityEvent) event;
 		if(e.getEntity() instanceof Player) {
 			Player p = PlayerUtils.getPlayerDamagerFromEntityDamageByEntityEvent(e);
 			if(p != null) {
-				HabilidadePlayer habilidadePlayer = HabilidadePlugin.getManager().getPlayer(p.getName());
+				HabilidadeUser habilidadePlayer = HabilidadePlugin.getManager().getPlayer(p.getName());
 				
 				HabilidadeInfo habilidadeInfo = habilidadePlayer.getHabilidade(habilidade.getType());
 				if(habilidadeInfo != null) {
@@ -96,14 +76,37 @@ public class Bleed extends HabilidadeExtraPercent {
 								replacers.put("%player%", target.getName());
 								
 								MessageUtils.getMessage(HabilidadePlugin.getYamlConfig(), "Bleed").replace(replacers).send(p);
+								return true;
 							}
 						}
 					}
 				}
 			}
 		} 
+		
+		return false;
 	}
 	
+	@EventHandler
+	private void onQuit(PlayerQuitEvent e) {
+		Player p = e.getPlayer();
+		
+		if(playersBleeding.containsKey(p)) {
+			BleedInfo bleedInfo = playersBleeding.get(p);
+			bleedInfo.stop();
+		}
+	}
+	
+	@EventHandler
+	private void onDeath(PlayerDeathEvent e) {
+		Player p = e.getEntity();
+		
+		if(playersBleeding.containsKey(p)) {
+			BleedInfo bleedInfo = playersBleeding.get(p);
+			bleedInfo.stop();
+		}
+	}
+
 	private class BleedInfo {
 		
 		private Player player;
