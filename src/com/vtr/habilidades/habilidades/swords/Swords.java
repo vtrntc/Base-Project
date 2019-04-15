@@ -54,7 +54,10 @@ public class Swords extends Habilidade {
 							sendActionBar(p, habilidadeInfo, xp);
 						}
 						
-						
+						if(!bleed.activate(e)) {
+							dodge.activate(e);
+							counterAttack.activate(e);
+						}
 					}
 				}
 			}
