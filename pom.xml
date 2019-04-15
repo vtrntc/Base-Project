@@ -60,14 +60,14 @@
             <groupId>br.com.redepvp</groupId>
             <artifactId>api-shared</artifactId>
             <version>LATEST</version>
-            <scope>compile</scope>
+            <scope>provided</scope>
         </dependency>
         <!-- Core Spigot -->
         <dependency>
             <groupId>br.com.redepvp</groupId>
             <artifactId>api-spigot</artifactId>
             <version>LATEST</version>
-            <scope>compile</scope>
+            <scope>provided</scope>
         </dependency>
         <!-- ProtocolLib -->
         <dependency>
@@ -77,31 +77,5 @@
             <scope>provided</scope>
         </dependency>
     </dependencies>
- 
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-shade-plugin</artifactId>
-                <version>2.4</version>
-                <executions>
-                    <execution>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>shade</goal>
-                        </goals>
-                        <configuration>
-                            <createDependencyReducedPom>false</createDependencyReducedPom>
-                            <artifactSet>
-                                <excludes>
-                                    <exclude>com.google.guava:guava</exclude>
-                                </excludes>
-                            </artifactSet>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
-    </build>
  
 </project>
