@@ -12,6 +12,7 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 
 import com.vtr.habilidades.HabilidadePlugin;
 import com.vtr.habilidades.habilidades.Habilidade;
+import com.vtr.habilidades.habilidades.axes.extras.TreeCut;
 import com.vtr.habilidades.objects.HabilidadeDrop;
 import com.vtr.habilidades.objects.HabilidadeInfo;
 import com.vtr.habilidades.objects.HabilidadeType;
@@ -19,11 +20,14 @@ import com.vtr.habilidades.user.HabilidadeUser;
 
 public class Axes extends Habilidade {
 
+	private TreeCut treeCut;
+	
 	private Map<EntityType, Double> entitiesXp;
 	
-	public Axes(String name, List<HabilidadeDrop> drops, List<Material> tools, Map<EntityType, Double> entitiesXp) {
+	public Axes(String name, List<HabilidadeDrop> drops, List<Material> tools, Map<EntityType, Double> entitiesXp, TreeCut treeCut) {
 		super(HabilidadeType.AXES, name, drops, tools);
 		this.entitiesXp = entitiesXp;
+		this.treeCut = treeCut;
 	}
 	
 	//TODO change that
@@ -44,6 +48,8 @@ public class Axes extends Habilidade {
 							
 							sendActionBar(p, habilidadeInfo, xp);
 						}
+						
+						treeCut.activate(e);
 					}
 				}
 			}

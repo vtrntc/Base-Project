@@ -137,14 +137,12 @@ public class HabilidadeManager {
 							habilidades.add(new Fishing(name, drops, tools, fishs));
 							break;
 						case AXES:
-							Axes axes = new Axes(name, drops, tools, loadEntitiesExperience(config, e));
-							habilidades.add(axes);
-							
+							TreeCut treeCut = null;
 							if(config.isSet("Habilidades." + e + ".Extras")) {
 								for(String x : config.getConfigurationSection("Habilidades." + e + ".Extras").getKeys(false)) {
 									switch(x) {
 										case "TreeCut":
-											axes.registerHabilidadeExtra(new TreeCut(config.getDouble("Habilidades." + e + ".Extras." + x + ".PerLevel"), config.getDouble("Habilidades." + e + ".Extras." + x + ".MaxChance")));
+											treeCut = new TreeCut(config.getDouble("Habilidades." + e + ".Extras." + x + ".PerLevel"), config.getDouble("Habilidades." + e + ".Extras." + x + ".MaxChance"));
 											break;
 										default:
 											break;
@@ -152,6 +150,7 @@ public class HabilidadeManager {
 								}
 							}
 							
+							habilidades.add(new Axes(name, drops, tools, loadEntitiesExperience(config, e), treeCut));
 							break;
 						case ARCHERY:
 							Daze daze = null;
@@ -221,9 +220,7 @@ public class HabilidadeManager {
 								}
 							}
 							
-							Mining mining = new Mining(name, tools, drops, miningBlocks);
-							habilidades.add(mining);
-							
+							com.vtr.habilidades.habilidades.mining.DoubleDrop miningDoubleDrop = null;
 							if(config.isSet("Habilidades." + e + ".Extras")) {
 								for(String x : config.getConfigurationSection("Habilidades." + e + ".Extras").getKeys(false)) {
 									switch(x) {
@@ -236,7 +233,6 @@ public class HabilidadeManager {
 												}
 											}
 											
-											mining.registerHabilidadeExtra(new com.vtr.habilidades.habilidades.mining.DoubleDrop(config.getDouble("Habilidades." + e + ".Extras." + x + ".PerLevel"), config.getInt("Habilidades." + e + ".Extras." + x + ".MaxLevel"), allowed));
 											break;
 										default:
 											break;
@@ -256,7 +252,7 @@ public class HabilidadeManager {
 								}
 							}
 							
-							habilidades.add(new Mining(name, tools, drops, miningBlocks));
+							habilidades.add(new Mining(name, tools, drops, miningBlocks, miningDoubleDrop));
 							break;
 						default:
 							break;

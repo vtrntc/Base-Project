@@ -5,8 +5,7 @@ import java.util.List;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.EventPriority;
+import org.bukkit.event.Event;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.inventory.ItemStack;
 
@@ -31,8 +30,10 @@ public class DoubleDrop extends HabilidadeExtraPerLevel {
 	public boolean isAllowed(Material material) {
 		return allowed.contains(material);
 	}
-	@EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
-	private void onBreak(BlockBreakEvent e) {
+	
+	public boolean activate(Event event) {
+		BlockBreakEvent e = (BlockBreakEvent) event;
+		
 		Player p = e.getPlayer();
 		
 		Block block = e.getBlock();
@@ -57,10 +58,13 @@ public class DoubleDrop extends HabilidadeExtraPerLevel {
 							
 							block.setType(Material.AIR);
 							e.setCancelled(true);
+							return true;
 						}
 					}
 				}
 			}
 		}
+		
+		return false;
 	}
 }

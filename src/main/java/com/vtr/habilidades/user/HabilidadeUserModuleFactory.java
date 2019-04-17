@@ -7,45 +7,45 @@ import com.vtr.api.spigot.APISpigot;
 public class HabilidadeUserModuleFactory extends UserModuleFactory<HabilidadeUser> {
 
 	@Override
-	public HabilidadeUser getUser(NetworkUser user) {
-		// TODO Auto-generated method stub
-		APISpigot.getInstance().getUserFactory().getUser(user.getId());
-		return null;
-	}
-
-	@Override
-	public HabilidadeUser getUser(int id) {
+	public HabilidadeUser getUserModule(NetworkUser user) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public HabilidadeUser getUser(String name) {
+	public HabilidadeUser getUserModule(int id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public HabilidadeUser downloadUser(NetworkUser user) {
+	public HabilidadeUser getUserModule(String name) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public HabilidadeUser downloadUser(int id) {
+	public HabilidadeUser downloadUserModule(NetworkUser user) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public HabilidadeUser downloadUser(String name) {
+	public HabilidadeUser downloadUserModule(int id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public void exportUser(HabilidadeUser user) {
+	public HabilidadeUser downloadUserModule(String name) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void exportUserModule(HabilidadeUser user) {
 		// TODO Auto-generated method stub
 		
 	}
+
 }

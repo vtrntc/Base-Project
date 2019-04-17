@@ -7,8 +7,7 @@ import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.EventPriority;
+import org.bukkit.event.Event;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -32,9 +31,10 @@ public class TreeCut extends HabilidadeExtraPercent {
 	private boolean isWood(Material material) {
 		return wood.contains(material);
 	}
-
-	@EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
-	private void onBreak(BlockBreakEvent e) {
+	
+	public boolean activate(Event event) {
+		BlockBreakEvent e = (BlockBreakEvent) event;
+		
 		Player p = e.getPlayer();
 		
 		ItemStack item = p.getItemInHand();
@@ -65,5 +65,7 @@ public class TreeCut extends HabilidadeExtraPercent {
 				}
 			}
 		}
+		
+		return false;
 	}
 }

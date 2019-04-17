@@ -25,11 +25,14 @@ import com.vtr.habilidades.user.HabilidadeUser;
 
 public class Mining extends Habilidade {
 	
+	private DoubleDrop doubleDrop;
+	
 	private Map<Material, HabilidadeBlock> miningBlocks;
 	
-	public Mining(String name, List<Material> tools, List<HabilidadeDrop> drops, Map<Material, HabilidadeBlock> miningBlocks) {
+	public Mining(String name, List<Material> tools, List<HabilidadeDrop> drops, Map<Material, HabilidadeBlock> miningBlocks, DoubleDrop doubleDrop) {
 		super(HabilidadeType.MINING, name, drops, tools);
 		this.miningBlocks = miningBlocks;
+		this.doubleDrop = doubleDrop;
 	}
 
 	@EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
@@ -66,6 +69,8 @@ public class Mining extends Habilidade {
 								
 								MessageUtils.getMessage(HabilidadePlugin.getYamlConfig(), "LevelUp").replace(replacers).send(p);
 							}
+							
+							doubleDrop.activate(e);
 						}
 					}
 				}
