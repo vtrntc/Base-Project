@@ -14,6 +14,7 @@ import org.bukkit.inventory.ItemStack;
 import com.vtr.api.spigot.utils.MathUtils;
 import com.vtr.habilidades.HabilidadePlugin;
 import com.vtr.habilidades.habilidades.Habilidade;
+import com.vtr.habilidades.habilidades.extra.HabilidadeExtra;
 import com.vtr.habilidades.objects.HabilidadeDrop;
 import com.vtr.habilidades.objects.HabilidadeInfo;
 import com.vtr.habilidades.objects.HabilidadeType;
@@ -23,8 +24,8 @@ public class Fishing extends Habilidade {
 	
 	private Map<FishType, Double> fishs;
 
-	public Fishing(String name, List<HabilidadeDrop> drops, List<Material> tools, Map<FishType, Double> fishs) {
-		super(HabilidadeType.FISHING, name, drops, tools);
+	public Fishing(String name, List<HabilidadeDrop> drops, List<Material> tools, List<HabilidadeExtra> extras, Map<FishType, Double> fishs) {
+		super(HabilidadeType.FISHING, name, drops, tools, extras);
 		this.fishs = fishs;
 	}
 	

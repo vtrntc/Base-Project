@@ -1,12 +1,11 @@
-package com.vtr.habilidades.habilidades.mining;
+package com.vtr.habilidades.habilidades.mining.extras;
 
 import java.util.List;
 
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.EventPriority;
+import org.bukkit.event.Event;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.inventory.ItemStack;
 
@@ -14,25 +13,27 @@ import com.vtr.api.spigot.message.MessageUtils;
 import com.vtr.api.spigot.utils.ItemUtils;
 import com.vtr.api.spigot.utils.PlayerUtils;
 import com.vtr.habilidades.HabilidadePlugin;
-import com.vtr.habilidades.habilidades.extra.HabilidadeExtraPerLevel;
+import com.vtr.habilidades.habilidades.extra.HabilidadeExtraPercent;
 import com.vtr.habilidades.habilidades.extra.HabilidadeExtraType;
 import com.vtr.habilidades.objects.HabilidadeType;
 import com.vtr.habilidades.user.HabilidadeUser;
 
-public class DoubleDrop extends HabilidadeExtraPerLevel {
+public class DoubleDropMining extends HabilidadeExtraPercent {
 
 	private List<Material> allowed;
 	
-	public DoubleDrop(double perLevel, int maxLevel, List<Material> allowed) {
-		super(HabilidadeType.MINING, HabilidadeExtraType.DOUBLE_DROP, maxLevel, perLevel);
+	public DoubleDropMining(double chance, double maxChance, List<Material> allowed) {
+		super(HabilidadeType.MINING, HabilidadeExtraType.DOUBLE_DROP, chance, maxChance);
 		this.allowed = allowed;
 	}
 
 	public boolean isAllowed(Material material) {
 		return allowed.contains(material);
 	}
-	@EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
-	private void onBreak(BlockBreakEvent e) {
+	
+	public boolean activate(Event event) {
+		BlockBreakEvent e = (BlockBreakEvent) event;
+		
 		Player p = e.getPlayer();
 		
 		Block block = e.getBlock();
@@ -57,10 +58,13 @@ public class DoubleDrop extends HabilidadeExtraPerLevel {
 							
 							block.setType(Material.AIR);
 							e.setCancelled(true);
+							return true;
 						}
 					}
 				}
 			}
 		}
+		
+		return false;
 	}
 }

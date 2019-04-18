@@ -1,9 +1,8 @@
-package com.vtr.habilidades.habilidades.archery;
+package com.vtr.habilidades.habilidades.archery.extras;
 
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Projectile;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.EventPriority;
+import org.bukkit.event.Event;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 
 import com.vtr.habilidades.HabilidadePlugin;
@@ -17,8 +16,8 @@ public class Impact extends HabilidadeExtraPerLevel {
 
 	private double damage;
 	
-	public Impact(int maxLevel, double perLevel, double damage) {
-		super(HabilidadeType.ARCHERY, HabilidadeExtraType.IMPACT, maxLevel, perLevel);
+	public Impact(double perLevel, int levelBase, int maxLevel, double damage) {
+		super(HabilidadeType.ARCHERY, HabilidadeExtraType.IMPACT, perLevel, levelBase, maxLevel);
 		this.damage = damage;
 	}
 
@@ -26,8 +25,8 @@ public class Impact extends HabilidadeExtraPerLevel {
 		return damage;
 	}
 	
-	@EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
-	private void onDamage(EntityDamageByEntityEvent e) {
+	public boolean activate(Event event) {
+		EntityDamageByEntityEvent e = (EntityDamageByEntityEvent) event;
 		if(e.getEntity() instanceof Projectile) {
 			Projectile projectile = (Projectile) e.getEntity();
 			if(projectile.getShooter() != null) {
@@ -38,10 +37,12 @@ public class Impact extends HabilidadeExtraPerLevel {
 					
 					HabilidadeInfo habilidadeInfo = habilidadePlayer.getHabilidade(habilidade.getType());
 					if(habilidadeInfo != null) {
-						
+						e.setDamage(e.getDamage() + (damage * perLevel));
 					}
 				}
 			}
 		}
+		
+		return false;
 	}
 }
