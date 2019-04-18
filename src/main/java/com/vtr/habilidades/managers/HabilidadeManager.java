@@ -23,18 +23,18 @@ import com.vtr.habilidades.habilidades.acrobatics.AcrobaticsFallExperience;
 import com.vtr.habilidades.habilidades.acrobatics.AcrobaticsInfo;
 import com.vtr.habilidades.habilidades.archery.Archery;
 import com.vtr.habilidades.habilidades.archery.ArcheryDamageExperience;
-import com.vtr.habilidades.habilidades.archery.extra.ArrowRetrieval;
-import com.vtr.habilidades.habilidades.archery.extra.Daze;
-import com.vtr.habilidades.habilidades.archery.extra.SkillShot;
+import com.vtr.habilidades.habilidades.archery.extras.ArrowRetrieval;
+import com.vtr.habilidades.habilidades.archery.extras.Daze;
+import com.vtr.habilidades.habilidades.archery.extras.SkillShot;
 import com.vtr.habilidades.habilidades.axes.Axes;
 import com.vtr.habilidades.habilidades.axes.extras.TreeCut;
 import com.vtr.habilidades.habilidades.excavation.Excavation;
 import com.vtr.habilidades.habilidades.fishing.FishType;
 import com.vtr.habilidades.habilidades.fishing.Fishing;
-import com.vtr.habilidades.habilidades.herbalism.DoubleDropHerbalism;
 import com.vtr.habilidades.habilidades.herbalism.Herbalism;
-import com.vtr.habilidades.habilidades.mining.DoubleDropMining;
+import com.vtr.habilidades.habilidades.herbalism.extras.DoubleDropHerbalism;
 import com.vtr.habilidades.habilidades.mining.Mining;
+import com.vtr.habilidades.habilidades.mining.extras.DoubleDropMining;
 import com.vtr.habilidades.habilidades.swords.Swords;
 import com.vtr.habilidades.habilidades.swords.SwordsInfo;
 import com.vtr.habilidades.habilidades.swords.extras.CounterAttack;
@@ -143,7 +143,7 @@ public class HabilidadeManager {
 								}
 							}
 							
-							habilidades.add(new Axes(name, drops, tools, loadEntitiesExperience(config, e), treeCut));
+							habilidades.add(new Axes(name, drops, tools, loadBlockExperience(config, e, drops), treeCut));
 							break;
 						case ARCHERY:
 							Daze daze = null;

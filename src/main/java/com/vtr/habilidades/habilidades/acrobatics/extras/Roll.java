@@ -1,4 +1,4 @@
-package com.vtr.habilidades.habilidades.acrobatics.extra;
+package com.vtr.habilidades.habilidades.acrobatics.extras;
 
 import org.bukkit.event.Event;
 

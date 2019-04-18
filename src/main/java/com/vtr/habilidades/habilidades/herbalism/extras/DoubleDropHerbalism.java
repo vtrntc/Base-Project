@@ -1,4 +1,4 @@
-package com.vtr.habilidades.habilidades.herbalism;
+package com.vtr.habilidades.habilidades.herbalism.extras;
 
 import java.util.List;
 

@@ -4,15 +4,17 @@ import java.util.List;
 import java.util.Map;
 
 import org.bukkit.Material;
-import org.bukkit.entity.EntityType;
+import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
-import org.bukkit.event.entity.EntityDamageByEntityEvent;
+import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.inventory.ItemStack;
 
 import com.vtr.habilidades.HabilidadePlugin;
 import com.vtr.habilidades.habilidades.Habilidade;
 import com.vtr.habilidades.habilidades.axes.extras.TreeCut;
+import com.vtr.habilidades.objects.HabilidadeBlock;
 import com.vtr.habilidades.objects.HabilidadeDrop;
 import com.vtr.habilidades.objects.HabilidadeInfo;
 import com.vtr.habilidades.objects.HabilidadeType;
@@ -22,36 +24,34 @@ public class Axes extends Habilidade {
 
 	private TreeCut treeCut;
 	
-	private Map<EntityType, Double> entitiesXp;
+	private Map<Material, HabilidadeBlock> blocks;
 	
-	public Axes(String name, List<HabilidadeDrop> drops, List<Material> tools, Map<EntityType, Double> entitiesXp, TreeCut treeCut) {
+	public Axes(String name, List<HabilidadeDrop> drops, List<Material> tools, Map<Material, HabilidadeBlock> blocks, TreeCut treeCut) {
 		super(HabilidadeType.AXES, name, drops, tools);
-		this.entitiesXp = entitiesXp;
+		this.blocks = blocks;
 		this.treeCut = treeCut;
 	}
 	
-	//TODO change that
 	@EventHandler(priority = EventPriority.MONITOR, ignoreCancelled= true)
-	private void onDamage(EntityDamageByEntityEvent e) {
-		if(e.getDamager() instanceof Player) {
-			Player p = (Player) e.getDamager();
-			if(p.getItemInHand() != null && p.getItemInHand().getType() != Material.AIR) {
-				if(isTool(p.getItemInHand().getType())) {
-					HabilidadeUser habilidadePlayer = HabilidadePlugin.getManager().getPlayer(p.getName());
+	private void onBreak(BlockBreakEvent e) {
+		Player p = e.getPlayer();
+		
+		ItemStack item = p.getItemInHand();
+		if(item != null && isTool(item.getType())) {
+			HabilidadeUser habilidadePlayer = HabilidadePlugin.getManager().getPlayer(p.getName());
+			
+			HabilidadeInfo habilidadeInfo = habilidadePlayer.getHabilidade(type);
+			if(habilidadeInfo != null) {
+				Block block = e.getBlock();
+				if(blocks.containsKey(block.getType())) {
+					HabilidadeBlock habilidadeBlock = blocks.get(block.getType());
 					
-					HabilidadeInfo habilidadeInfo = habilidadePlayer.getHabilidade(type);
-					if(habilidadeInfo != null) {
-						if(entitiesXp.containsKey(e.getEntity().getType())) {
-							double xp = entitiesXp.get(e.getEntity().getType());
-							
-							giveXp(habilidadePlayer, habilidadeInfo, xp);
-							
-							sendActionBar(p, habilidadeInfo, xp);
-						}
-						
-						treeCut.activate(e);
-					}
+					giveXp(habilidadePlayer, habilidadeInfo, habilidadeBlock.getXp());
+					
+					sendActionBar(p, habilidadeInfo, habilidadeBlock.getXp());
 				}
+				
+				treeCut.activate(e);
 			}
 		}
 	}

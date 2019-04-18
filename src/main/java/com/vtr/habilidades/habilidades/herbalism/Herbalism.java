@@ -18,6 +18,7 @@ import com.vtr.api.spigot.utils.MathUtils;
 import com.vtr.api.spigot.utils.PlayerUtils;
 import com.vtr.habilidades.HabilidadePlugin;
 import com.vtr.habilidades.habilidades.Habilidade;
+import com.vtr.habilidades.habilidades.herbalism.extras.DoubleDropHerbalism;
 import com.vtr.habilidades.objects.HabilidadeBlock;
 import com.vtr.habilidades.objects.HabilidadeDrop;
 import com.vtr.habilidades.objects.HabilidadeInfo;

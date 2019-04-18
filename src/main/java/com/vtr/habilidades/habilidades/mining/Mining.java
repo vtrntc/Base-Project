@@ -17,6 +17,7 @@ import com.vtr.api.spigot.message.MessageUtils;
 import com.vtr.api.spigot.utils.PlayerUtils;
 import com.vtr.habilidades.HabilidadePlugin;
 import com.vtr.habilidades.habilidades.Habilidade;
+import com.vtr.habilidades.habilidades.mining.extras.DoubleDropMining;
 import com.vtr.habilidades.objects.HabilidadeBlock;
 import com.vtr.habilidades.objects.HabilidadeDrop;
 import com.vtr.habilidades.objects.HabilidadeInfo;

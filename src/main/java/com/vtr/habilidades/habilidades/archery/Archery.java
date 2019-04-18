@@ -11,9 +11,9 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 
 import com.vtr.habilidades.HabilidadePlugin;
 import com.vtr.habilidades.habilidades.Habilidade;
-import com.vtr.habilidades.habilidades.archery.extra.ArrowRetrieval;
-import com.vtr.habilidades.habilidades.archery.extra.Daze;
-import com.vtr.habilidades.habilidades.archery.extra.SkillShot;
+import com.vtr.habilidades.habilidades.archery.extras.ArrowRetrieval;
+import com.vtr.habilidades.habilidades.archery.extras.Daze;
+import com.vtr.habilidades.habilidades.archery.extras.SkillShot;
 import com.vtr.habilidades.objects.HabilidadeDrop;
 import com.vtr.habilidades.objects.HabilidadeInfo;
 import com.vtr.habilidades.objects.HabilidadeType;

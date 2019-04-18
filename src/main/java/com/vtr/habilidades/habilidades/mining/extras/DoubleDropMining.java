@@ -1,4 +1,4 @@
-package com.vtr.habilidades.habilidades.mining;
+package com.vtr.habilidades.habilidades.mining.extras;
 
 import java.util.List;
 

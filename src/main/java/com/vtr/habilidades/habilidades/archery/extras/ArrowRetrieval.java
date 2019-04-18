@@ -1,4 +1,4 @@
-package com.vtr.habilidades.habilidades.archery.extra;
+package com.vtr.habilidades.habilidades.archery.extras;
 
 public class ArrowRetrieval {
 
