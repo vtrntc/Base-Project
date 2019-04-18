@@ -34,6 +34,19 @@ Habilidades:
         XP: 1.0
   ARCHERY:
     Name: 'Arqueiro'
+    DamageExperience:
+      1:
+        Distance: 1
+        XP: 1
+      2:
+        Distance: 2
+        XP: 2
+      3:
+        Distance: 3
+        XP: 3
+      4:
+        Distance: 4
+        XP: 4
     Extras:
       Impact:
         Damage: 0.5

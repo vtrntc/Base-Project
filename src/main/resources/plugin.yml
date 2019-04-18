@@ -1,5 +1,4 @@
-name: Habilidades
+name: Skills
 main: com.vtr.habilidades.HabilidadePlugin
 author: [vtr_]
 version: 1.0
-softdepend: [SoloAPI]

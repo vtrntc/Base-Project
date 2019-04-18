@@ -181,8 +181,12 @@ public class HabilidadeManager {
 							break;
 						case ARCHERY:
 							List<ArcheryDamageExperience> damageExperiences = new ArrayList<>();
-							for(String x : config.getConfigurationSection("Habilidades." + e + ".DamageExperience").getKeys(false)) {
-								damageExperiences.add(new ArcheryDamageExperience(config.getInt("Habilidades." + e + ".DamageExperience." + x + ".Distance"), config.getDouble("Habilidades." + e + ".DamageExperience." + x + ".XP")));
+							System.out.println("1: " + "Habilidades." + e + ".DamageExperience");
+							if(config.isSet("Habilidades." + e + ".DamageExperience")) {
+								for(String x : config.getConfigurationSection("Habilidades." + e + ".DamageExperience").getKeys(false)) {
+									System.out.println("2: " + "Habilidades." + e + ".DamageExperience." + x);
+									damageExperiences.add(new ArcheryDamageExperience(config.getInt("Habilidades." + e + ".DamageExperience." + x + ".Distance"), config.getDouble("Habilidades." + e + ".DamageExperience." + x + ".XP")));
+								}
 							}
 							
 							habilidades.add(new Archery(name, drops, tools, extras, damageExperiences));
