@@ -17,6 +17,7 @@ import com.vtr.api.spigot.message.MessageUtils;
 import com.vtr.api.spigot.utils.MathUtils;
 import com.vtr.habilidades.HabilidadePlugin;
 import com.vtr.habilidades.habilidades.Habilidade;
+import com.vtr.habilidades.habilidades.extra.HabilidadeExtra;
 import com.vtr.habilidades.objects.HabilidadeBlock;
 import com.vtr.habilidades.objects.HabilidadeDrop;
 import com.vtr.habilidades.objects.HabilidadeInfo;
@@ -27,8 +28,8 @@ public class Excavation extends Habilidade {
 	
 	private Map<Material, HabilidadeBlock> diggingBlocks;
 	
-	public Excavation(String name, List<Material> tools, List<HabilidadeDrop> drops, Map<Material, HabilidadeBlock> diggingBlocks) {
-		super(HabilidadeType.EXCAVATION, name, drops, tools);
+	public Excavation(String name, List<Material> tools, List<HabilidadeDrop> drops, List<HabilidadeExtra> extras, Map<Material, HabilidadeBlock> diggingBlocks) {
+		super(HabilidadeType.EXCAVATION, name, drops, tools, extras);
 		this.diggingBlocks = diggingBlocks;
 	}
 

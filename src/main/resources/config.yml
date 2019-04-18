@@ -5,9 +5,6 @@ Habilidades:
       Counter:
         PerLevel: 0.05
         MaxChance: 30
-      Dodge:
-        PerLevel: 0.1
-        MaxChance: 30
       Bleed:
         PerLevel: 0.1
         MaxChance: 100
@@ -37,23 +34,18 @@ Habilidades:
         XP: 1.0
   ARCHERY:
     Name: 'Arqueiro'
-    Impact:
-      PerLevel: 0.5
-      LevelBase: 100
-      MaxIncrease: 1000
-    Daze:
-      Potion:
-        Type: 'CONFUSION'
-        Duration: 10
-        Level: 10
-    ArrowRetrieval:
-      Chance: 0.1
-      PerLevel: 1
-      MaxIncrease: 100
-    SkillShot:
-      PerLevel: 50
-      Increase: 10
-      MaxIncrease: 100
+    Extras:
+      Impact:
+        Damage: 0.5
+        LevelBase: 100
+        MaxLevel: 1000
+      Daze:
+        PerLevel: 0.01
+        MaxChance: 50
+        Potion:
+          Type: 'CONFUSION'
+          Duration: 10
+          Level: 10
   AXES:
     Name: 'Lenhador'
     Tools:
@@ -185,6 +177,16 @@ Habilidades:
       10:
         MinDistance: 20
         XP: 32         
+    Extras:
+      Dodge:
+        PerLevel: 0.1
+        MaxChance: 30
+      Roll:
+        PerLevel: 0.05
+        MaxChance: 100
+      PerfectRoll:
+        PerLevel: 0.1
+        MaxChance: 100
   HERBALISM:
     Name: 'Herbalismo'
     DoubleDrop: 
@@ -429,7 +431,7 @@ Habilidades:
     Extras:
       DoubleDrop:
         PerLevel: 0.1
-        MaxLevel: 0 
+        MaxChance: 100 
         Blocks:
         - 'COAL_ORE'
         - 'IRON_ORE'
@@ -625,3 +627,5 @@ DoubleDropMining: '&aVoce recebeu o dobro da mineracao'
 TargetDisarmed: '&aVoce desarmou &f%player%'
 Disarmed: '&aVoce foi desarmado por &f%player%'
 TreeCut: '&aVoce quebrou a arvore inteira!'
+Daze: '&aVoce deixou &f%player% &aatordoado'
+DazeTarget: '&f%player% &adeixou voce atordoado'

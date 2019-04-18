@@ -28,6 +28,7 @@ public abstract class HabilidadeExtraPerLevel extends HabilidadeExtra {
 				lvl = maxLevel;
 			}
 			
+			//TODO maybe that is wrong
 			if(lvl >= levelBase) {
 				return habilidadeInfo.getLevel() * perLevel;
 			}

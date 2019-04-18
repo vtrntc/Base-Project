@@ -18,6 +18,7 @@ import com.vtr.api.spigot.utils.MathUtils;
 import com.vtr.api.spigot.utils.PlayerUtils;
 import com.vtr.habilidades.HabilidadePlugin;
 import com.vtr.habilidades.habilidades.Habilidade;
+import com.vtr.habilidades.habilidades.extra.HabilidadeExtra;
 import com.vtr.habilidades.habilidades.herbalism.extras.DoubleDropHerbalism;
 import com.vtr.habilidades.objects.HabilidadeBlock;
 import com.vtr.habilidades.objects.HabilidadeDrop;
@@ -31,8 +32,8 @@ public class Herbalism extends Habilidade {
 	
 	private Map<Material, HabilidadeBlock> herbalismBlocks;
 	
-	public Herbalism(String name, List<Material> tools, List<HabilidadeDrop> drops, Map<Material, HabilidadeBlock> herbalismBlocks, DoubleDropHerbalism doubleDrop) {
-		super(HabilidadeType.HERBALISM, name, drops, tools);
+	public Herbalism(String name, List<Material> tools, List<HabilidadeDrop> drops, List<HabilidadeExtra> extras, Map<Material, HabilidadeBlock> herbalismBlocks, DoubleDropHerbalism doubleDrop) {
+		super(HabilidadeType.HERBALISM, name, drops, tools, extras);
 		this.herbalismBlocks = herbalismBlocks;
 		this.doubleDrop = doubleDrop;
 	}

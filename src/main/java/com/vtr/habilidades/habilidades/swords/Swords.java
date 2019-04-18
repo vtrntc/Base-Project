@@ -13,8 +13,8 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import com.vtr.api.spigot.utils.PlayerUtils;
 import com.vtr.habilidades.HabilidadePlugin;
 import com.vtr.habilidades.habilidades.Habilidade;
+import com.vtr.habilidades.habilidades.extra.HabilidadeExtra;
 import com.vtr.habilidades.habilidades.swords.extras.CounterAttack;
-import com.vtr.habilidades.habilidades.swords.extras.Dodge;
 import com.vtr.habilidades.habilidades.swords.extras.bleed.Bleed;
 import com.vtr.habilidades.objects.HabilidadeDrop;
 import com.vtr.habilidades.objects.HabilidadeInfo;
@@ -25,18 +25,13 @@ public class Swords extends Habilidade {
 	
 	private Bleed bleed;
 	
-	private Dodge dodge;
-	
 	private CounterAttack counterAttack;
 
 	private Map<EntityType, Double> entitiesXp;
 	
-	public Swords(String name, List<HabilidadeDrop> drops, List<Material> tools, Map<EntityType, Double> entitiesXp, Bleed bleed, Dodge dodge, CounterAttack counterAttack) {
-		super(HabilidadeType.SWORDS, name, drops, tools);
+	public Swords(String name, List<HabilidadeDrop> drops, List<Material> tools, List<HabilidadeExtra> extras, Map<EntityType, Double> entitiesXp) {
+		super(HabilidadeType.SWORDS, name, drops, tools, extras);
 		this.entitiesXp = entitiesXp;
-		this.bleed = bleed;
-		this.dodge = dodge;
-		this.counterAttack = counterAttack;
 	}
 	
 	@EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
@@ -58,7 +53,6 @@ public class Swords extends Habilidade {
 						}
 						
 						if(!bleed.activate(e)) {
-							dodge.activate(e);
 							counterAttack.activate(e);
 						}
 					}

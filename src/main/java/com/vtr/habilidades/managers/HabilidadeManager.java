@@ -21,14 +21,18 @@ import com.vtr.habilidades.habilidades.Habilidade;
 import com.vtr.habilidades.habilidades.acrobatics.Acrobatics;
 import com.vtr.habilidades.habilidades.acrobatics.AcrobaticsFallExperience;
 import com.vtr.habilidades.habilidades.acrobatics.AcrobaticsInfo;
+import com.vtr.habilidades.habilidades.acrobatics.extras.Dodge;
+import com.vtr.habilidades.habilidades.acrobatics.extras.PerfectRoll;
+import com.vtr.habilidades.habilidades.acrobatics.extras.Roll;
 import com.vtr.habilidades.habilidades.archery.Archery;
 import com.vtr.habilidades.habilidades.archery.ArcheryDamageExperience;
-import com.vtr.habilidades.habilidades.archery.extras.ArrowRetrieval;
 import com.vtr.habilidades.habilidades.archery.extras.Daze;
-import com.vtr.habilidades.habilidades.archery.extras.SkillShot;
+import com.vtr.habilidades.habilidades.archery.extras.Impact;
 import com.vtr.habilidades.habilidades.axes.Axes;
 import com.vtr.habilidades.habilidades.axes.extras.TreeCut;
 import com.vtr.habilidades.habilidades.excavation.Excavation;
+import com.vtr.habilidades.habilidades.extra.HabilidadeExtra;
+import com.vtr.habilidades.habilidades.extra.HabilidadeExtraType;
 import com.vtr.habilidades.habilidades.fishing.FishType;
 import com.vtr.habilidades.habilidades.fishing.Fishing;
 import com.vtr.habilidades.habilidades.herbalism.Herbalism;
@@ -38,7 +42,6 @@ import com.vtr.habilidades.habilidades.mining.extras.DoubleDropMining;
 import com.vtr.habilidades.habilidades.swords.Swords;
 import com.vtr.habilidades.habilidades.swords.SwordsInfo;
 import com.vtr.habilidades.habilidades.swords.extras.CounterAttack;
-import com.vtr.habilidades.habilidades.swords.extras.Dodge;
 import com.vtr.habilidades.habilidades.swords.extras.bleed.Bleed;
 import com.vtr.habilidades.habilidades.swords.extras.bleed.BleedLevel;
 import com.vtr.habilidades.objects.HabilidadeBlock;
@@ -84,37 +87,81 @@ public class HabilidadeManager {
 						}
 					}
 					
-					switch(type) {
-						case SWORDS:
-							Bleed bleed = null;
-							Dodge dodge = null;
-							CounterAttack counterAttack = null;
-							
-							if(config.isSet("Habilidades." + e + ".Extras")) {
-								for(String x : config.getConfigurationSection("Habilidades." + e + ".Extras").getKeys(false)) {
-									switch(x) {
-										case "Bleed":
-											List<BleedLevel> bleedLevel = new ArrayList<>();
-											
-											for(String b : config.getConfigurationSection("Habilidades." + e + ".Extras." + x + ".Levels").getKeys(false)) {
-												bleedLevel.add(new BleedLevel(config.getInt("Habilidades." + e + ".Extras." + x + ".Levels." + b + ".MinLevel"), config.getInt("Habilidades." + e + ".Extras." + x + ".Levels." + b + ".Amount"), config.getInt("Habilidades." + e + ".Extras." + x + ".Levels." + b + ".Time"), config.getDouble("Habilidades." + e + "." + x + ".Levels." + b + ".Damage")));
+					List<HabilidadeExtra> extras = new ArrayList<>();
+					if(config.isSet("Habilidades." + e + ".Extras")) {
+						for(String x : config.getConfigurationSection("Habilidades." + e + ".Extras").getKeys(false)) {
+							HabilidadeExtraType extraType = HabilidadeExtraType.getType(x);
+							if(extraType != null) {
+								switch(extraType) {
+								    //swords
+									case BLEED:
+										List<BleedLevel> bleedLevel = new ArrayList<>();
+										for(String b : config.getConfigurationSection("Habilidades." + e + ".Extras." + x + ".Levels").getKeys(false)) {
+											bleedLevel.add(new BleedLevel(config.getInt("Habilidades." + e + ".Extras." + x + ".Levels." + b + ".MinLevel"), config.getInt("Habilidades." + e + ".Extras." + x + ".Levels." + b + ".Amount"), config.getInt("Habilidades." + e + ".Extras." + x + ".Levels." + b + ".Time"), config.getDouble("Habilidades." + e + "." + x + ".Levels." + b + ".Damage")));
+										}
+										
+										extras.add(new Bleed(config.getDouble("Habilidades." + e + ".Extras." + x + ".PerLevel"), config.getDouble("Habilidades." + e + ".Extras." + x + ".MaxChance"), bleedLevel));
+										break;
+									case COUNTER_ATTACK:
+										extras.add(new CounterAttack(config.getDouble("Habilidades." + e + ".Extras." + x + ".PerLevel"), config.getDouble("Habilidades." + e + ".Extras." + x + ".MaxChance")));
+										break;
+									//fishing
+									//axes
+									case TREE_CUT:
+										extras.add(new TreeCut(config.getDouble("Habilidades." + e + ".Extras." + x + ".PerLevel"), config.getDouble("Habilidades." + e + ".Extras." + x + ".MaxChance")));
+										break;
+									//archery
+									case IMPACT:
+										extras.add(new Impact(config.getDouble("Habilidades." + e + ".Extras." + x + ".PerLevel"), config.getInt("Habilidades." + e + ".Extras." + x + ".LevelBase"), config.getInt("Habilidades." + e + ".Extras." + x + ".MaxLevel"), config.getDouble("Habilidades." + e + ".Extras." + x + ".Damage")));
+										break;
+									case DAZE:
+										extras.add(new Daze(config.getDouble("Habilidades." + e + ".Extras." + x + ".PerLevel"), config.getDouble("Habilidades." + e + ".Extras." + x + ".MaxChance"), PotionUtils.loadPotion(config, "Habilidades." + e + ".Extras." + x + ".Potion")));
+										break;
+									//acrobatics
+									case ROLL:
+										extras.add(new Roll(config.getDouble("Habilidades." + e + ".Extras." + x + ".PerLevel"), config.getInt("Habilidades." + e + ".Extras." + x + ".MaxChance")));
+										break;
+									case PERFECT_ROLL:
+										extras.add(new PerfectRoll(config.getDouble("Habilidades." + e + ".Extras." + x + ".PerLevel"), config.getDouble("Habilidades." + e + ".Extras." + x + ".MaxChance")));
+										break;
+									case DODGE:
+										extras.add(new Dodge(config.getDouble("Habilidades." + e + ".Extras." + x + ".PerLevel"), config.getDouble("Habilidades." + e + ".Extras." + x + ".MaxChance")));
+										break;
+									//herbalism
+										
+									//excavation
+									//mining
+									case DOUBLE_DROP:
+										List<Material> allowed = new ArrayList<>();
+										for(String m : config.getStringList("Habilidades." + e + ".Extras." + x + ".Blocks")) {
+											Material material = Material.getMaterial(m);
+											if(material != null) {
+												allowed.add(material);
 											}
-											
-											bleed = new Bleed(config.getDouble("Habilidades." + e + ".Extras." + x + ".PerLevel"), config.getDouble("Habilidades." + e + ".Extras." + x + ".MaxChance"), bleedLevel);
-											break;
-										case "Dodge":
-											dodge = new Dodge(config.getDouble("Habilidades." + e + ".Extras." + x + ".PerLevel"), config.getDouble("Habilidades." + e + ".Extras." + x + ".MaxChance"));
-											break;
-										case "Counter":
-											counterAttack = new CounterAttack(config.getDouble("Habilidades." + e + ".Extras." + x + ".PerLevel"), config.getDouble("Habilidades." + e + ".Extras." + x + ".MaxChance"));
-											break;
-										default:
-											break;
-									}
+										}
+										
+										switch(type) {
+											case MINING:
+												extras.add(new DoubleDropMining(config.getDouble("Habilidades." + e + ".Extras." + x + ".PerLevel"), config.getDouble("Habilidades." + e + ".Extras." + x + ".MaxChance"), allowed));
+												break;
+											case HERBALISM:
+												extras.add(new DoubleDropHerbalism(config.getDouble("Habilidades." + e + ".Extras." + x + ".PerLevel"), config.getDouble("Habilidades." + e + ".Extras." + x + ".MaxChance"), allowed));
+												break;
+											default:
+												break;
+										}
+										
+										break;
+									default:
+										break;
 								}
 							}
-							
-							habilidades.add(new Swords(name, drops, tools, loadEntitiesExperience(config, e), bleed, dodge, counterAttack));
+						}
+					}
+					
+					switch(type) {
+						case SWORDS:
+							habilidades.add(new Swords(name, drops, tools, extras, loadEntitiesExperience(config, e)));
 							break;
 						case FISHING:
 							Map<FishType, Double> fishs = new HashMap<>();
@@ -127,53 +174,18 @@ public class HabilidadeManager {
 								}
 							}
 							
-							habilidades.add(new Fishing(name, drops, tools, fishs));
+							habilidades.add(new Fishing(name, drops, tools, extras, fishs));
 							break;
 						case AXES:
-							TreeCut treeCut = null;
-							if(config.isSet("Habilidades." + e + ".Extras")) {
-								for(String x : config.getConfigurationSection("Habilidades." + e + ".Extras").getKeys(false)) {
-									switch(x) {
-										case "TreeCut":
-											treeCut = new TreeCut(config.getDouble("Habilidades." + e + ".Extras." + x + ".PerLevel"), config.getDouble("Habilidades." + e + ".Extras." + x + ".MaxChance"));
-											break;
-										default:
-											break;
-									}
-								}
-							}
-							
-							habilidades.add(new Axes(name, drops, tools, loadBlockExperience(config, e, drops), treeCut));
+							habilidades.add(new Axes(name, drops, tools, extras, loadBlockExperience(config, e, drops)));
 							break;
 						case ARCHERY:
-							Daze daze = null;
-							SkillShot skillShot = null;
-							ArrowRetrieval arrowRetrieval = null;
-							
-							if(config.isSet("Habilidades." + e + ".Extras")) {
-								for(String x : config.getConfigurationSection("Habilidades." + e + ".Extras").getKeys(false)) {
-									switch(x) {
-										case "Daze":
-											daze = new Daze(PotionUtils.loadPotion(config, "Habilidades." + e + ".Extras." + x + ".Potion"));
-											break;
-										case "SkillShot":
-											skillShot = new SkillShot(config.getInt("Habilidades." + e + ".Extras." + x + ".PerLevel"), config.getInt("Habilidades." + e + ".Extras." + x + ".MaxIncrease"), config.getDouble("Habilidades." + e + ".Extras." + x + ".Chance"));
-											break;
-										case "ArrowRetrieval":
-											arrowRetrieval = new ArrowRetrieval(config.getInt("Habilidades." + e + ".Extras." + x + ".PerLevel"), config.getInt("Habilidades." + e + ".Extras." + x + ".MaxIncrease"), config.getDouble("Habilidades." + e + ".Extras." + x + ".Chance"));
-											break;
-										default:
-											break;
-									}
-								}
-							}
-							
 							List<ArcheryDamageExperience> damageExperiences = new ArrayList<>();
 							for(String x : config.getConfigurationSection("Habilidades." + e + ".DamageExperience").getKeys(false)) {
 								damageExperiences.add(new ArcheryDamageExperience(config.getInt("Habilidades." + e + ".DamageExperience." + x + ".Distance"), config.getDouble("Habilidades." + e + ".DamageExperience." + x + ".XP")));
 							}
 							
-							habilidades.add(new Archery(name, drops, tools, damageExperiences, daze, skillShot, arrowRetrieval));
+							habilidades.add(new Archery(name, drops, tools, extras, damageExperiences));
 							break;
 						case ACROBATICS:
 							List<AcrobaticsFallExperience> fallExperience = new ArrayList<>();
@@ -183,37 +195,13 @@ public class HabilidadeManager {
 								}
 							}
 							
-							habilidades.add(new Acrobatics(name, drops, tools, fallExperience));
+							habilidades.add(new Acrobatics(name, drops, tools, extras, fallExperience));
 							break;
 						case HERBALISM:
-							DoubleDropHerbalism doubleDropHerbalism = null;
-							
-							if(config.isSet("Habilidades." + e + ".Extras")) {
-								for(String x : config.getConfigurationSection("Habilidades." + e + ".Extras").getKeys(false)) {
-									switch(x) {
-										case "DoubleDrop":
-											List<Material> doubleDrops = new ArrayList<>();
-											
-											for(String m : config.getStringList("Habilidades." + e + "." + x + ".Blocks")) {
-												Material material = Material.matchMaterial(m);
-												if(material != null) {
-													doubleDrops.add(material);
-												}
-											}
-											
-											//TODO change that to config
-											doubleDropHerbalism = new DoubleDropHerbalism(config.getDouble("Habilidades." + e + "." + x + ".PerLevel"), config.getInt("Habilidades." + e + "." + x + ".MaxChance"), 1, doubleDrops);
-											break;
-										default:
-											break;
-									}
-								}
-							}
-							
-							habilidades.add(new Herbalism(name, tools, drops, loadBlockExperience(config, e, drops), doubleDropHerbalism));
+							habilidades.add(new Herbalism(name, tools, drops, extras, loadBlockExperience(config, e, drops), null));
 							break;
 						case EXCAVATION:
-							habilidades.add(new Excavation(name, tools, drops, loadBlockExperience(config, e, drops)));
+							habilidades.add(new Excavation(name, tools, drops, extras, loadBlockExperience(config, e, drops)));
 							break;
 						case MINING:
 							Map<Material, HabilidadeBlock> miningBlocks = new HashMap<>();
@@ -236,40 +224,7 @@ public class HabilidadeManager {
 								}
 							}
 							
-							DoubleDropMining miningDoubleDrop = null;
-							
-							if(config.isSet("Habilidades." + e + ".Extras")) {
-								for(String x : config.getConfigurationSection("Habilidades." + e + ".Extras").getKeys(false)) {
-									switch(x) {
-										case "DoubleDrop":
-											List<Material> allowed = new ArrayList<>();
-											for(String m : config.getStringList("Habilidades." + e + ".Extras." + x + ".Blocks")) {
-												Material material = Material.getMaterial(m);
-												if(material != null) {
-													allowed.add(material);
-												}
-											}
-											
-											break;
-										default:
-											break;
-									}
-								}
-							}
-							
-							List<Material> doubleDrop = new ArrayList<>();
-							if(config.isSet("Habilidades." + e + ".DoubleDrop")) {
-								if(config.isSet("Habilidades." + e + ".DoubleDrop.Blocks")) {
-									for(String m : config.getStringList("Habilidades." + e + ".DoubleDrop.Blocks")) {
-										Material material = Material.matchMaterial(m);
-										if(material != null) {
-											doubleDrop.add(material);
-										}
-									}
-								}
-							}
-							
-							habilidades.add(new Mining(name, tools, drops, miningBlocks, miningDoubleDrop));
+							habilidades.add(new Mining(name, tools, drops, extras, miningBlocks));
 							break;
 						default:
 							break;

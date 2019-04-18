@@ -17,8 +17,6 @@ public abstract class HabilidadeExtra implements Listener {
 	public HabilidadeExtra(HabilidadeType habilidadeType, HabilidadeExtraType extraType) {
 		this.extraType = extraType;
 		this.habilidade = HabilidadePlugin.getManager().getHabilidadeByTypeName(habilidadeType.name());
-		
-		APISpigot.getInstance().registerListener(HabilidadePlugin.getInstance(), this);
 	}
 	
 	public abstract boolean activate(Event event);

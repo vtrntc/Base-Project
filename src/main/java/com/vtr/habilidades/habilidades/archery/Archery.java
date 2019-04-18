@@ -11,9 +11,7 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 
 import com.vtr.habilidades.HabilidadePlugin;
 import com.vtr.habilidades.habilidades.Habilidade;
-import com.vtr.habilidades.habilidades.archery.extras.ArrowRetrieval;
-import com.vtr.habilidades.habilidades.archery.extras.Daze;
-import com.vtr.habilidades.habilidades.archery.extras.SkillShot;
+import com.vtr.habilidades.habilidades.extra.HabilidadeExtra;
 import com.vtr.habilidades.objects.HabilidadeDrop;
 import com.vtr.habilidades.objects.HabilidadeInfo;
 import com.vtr.habilidades.objects.HabilidadeType;
@@ -27,23 +25,14 @@ public class Archery extends Habilidade {
 //	Atordoamento:
 //	Você tem a chance de atordoar seu inimigo, o deixando imóvel por alguns segundos, e o obrigando a olhar para cima ou para baixo.
 	
-	private Daze daze;
-	
-	private SkillShot skillShot;
-	
-	private ArrowRetrieval arrowRetrieval;
-	
 	private ArcheryDamageExperience maxLevel;
 	
 	private List<ArcheryDamageExperience> experience;
 	
-	public Archery(String name, List<HabilidadeDrop> drops, List<Material> tools, List<ArcheryDamageExperience> experience, Daze daze, SkillShot skillShot, ArrowRetrieval arrowRetrieval) {
-		super(HabilidadeType.ARCHERY, name, drops, tools);
+	public Archery(String name, List<HabilidadeDrop> drops, List<Material> tools, List<HabilidadeExtra> extras, List<ArcheryDamageExperience> experience) {
+		super(HabilidadeType.ARCHERY, name, drops, tools, extras);
 		this.experience = experience;
 		this.maxLevel = experience.get(experience.size());
-		this.daze = daze;
-		this.skillShot = skillShot;
-		this.arrowRetrieval = arrowRetrieval;
 	}
 	
 	public ArcheryDamageExperience getExperience(int distance) {

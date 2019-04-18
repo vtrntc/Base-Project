@@ -17,7 +17,8 @@ import com.vtr.api.spigot.message.MessageUtils;
 import com.vtr.api.spigot.utils.PlayerUtils;
 import com.vtr.habilidades.HabilidadePlugin;
 import com.vtr.habilidades.habilidades.Habilidade;
-import com.vtr.habilidades.habilidades.mining.extras.DoubleDropMining;
+import com.vtr.habilidades.habilidades.extra.HabilidadeExtra;
+import com.vtr.habilidades.habilidades.extra.HabilidadeExtraType;
 import com.vtr.habilidades.objects.HabilidadeBlock;
 import com.vtr.habilidades.objects.HabilidadeDrop;
 import com.vtr.habilidades.objects.HabilidadeInfo;
@@ -26,14 +27,11 @@ import com.vtr.habilidades.user.HabilidadeUser;
 
 public class Mining extends Habilidade {
 	
-	private DoubleDropMining doubleDrop;
-	
 	private Map<Material, HabilidadeBlock> miningBlocks;
 	
-	public Mining(String name, List<Material> tools, List<HabilidadeDrop> drops, Map<Material, HabilidadeBlock> miningBlocks, DoubleDropMining doubleDrop) {
-		super(HabilidadeType.MINING, name, drops, tools);
+	public Mining(String name, List<Material> tools, List<HabilidadeDrop> drops, List<HabilidadeExtra> extras, Map<Material, HabilidadeBlock> miningBlocks) {
+		super(HabilidadeType.MINING, name, drops, tools, extras);
 		this.miningBlocks = miningBlocks;
-		this.doubleDrop = doubleDrop;
 	}
 
 	@EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
@@ -71,7 +69,7 @@ public class Mining extends Habilidade {
 								MessageUtils.getMessage(HabilidadePlugin.getYamlConfig(), "LevelUp").replace(replacers).send(p);
 							}
 							
-							doubleDrop.activate(e);
+							getHabilidadeExtra(HabilidadeExtraType.DOUBLE_DROP).activate(e);
 						}
 					}
 				}

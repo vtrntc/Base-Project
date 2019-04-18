@@ -11,12 +11,13 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
 
-import com.vtr.api.spigot.message.MessageUtils;
 import com.vtr.api.spigot.utils.LocationUtils;
-import com.vtr.api.spigot.utils.MathUtils;
-import com.vtr.api.spigot.utils.PlayerUtils;
 import com.vtr.habilidades.HabilidadePlugin;
 import com.vtr.habilidades.habilidades.Habilidade;
+import com.vtr.habilidades.habilidades.acrobatics.extras.Dodge;
+import com.vtr.habilidades.habilidades.acrobatics.extras.PerfectRoll;
+import com.vtr.habilidades.habilidades.acrobatics.extras.Roll;
+import com.vtr.habilidades.habilidades.extra.HabilidadeExtra;
 import com.vtr.habilidades.objects.HabilidadeDrop;
 import com.vtr.habilidades.objects.HabilidadeInfo;
 import com.vtr.habilidades.objects.HabilidadeType;
@@ -24,31 +25,22 @@ import com.vtr.habilidades.user.HabilidadeUser;
 
 public class Acrobatics extends Habilidade {
 
+	private PerfectRoll perfectRoll;
+	
+	private Dodge dodge;
+	
+	private Roll roll;
+	
 	private List<AcrobaticsFallExperience> fallExperience;
 	
-	public Acrobatics(String name, List<HabilidadeDrop> drops, List<Material> tools, List<AcrobaticsFallExperience> fallExperience) {
-		super(HabilidadeType.ACROBATICS, name, drops, tools);
+	public Acrobatics(String name, List<HabilidadeDrop> drops, List<Material> tools, List<HabilidadeExtra> extras, List<AcrobaticsFallExperience> fallExperience) {
+		super(HabilidadeType.ACROBATICS, name, drops, tools, extras);
 		this.fallExperience = fallExperience;
 	}
 	
 	@EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
 	private void onDamage(EntityDamageByEntityEvent e) {
-		if(e.getEntity() instanceof Player) {
-			Player damager = PlayerUtils.getPlayerDamagerFromEntityDamageByEntityEvent(e);
-			if(damager != null) {
-				Player p = (Player) e.getEntity();
-				
-				HabilidadeUser habilidadePlayer = HabilidadePlugin.getManager().getPlayer(p.getName());
-				
-				HabilidadeInfo habilidadeInfo = habilidadePlayer.getHabilidade(type);
-				if(habilidadeInfo != null) {
-					if(MathUtils.percentDouble(habilidadeInfo.getLevel() * 0.025, 100)) {
-						MessageUtils.getMessage(HabilidadePlugin.getYamlConfig(), "Dodge").send(p);
-						e.setDamage(e.getDamage() / 2);
-					}
-				}
-			}
-		}
+		dodge.activate(e);
 	}
 	
 	@EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
@@ -64,23 +56,14 @@ public class Acrobatics extends Habilidade {
 					AcrobaticsInfo acrobaticsInfo = (AcrobaticsInfo) habilidadeInfo;
 					
 					if(!exploitPrevention(p, acrobaticsInfo)) {
-						boolean roll = false;
+						boolean extra = false;
 						if(p.isSneaking()) {
-							if(MathUtils.percentDouble(habilidadeInfo.getLevel() * 0.2, 100)) {
-								roll = true;
-								
-								MessageUtils.getMessage(HabilidadePlugin.getYamlConfig(), "PerfectRoll").send(p);
-								e.setCancelled(true);
-							}
-						}else if(MathUtils.percentDouble(habilidadeInfo.getLevel() * 0.1, 100)) {
-							roll = true;
-							
-							MessageUtils.getMessage(HabilidadePlugin.getYamlConfig(), "Roll").send(p);
-							e.setCancelled(true);
-							
+							extra = perfectRoll.activate(e);
+						}else{
+							extra = roll.activate(e);
 						}
 						
-						if(!roll) {
+						if(!extra) {
 							int distance = (int) e.getDamage() + 3;
 							
 							AcrobaticsFallExperience experience = getExperience(distance);

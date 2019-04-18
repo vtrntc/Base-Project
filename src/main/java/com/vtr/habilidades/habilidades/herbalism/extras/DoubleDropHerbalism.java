@@ -13,19 +13,19 @@ import com.vtr.api.spigot.message.MessageUtils;
 import com.vtr.api.spigot.utils.ItemUtils;
 import com.vtr.api.spigot.utils.PlayerUtils;
 import com.vtr.habilidades.HabilidadePlugin;
-import com.vtr.habilidades.habilidades.extra.HabilidadeExtraPerLevel;
+import com.vtr.habilidades.habilidades.extra.HabilidadeExtraPercent;
 import com.vtr.habilidades.habilidades.extra.HabilidadeExtraType;
 import com.vtr.habilidades.objects.HabilidadeType;
 import com.vtr.habilidades.user.HabilidadeUser;
 
-public class DoubleDropHerbalism extends HabilidadeExtraPerLevel {
+public class DoubleDropHerbalism extends HabilidadeExtraPercent {
 
 	private double chance;
 
 	private List<Material> allowed;
 	
-	public DoubleDropHerbalism(double perLevel, int levelBase, int maxLevel, List<Material> allowed) {
-		super(HabilidadeType.HERBALISM, HabilidadeExtraType.DOUBLE_DROP, perLevel, levelBase, maxLevel);
+	public DoubleDropHerbalism(double chance, double maxChance, List<Material> allowed) {
+		super(HabilidadeType.HERBALISM, HabilidadeExtraType.DOUBLE_DROP, chance, maxChance);
 		this.allowed = allowed;
 	}
 

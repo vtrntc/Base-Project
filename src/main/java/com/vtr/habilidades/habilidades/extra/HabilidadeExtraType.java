@@ -8,6 +8,7 @@ public enum HabilidadeExtraType {
 	//ACROBATICS
 	ROLL,
 	PERFECT_ROLL,
+	DODGE, 
 	
 	//ARCHERY
 	IMPACT,
@@ -17,5 +18,16 @@ public enum HabilidadeExtraType {
 	DOUBLE_DROP,
 	
 	//SWORDS
-	COUNTER_ATTACK, DODGE, BLEED;
+	COUNTER_ATTACK, 
+	BLEED;
+	
+	public static HabilidadeExtraType getType(String type) {
+		for(HabilidadeExtraType habilidadeType : values()) {
+			if(habilidadeType.name().equalsIgnoreCase(type)) {
+				return habilidadeType;
+			}
+		}
+		
+		return null;
+	}
 }

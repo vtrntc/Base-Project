@@ -1,6 +1,5 @@
 package com.vtr.habilidades.habilidades;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -39,12 +38,12 @@ public abstract class Habilidade implements Listener {
 	
 	protected RandomChooser<HabilidadeDrop> dropsRandomChooser;
 
-	public Habilidade(HabilidadeType type, String name, List<HabilidadeDrop> drops, List<Material> tools) {
+	public Habilidade(HabilidadeType type, String name, List<HabilidadeDrop> drops, List<Material> tools, List<HabilidadeExtra> extras) {
 		this.type = type;
 		this.name = name;
 		this.tools = tools;
 		this.drops = drops;
-		this.extras = new ArrayList<>();
+		this.extras = extras;
 		this.dropsRandomChooser = new RandomChooser<>();
 		
 		for(HabilidadeDrop drop : drops) {
@@ -74,6 +73,10 @@ public abstract class Habilidade implements Listener {
 		return habilidadeDrops.stream().filter(hd -> level >= hd.getMinLevel()).collect(Collectors.toList());
 	}
 	
+	public HabilidadeExtra getHabilidadeExtra(HabilidadeExtraType extraType) {
+		return extras.stream().filter(e -> e.getExtraType() == extraType).findFirst().orElse(null);
+	}
+	
 	public boolean isTool(Material material) {
 		return tools.contains(material);
 	}
@@ -83,14 +86,6 @@ public abstract class Habilidade implements Listener {
 		habilidadeInfo.setNeedUpdate(true);
 		
 		habilidadePlayer.setNeedUpdate(true);
-	}
-	
-	public void registerHabilidadeExtra(HabilidadeExtra extra) {
-		this.extras.add(extra);
-	}
-	
-	public HabilidadeExtra getHabilidadeExtra(HabilidadeExtraType extraType) {
-		return extras.stream().filter(e -> e.getExtraType() == extraType).findFirst().orElse(null);
 	}
 	
 	public boolean canLevelUP(HabilidadeUser habilidadePlayer) {
