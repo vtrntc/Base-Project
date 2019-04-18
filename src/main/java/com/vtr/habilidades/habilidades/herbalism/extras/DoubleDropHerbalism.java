@@ -60,7 +60,7 @@ public class DoubleDropHerbalism extends HabilidadeExtraPercent {
 								}
 							}
 							
-							MessageUtils.getMessage(HabilidadePlugin.getYamlConfig(), "DoubleDropMining").send(p);
+							MessageUtils.getMessage(HabilidadePlugin.getYamlConfig(), "DoubleDropHerbalism").send(p);
 							
 							block.setType(Material.AIR);
 							e.setCancelled(true);

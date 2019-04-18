@@ -14,10 +14,8 @@ import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
 import com.vtr.api.spigot.utils.LocationUtils;
 import com.vtr.habilidades.HabilidadePlugin;
 import com.vtr.habilidades.habilidades.Habilidade;
-import com.vtr.habilidades.habilidades.acrobatics.extras.Dodge;
-import com.vtr.habilidades.habilidades.acrobatics.extras.PerfectRoll;
-import com.vtr.habilidades.habilidades.acrobatics.extras.Roll;
 import com.vtr.habilidades.habilidades.extra.HabilidadeExtra;
+import com.vtr.habilidades.habilidades.extra.HabilidadeExtraType;
 import com.vtr.habilidades.objects.HabilidadeDrop;
 import com.vtr.habilidades.objects.HabilidadeInfo;
 import com.vtr.habilidades.objects.HabilidadeType;
@@ -25,12 +23,6 @@ import com.vtr.habilidades.user.HabilidadeUser;
 
 public class Acrobatics extends Habilidade {
 
-	private PerfectRoll perfectRoll;
-	
-	private Dodge dodge;
-	
-	private Roll roll;
-	
 	private List<AcrobaticsFallExperience> fallExperience;
 	
 	public Acrobatics(String name, List<HabilidadeDrop> drops, List<Material> tools, List<HabilidadeExtra> extras, List<AcrobaticsFallExperience> fallExperience) {
@@ -40,7 +32,7 @@ public class Acrobatics extends Habilidade {
 	
 	@EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
 	private void onDamage(EntityDamageByEntityEvent e) {
-		dodge.activate(e);
+		getHabilidadeExtra(HabilidadeExtraType.DODGE).activate(e);
 	}
 	
 	@EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
@@ -58,9 +50,9 @@ public class Acrobatics extends Habilidade {
 					if(!exploitPrevention(p, acrobaticsInfo)) {
 						boolean extra = false;
 						if(p.isSneaking()) {
-							extra = perfectRoll.activate(e);
+							extra = getHabilidadeExtra(HabilidadeExtraType.PERFECT_ROLL).activate(e);
 						}else{
-							extra = roll.activate(e);
+							extra = getHabilidadeExtra(HabilidadeExtraType.ROLL).activate(e);
 						}
 						
 						if(!extra) {

@@ -14,8 +14,7 @@ import com.vtr.api.spigot.utils.PlayerUtils;
 import com.vtr.habilidades.HabilidadePlugin;
 import com.vtr.habilidades.habilidades.Habilidade;
 import com.vtr.habilidades.habilidades.extra.HabilidadeExtra;
-import com.vtr.habilidades.habilidades.swords.extras.CounterAttack;
-import com.vtr.habilidades.habilidades.swords.extras.bleed.Bleed;
+import com.vtr.habilidades.habilidades.extra.HabilidadeExtraType;
 import com.vtr.habilidades.objects.HabilidadeDrop;
 import com.vtr.habilidades.objects.HabilidadeInfo;
 import com.vtr.habilidades.objects.HabilidadeType;
@@ -23,10 +22,6 @@ import com.vtr.habilidades.user.HabilidadeUser;
 
 public class Swords extends Habilidade {
 	
-	private Bleed bleed;
-	
-	private CounterAttack counterAttack;
-
 	private Map<EntityType, Double> entitiesXp;
 	
 	public Swords(String name, List<HabilidadeDrop> drops, List<Material> tools, List<HabilidadeExtra> extras, Map<EntityType, Double> entitiesXp) {
@@ -52,8 +47,8 @@ public class Swords extends Habilidade {
 							sendActionBar(p, habilidadeInfo, xp);
 						}
 						
-						if(!bleed.activate(e)) {
-							counterAttack.activate(e);
+						if(!getHabilidadeExtra(HabilidadeExtraType.BLEED).activate(e)) {
+							getHabilidadeExtra(HabilidadeExtraType.COUNTER_ATTACK).activate(e);
 						}
 					}
 				}
