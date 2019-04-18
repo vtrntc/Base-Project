@@ -1,6 +1,6 @@
-package com.vtr.habilidades.habilidades.archery;
+package com.vtr.habilidades.habilidades.archery.extra;
 
-public class ArrowRetrieval {
+public class SkillShot {
 
 	private int perLevel;
 	
@@ -8,7 +8,7 @@ public class ArrowRetrieval {
 	
 	private double chance;
 
-	public ArrowRetrieval(int perLevel, int maxIncrease, double chance) {
+	public SkillShot(int perLevel, int maxIncrease, double chance) {
 		this.perLevel = perLevel;
 		this.maxIncrease = maxIncrease;
 		this.chance = chance;

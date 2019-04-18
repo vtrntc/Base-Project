@@ -10,8 +10,8 @@ public class Roll extends HabilidadeExtraPerLevel {
 
 	private double damageReduce;
 	
-	public Roll(int maxLevel, double perLevel, double damageReduce) {
-		super(HabilidadeType.ACROBATICS, HabilidadeExtraType.ROLL, maxLevel, perLevel);
+	public Roll(double perLevel, int levelBase, int maxLevel, double damageReduce) {
+		super(HabilidadeType.ACROBATICS, HabilidadeExtraType.ROLL, perLevel, levelBase, maxLevel);
 		this.damageReduce = damageReduce;
 	}
 

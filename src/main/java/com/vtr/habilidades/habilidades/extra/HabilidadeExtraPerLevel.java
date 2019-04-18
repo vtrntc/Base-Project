@@ -7,20 +7,30 @@ import com.vtr.habilidades.user.HabilidadeUser;
 
 public abstract class HabilidadeExtraPerLevel extends HabilidadeExtra {
 
-	private int maxLevel;
+	protected int maxLevel;
 	
-	private double perLevel;
+	protected int levelBase;
 	
-	public HabilidadeExtraPerLevel(HabilidadeType habilidadeType, HabilidadeExtraType extraType, int maxLevel, double perLevel) {
+	protected double perLevel;
+	
+	public HabilidadeExtraPerLevel(HabilidadeType habilidadeType, HabilidadeExtraType extraType, double perLevel, int levelBase, int maxLevel) {
 		super(habilidadeType, extraType);
 		this.maxLevel = maxLevel;
 		this.perLevel = perLevel;
+		this.levelBase = levelBase;
 	}
 	
 	public double getChance(HabilidadeUser habilidadePlayer) {
 		HabilidadeInfo habilidadeInfo = habilidadePlayer.getHabilidade(habilidade.getType());
 		if(habilidadeInfo != null) {
-			return habilidadeInfo.getLevel() * perLevel;
+			int lvl = habilidadeInfo.getLevel();
+			if(lvl > maxLevel) {
+				lvl = maxLevel;
+			}
+			
+			if(lvl >= levelBase) {
+				return habilidadeInfo.getLevel() * perLevel;
+			}
 		}
 		
 		return 0;

@@ -1,4 +1,4 @@
-package com.vtr.habilidades.habilidades.archery;
+package com.vtr.habilidades.habilidades.archery.extra;
 
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Projectile;
@@ -16,8 +16,8 @@ public class Impact extends HabilidadeExtraPerLevel {
 
 	private double damage;
 	
-	public Impact(int maxLevel, double perLevel, double damage) {
-		super(HabilidadeType.ARCHERY, HabilidadeExtraType.IMPACT, maxLevel, perLevel);
+	public Impact(double perLevel, int levelBase, int maxLevel, double damage) {
+		super(HabilidadeType.ARCHERY, HabilidadeExtraType.IMPACT, perLevel, levelBase, maxLevel);
 		this.damage = damage;
 	}
 
@@ -37,7 +37,7 @@ public class Impact extends HabilidadeExtraPerLevel {
 					
 					HabilidadeInfo habilidadeInfo = habilidadePlayer.getHabilidade(habilidade.getType());
 					if(habilidadeInfo != null) {
-						
+						e.setDamage(e.getDamage() + (damage * perLevel));
 					}
 				}
 			}

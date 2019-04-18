@@ -1,4 +1,4 @@
-package com.vtr.habilidades.habilidades.archery;
+package com.vtr.habilidades.habilidades.archery.extra;
 
 import com.vtr.api.spigot.misc.PotionInfo;
 

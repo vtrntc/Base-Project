@@ -25,11 +25,11 @@ import com.vtr.habilidades.user.HabilidadeUser;
 
 public class Mining extends Habilidade {
 	
-	private DoubleDrop doubleDrop;
+	private DoubleDropMining doubleDrop;
 	
 	private Map<Material, HabilidadeBlock> miningBlocks;
 	
-	public Mining(String name, List<Material> tools, List<HabilidadeDrop> drops, Map<Material, HabilidadeBlock> miningBlocks, DoubleDrop doubleDrop) {
+	public Mining(String name, List<Material> tools, List<HabilidadeDrop> drops, Map<Material, HabilidadeBlock> miningBlocks, DoubleDropMining doubleDrop) {
 		super(HabilidadeType.MINING, name, drops, tools);
 		this.miningBlocks = miningBlocks;
 		this.doubleDrop = doubleDrop;

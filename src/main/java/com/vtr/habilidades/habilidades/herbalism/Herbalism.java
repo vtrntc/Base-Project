@@ -26,11 +26,11 @@ import com.vtr.habilidades.user.HabilidadeUser;
 
 public class Herbalism extends Habilidade {
 	
-	private DoubleDrop doubleDrop;
+	private DoubleDropHerbalism doubleDrop;
 	
 	private Map<Material, HabilidadeBlock> herbalismBlocks;
 	
-	public Herbalism(String name, List<Material> tools, List<HabilidadeDrop> drops, Map<Material, HabilidadeBlock> herbalismBlocks, DoubleDrop doubleDrop) {
+	public Herbalism(String name, List<Material> tools, List<HabilidadeDrop> drops, Map<Material, HabilidadeBlock> herbalismBlocks, DoubleDropHerbalism doubleDrop) {
 		super(HabilidadeType.HERBALISM, name, drops, tools);
 		this.herbalismBlocks = herbalismBlocks;
 		this.doubleDrop = doubleDrop;

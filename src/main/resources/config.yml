@@ -38,11 +38,9 @@ Habilidades:
   ARCHERY:
     Name: 'Arqueiro'
     Impact:
-      Chance: 0.1
-      Bonus: 10
-      PerLevel: 50
-      MaxDamage: 9
-      MaxIncrease: 200
+      PerLevel: 0.5
+      LevelBase: 100
+      MaxIncrease: 1000
     Daze:
       Potion:
         Type: 'CONFUSION'
@@ -56,14 +54,6 @@ Habilidades:
       PerLevel: 50
       Increase: 10
       MaxIncrease: 100
-  UNARMED:
-    Name: 'Desarmado'
-    Disarmor:
-      PerLevel: 5
-      Chance: 1
-      MaxIncrease: 100      
-    Entities:
-      PLAYER: 1.0
   AXES:
     Name: 'Lenhador'
     Tools:

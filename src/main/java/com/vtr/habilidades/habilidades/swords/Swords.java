@@ -31,9 +31,12 @@ public class Swords extends Habilidade {
 
 	private Map<EntityType, Double> entitiesXp;
 	
-	public Swords(String name, List<HabilidadeDrop> drops, List<Material> tools, Map<EntityType, Double> entitiesXp) {
+	public Swords(String name, List<HabilidadeDrop> drops, List<Material> tools, Map<EntityType, Double> entitiesXp, Bleed bleed, Dodge dodge, CounterAttack counterAttack) {
 		super(HabilidadeType.SWORDS, name, drops, tools);
 		this.entitiesXp = entitiesXp;
+		this.bleed = bleed;
+		this.dodge = dodge;
+		this.counterAttack = counterAttack;
 	}
 	
 	@EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)

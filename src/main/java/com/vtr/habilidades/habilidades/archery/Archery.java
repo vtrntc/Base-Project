@@ -1,13 +1,23 @@
 package com.vtr.habilidades.habilidades.archery;
 
 import java.util.List;
-import java.util.Random;
 
 import org.bukkit.Material;
+import org.bukkit.entity.Arrow;
+import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
+import org.bukkit.event.entity.EntityDamageByEntityEvent;
 
+import com.vtr.habilidades.HabilidadePlugin;
 import com.vtr.habilidades.habilidades.Habilidade;
+import com.vtr.habilidades.habilidades.archery.extra.ArrowRetrieval;
+import com.vtr.habilidades.habilidades.archery.extra.Daze;
+import com.vtr.habilidades.habilidades.archery.extra.SkillShot;
 import com.vtr.habilidades.objects.HabilidadeDrop;
+import com.vtr.habilidades.objects.HabilidadeInfo;
 import com.vtr.habilidades.objects.HabilidadeType;
+import com.vtr.habilidades.user.HabilidadeUser;
 
 public class Archery extends Habilidade {
 
@@ -17,14 +27,54 @@ public class Archery extends Habilidade {
 //	Atordoamento:
 //	Você tem a chance de atordoar seu inimigo, o deixando imóvel por alguns segundos, e o obrigando a olhar para cima ou para baixo.
 	
-	private static Random random = new Random();
+	private Daze daze;
 	
-	public Archery(String name, List<HabilidadeDrop> drops, List<Material> tools) {
+	private SkillShot skillShot;
+	
+	private ArrowRetrieval arrowRetrieval;
+	
+	private ArcheryDamageExperience maxLevel;
+	
+	private List<ArcheryDamageExperience> experience;
+	
+	public Archery(String name, List<HabilidadeDrop> drops, List<Material> tools, List<ArcheryDamageExperience> experience, Daze daze, SkillShot skillShot, ArrowRetrieval arrowRetrieval) {
 		super(HabilidadeType.ARCHERY, name, drops, tools);
+		this.experience = experience;
+		this.maxLevel = experience.get(experience.size());
+		this.daze = daze;
+		this.skillShot = skillShot;
+		this.arrowRetrieval = arrowRetrieval;
 	}
 	
-//	@EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
-//	private void onDamage(EntityDamageByEntityEvent e) {
+	public ArcheryDamageExperience getExperience(int distance) {
+		return experience.stream().filter(e -> e.getDistance() >= distance && e.getDistance() <= distance).findFirst().orElse(null);
+	}
+	
+	@EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
+	private void onDamage(EntityDamageByEntityEvent e) {
+		if(e.getEntity() instanceof Player && e.getDamager() instanceof Arrow) {
+			Arrow arrow = (Arrow) e.getDamager();
+			if(arrow.getShooter() != null && arrow.getShooter() instanceof Player) {
+				Player p = (Player) arrow.getShooter();
+				
+				ArcheryDamageExperience experience = getExperience((int) p.getLocation().distance(e.getEntity().getLocation()));
+				if(experience == null) {
+					experience = maxLevel;
+				}
+				
+				HabilidadeUser habilidadePlayer = HabilidadePlugin.getManager().getPlayer(p.getName());
+				
+				HabilidadeInfo habilidadeInfo = habilidadePlayer.getHabilidade(type);
+				if(habilidadeInfo != null) {
+					giveXp(habilidadePlayer, habilidadeInfo, experience.getXp());
+					
+					sendActionBar(p, habilidadeInfo, experience.getXp());
+				}
+			}
+		}
+	}
+	
+	
 //		Player p = null;
 //		if(e.getEntity() instanceof Player) {
 //			p = (Player) e.getEntity();

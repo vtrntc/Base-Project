@@ -18,12 +18,12 @@ import com.vtr.habilidades.habilidades.extra.HabilidadeExtraType;
 import com.vtr.habilidades.objects.HabilidadeType;
 import com.vtr.habilidades.user.HabilidadeUser;
 
-public class DoubleDrop extends HabilidadeExtraPerLevel {
+public class DoubleDropMining extends HabilidadeExtraPerLevel {
 
 	private List<Material> allowed;
 	
-	public DoubleDrop(double perLevel, int maxLevel, List<Material> allowed) {
-		super(HabilidadeType.MINING, HabilidadeExtraType.DOUBLE_DROP, maxLevel, perLevel);
+	public DoubleDropMining(double perLevel, int levelBase, int maxLevel, List<Material> allowed) {
+		super(HabilidadeType.MINING, HabilidadeExtraType.DOUBLE_DROP, perLevel, levelBase, maxLevel);
 		this.allowed = allowed;
 	}
 
