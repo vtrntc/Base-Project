@@ -7,6 +7,7 @@ import com.vtr.api.spigot.misc.YamlConfig;
 import com.vtr.habilidades.commands.HabilidadeCommand;
 import com.vtr.habilidades.listeners.HabilidadeListener;
 import com.vtr.habilidades.managers.HabilidadeManager;
+import com.vtr.habilidades.user.HabilidadeUserModuleFactory;
 
 public class HabilidadePlugin extends JavaPlugin {
 
@@ -15,12 +16,16 @@ public class HabilidadePlugin extends JavaPlugin {
 	
 	private static YamlConfig yamlConfig;
 	
+	private static HabilidadeUserModuleFactory moduleFactory;
+	
 	public void onEnable() {
 		plugin = this;
 		
 		saveDefaultConfig();
 		
 		yamlConfig = new YamlConfig("config", plugin);
+		
+		moduleFactory = new HabilidadeUserModuleFactory();
 		
 		manager = new HabilidadeManager();
 		manager.enable();
@@ -40,5 +45,9 @@ public class HabilidadePlugin extends JavaPlugin {
 	
 	public static YamlConfig getYamlConfig() {
 		return yamlConfig;
+	}
+	
+	public static HabilidadeUserModuleFactory getModuleFactory() {
+		return moduleFactory;
 	}
 }

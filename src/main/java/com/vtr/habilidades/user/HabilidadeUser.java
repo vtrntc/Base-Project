@@ -20,6 +20,10 @@ public class HabilidadeUser extends UserModule {
         super(user);
         this.habilidades = habilidades;
 
+//        User a = APISpigot.getInstance().getUserFactory().getUser(user);
+//        
+//        HabilidadePlugin.getModuleFactory().getUserModule(user);
+        
         for (Habilidade habilidade : HabilidadePlugin.getManager().getHabilidades()) {
             if (!habilidades.containsKey(habilidade.getType())) {
                 switch (habilidade.getType()) {
