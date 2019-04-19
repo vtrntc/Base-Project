@@ -1,18 +1,13 @@
 package com.vtr.habilidades.managers;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 
 import org.bukkit.Material;
 import org.bukkit.entity.EntityType;
-import org.bukkit.scheduler.BukkitRunnable;
 
-import com.vtr.api.shared.utils.DatabaseUtils;
 import com.vtr.api.spigot.inventory.loader.ItemLoader;
 import com.vtr.api.spigot.misc.YamlConfig;
 import com.vtr.api.spigot.utils.PotionUtils;
@@ -20,7 +15,6 @@ import com.vtr.habilidades.HabilidadePlugin;
 import com.vtr.habilidades.habilidades.Habilidade;
 import com.vtr.habilidades.habilidades.acrobatics.Acrobatics;
 import com.vtr.habilidades.habilidades.acrobatics.AcrobaticsFallExperience;
-import com.vtr.habilidades.habilidades.acrobatics.AcrobaticsInfo;
 import com.vtr.habilidades.habilidades.acrobatics.extras.Dodge;
 import com.vtr.habilidades.habilidades.acrobatics.extras.PerfectRoll;
 import com.vtr.habilidades.habilidades.acrobatics.extras.Roll;
@@ -40,25 +34,19 @@ import com.vtr.habilidades.habilidades.herbalism.extras.DoubleDropHerbalism;
 import com.vtr.habilidades.habilidades.mining.Mining;
 import com.vtr.habilidades.habilidades.mining.extras.DoubleDropMining;
 import com.vtr.habilidades.habilidades.swords.Swords;
-import com.vtr.habilidades.habilidades.swords.SwordsInfo;
 import com.vtr.habilidades.habilidades.swords.extras.CounterAttack;
 import com.vtr.habilidades.habilidades.swords.extras.bleed.Bleed;
 import com.vtr.habilidades.habilidades.swords.extras.bleed.BleedLevel;
 import com.vtr.habilidades.objects.HabilidadeBlock;
 import com.vtr.habilidades.objects.HabilidadeDrop;
-import com.vtr.habilidades.objects.HabilidadeInfo;
 import com.vtr.habilidades.objects.HabilidadeType;
-import com.vtr.habilidades.user.HabilidadeUser;
 
 public class HabilidadeManager {
 
 	private List<Habilidade> habilidades;
 	
-	private Map<String, HabilidadeUser> players;
-	
 	public HabilidadeManager() {
 		this.habilidades = new ArrayList<>();
-		this.players = new HashMap<>();
 	}
 	
 	public void enable() {
@@ -237,69 +225,69 @@ public class HabilidadeManager {
 			}
 		}
 		
-		Map<String, String> sql = new LinkedHashMap<>();
-		sql.put("name", "VARCHAR(32)");
-		sql.put("habilidade", "VARCHAR(64)");
-		sql.put("level", "INTEGER");
-		sql.put("xp", "DECIMAL(16, 2)");
+//		Map<String, String> sql = new LinkedHashMap<>();
+//		sql.put("name", "VARCHAR(32)");
+//		sql.put("habilidade", "VARCHAR(64)");
+//		sql.put("level", "INTEGER");
+//		sql.put("xp", "DECIMAL(16, 2)");
+//		
+//		DatabaseUtils.createTable("player_habilidades", sql);
+//		
+//		sql.clear();
+//		
+//		DatabaseUtils.getInfo("player_habilidades", sql).whenComplete((rs, error) -> {
+//			try {
+//				Map<String, Map<HabilidadeType, HabilidadeInfo>> infos = new HashMap<>();
+//				while(rs.next()) {
+//					Habilidade habilidade = getHabilidadeByTypeName(rs.getString("habilidade"));
+//					if(habilidade != null) {
+//						String name = rs.getString("name");
+//						if(!infos.containsKey(name.toLowerCase())) {
+//							infos.put(name.toLowerCase(), new HashMap<>());
+//						}
+//						
+//						int level = rs.getInt("level");
+//						
+//						double xp = rs.getDouble("xp");
+//						
+//						switch(habilidade.getType()) {
+//							case SWORDS:
+//								infos.get(name.toLowerCase()).put(habilidade.getType(), new SwordsInfo(name, habilidade, level, xp));
+//								break;
+//							case ACROBATICS:
+//								infos.get(name.toLowerCase()).put(habilidade.getType(), new AcrobaticsInfo(name, habilidade, level, xp));
+//								break;
+//							default:
+//								infos.get(name.toLowerCase()).put(habilidade.getType(), new HabilidadeInfo(name, habilidade, level, xp));
+//								break;
+//						}
+//					}
+//				}
+//				
+//				for(Entry<String, Map<HabilidadeType, HabilidadeInfo>> e : infos.entrySet()) {
+//					players.put(e.getKey().toLowerCase(), new HabilidadeUser(e.getKey(), e.getValue()));
+//				}
+//			}catch(SQLException e) {
+//				e.printStackTrace();
+//			}
+//		});
 		
-		DatabaseUtils.createTable("player_habilidades", sql);
-		
-		sql.clear();
-		
-		DatabaseUtils.getInfo("player_habilidades", sql).whenComplete((rs, error) -> {
-			try {
-				Map<String, Map<HabilidadeType, HabilidadeInfo>> infos = new HashMap<>();
-				while(rs.next()) {
-					Habilidade habilidade = getHabilidadeByTypeName(rs.getString("habilidade"));
-					if(habilidade != null) {
-						String name = rs.getString("name");
-						if(!infos.containsKey(name.toLowerCase())) {
-							infos.put(name.toLowerCase(), new HashMap<>());
-						}
-						
-						int level = rs.getInt("level");
-						
-						double xp = rs.getDouble("xp");
-						
-						switch(habilidade.getType()) {
-							case SWORDS:
-								infos.get(name.toLowerCase()).put(habilidade.getType(), new SwordsInfo(name, habilidade, level, xp));
-								break;
-							case ACROBATICS:
-								infos.get(name.toLowerCase()).put(habilidade.getType(), new AcrobaticsInfo(name, habilidade, level, xp));
-								break;
-							default:
-								infos.get(name.toLowerCase()).put(habilidade.getType(), new HabilidadeInfo(name, habilidade, level, xp));
-								break;
-						}
-					}
-				}
-				
-				for(Entry<String, Map<HabilidadeType, HabilidadeInfo>> e : infos.entrySet()) {
-					players.put(e.getKey().toLowerCase(), new HabilidadeUser(e.getKey(), e.getValue()));
-				}
-			}catch(SQLException e) {
-				e.printStackTrace();
-			}
-		});
-		
-		new BukkitRunnable() {
-			public void run() {
-				for(HabilidadeUser habilidadePlayer : players.values()) {
-					if(habilidadePlayer.isNeedUpdate()) {
-						for(HabilidadeInfo habilidadeInfo : habilidadePlayer.getHabilidades().values()) {
-							if(habilidadeInfo.isNeedUpdate()) {
-								habilidadeInfo.setNeedUpdate(false);
-								habilidadeInfo.save();
-							}
-						}
-						
-						habilidadePlayer.setNeedUpdate(false);
-					}
-				}
-			}
-		}.runTaskTimer(HabilidadePlugin.getInstance(), 60 * 20, 60 * 20);
+//		new BukkitRunnable() {
+//			public void run() {
+//				for(HabilidadeUser habilidadePlayer : players.values()) {
+//					if(habilidadePlayer.isNeedUpdate()) {
+//						for(HabilidadeInfo habilidadeInfo : habilidadePlayer.getHabilidades().values()) {
+//							if(habilidadeInfo.isNeedUpdate()) {
+//								habilidadeInfo.setNeedUpdate(false);
+//								habilidadeInfo.save();
+//							}
+//						}
+//						
+//						habilidadePlayer.setNeedUpdate(false);
+//					}
+//				}
+//			}
+//		}.runTaskTimer(HabilidadePlugin.getInstance(), 60 * 20, 60 * 20);
 	}
 	
 	public List<Habilidade> getHabilidades() {
@@ -312,18 +300,6 @@ public class HabilidadeManager {
 	
 	public Habilidade getHabilidadeByTypeName(String habilidade) {
 		return habilidades.stream().filter(h -> h.getType().name().equalsIgnoreCase(habilidade)).findFirst().orElse(null);
-	}
-	
-	public boolean isPlayer(String player) {
-		return players.containsKey(player.toLowerCase());
-	}
-	
-	public HabilidadeUser getPlayer(String player) {
-		if(!players.containsKey(player.toLowerCase())) {
-			players.put(player.toLowerCase(), new HabilidadeUser(player));
-		}
-		
-		return players.get(player.toLowerCase());
 	}
 	
 	private Map<Material, HabilidadeBlock> loadBlockExperience(YamlConfig config, String skill, List<HabilidadeDrop> drops) {

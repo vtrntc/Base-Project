@@ -28,10 +28,10 @@ public class HabilidadeUser extends UserModule {
             if (!habilidades.containsKey(habilidade.getType())) {
                 switch (habilidade.getType()) {
                     case ACROBATICS:
-                        habilidades.put(habilidade.getType(), new AcrobaticsInfo(player, habilidade, 0, 0));
+                        habilidades.put(habilidade.getType(), new AcrobaticsInfo(habilidade, 0, 0));
                         break;
                     default:
-                        habilidades.put(habilidade.getType(), new HabilidadeInfo(player, habilidade, 0, 0));
+                        habilidades.put(habilidade.getType(), new HabilidadeInfo(habilidade, 0, 0));
                         break;
                 }
             }

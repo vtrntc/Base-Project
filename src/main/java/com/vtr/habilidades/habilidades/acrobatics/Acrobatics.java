@@ -41,7 +41,7 @@ public class Acrobatics extends Habilidade {
 			if(e.getEntity() instanceof Player) {
 				Player p = (Player) e.getEntity();
 				
-				HabilidadeUser habilidadePlayer = HabilidadePlugin.getManager().getPlayer(p.getName());
+				HabilidadeUser habilidadePlayer = HabilidadePlugin.getModuleFactory().getUserModule(p.getName());
 				
 				HabilidadeInfo habilidadeInfo = habilidadePlayer.getHabilidade(type);
 				if(habilidadeInfo != null) {

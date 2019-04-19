@@ -34,8 +34,7 @@ public class Fishing extends Habilidade {
 	private void onFish(PlayerFishEvent e) {
 		Player p = e.getPlayer();
 		
-		HabilidadeUser habilidadePlayer = HabilidadePlugin.getManager().getPlayer(p.getName());
-		
+		HabilidadeUser habilidadePlayer = HabilidadePlugin.getModuleFactory().getUserModule(p.getName());
 		
 		HabilidadeInfo habilidadeInfo = habilidadePlayer.getHabilidade(type);
 		if(habilidadeInfo != null) {

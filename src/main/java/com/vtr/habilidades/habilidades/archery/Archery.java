@@ -46,7 +46,7 @@ public class Archery extends Habilidade {
 					experience = maxLevel;
 				}
 				
-				HabilidadeUser habilidadePlayer = HabilidadePlugin.getManager().getPlayer(p.getName());
+				HabilidadeUser habilidadePlayer = HabilidadePlugin.getModuleFactory().getUserModule(p.getName());
 				
 				HabilidadeInfo habilidadeInfo = habilidadePlayer.getHabilidade(type);
 				if(habilidadeInfo != null) {

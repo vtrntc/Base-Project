@@ -25,7 +25,7 @@ public class HabilidadesInventory {
 			e.setCancelled(true);
 		});
 		
-		HabilidadeUser habilidadePlayer = HabilidadePlugin.getManager().getPlayer(target);
+		HabilidadeUser habilidadePlayer = HabilidadePlugin.getModuleFactory().getUserModule(target);
 		
 		for(InventoryItem inventoryItem : customInventory.getItems()) {
 			switch(inventoryItem.getName()) {

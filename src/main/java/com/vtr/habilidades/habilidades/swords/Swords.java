@@ -35,7 +35,7 @@ public class Swords extends Habilidade {
 		if(p != null) {
 			if(p.getItemInHand() != null && p.getItemInHand().getType() != Material.AIR) {
 				if(isTool(p.getItemInHand().getType())) {
-					HabilidadeUser habilidadePlayer = HabilidadePlugin.getManager().getPlayer(p.getName());
+					HabilidadeUser habilidadePlayer = HabilidadePlugin.getModuleFactory().getUserModule(p.getName());
 					
 					HabilidadeInfo habilidadeInfo = habilidadePlayer.getHabilidade(type);
 					if(habilidadeInfo != null) {

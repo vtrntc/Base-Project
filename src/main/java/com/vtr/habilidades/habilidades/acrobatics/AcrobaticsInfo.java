@@ -11,8 +11,8 @@ public class AcrobaticsInfo extends HabilidadeInfo {
 	
 	private int fallTries;
 	
-	public AcrobaticsInfo(String player, Habilidade habilidade, int level, double xp) {
-		super(player, habilidade, level, xp);
+	public AcrobaticsInfo(Habilidade habilidade, int level, double xp) {
+		super(habilidade, level, xp);
 	}
 
 	public Location getLastFallDamage() {

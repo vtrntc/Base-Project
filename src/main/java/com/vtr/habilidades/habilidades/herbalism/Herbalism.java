@@ -40,7 +40,7 @@ public class Herbalism extends Habilidade {
 		Block block = e.getBlock();
 		if(block.getType() != Material.AIR) {
 			if(herbalismBlocks.containsKey(block.getType())) {
-				HabilidadeUser habilidadePlayer = HabilidadePlugin.getManager().getPlayer(p.getName());
+				HabilidadeUser habilidadePlayer = HabilidadePlugin.getModuleFactory().getUserModule(p.getName());
 				
 				HabilidadeInfo habilidadeInfo = habilidadePlayer.getHabilidade(type);
 				if(habilidadeInfo != null) {

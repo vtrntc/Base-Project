@@ -24,7 +24,7 @@ public class PerfectRoll extends HabilidadeExtraPercent {
 			if(e.getEntity() instanceof Player) {
 				Player p = (Player) e.getEntity();
 				
-				HabilidadeUser habilidadePlayer = HabilidadePlugin.getManager().getPlayer(p.getName());
+				HabilidadeUser habilidadePlayer = HabilidadePlugin.getModuleFactory().getUserModule(p.getName());
 				
 				if(use(habilidadePlayer)) {
 					MessageUtils.getMessage(HabilidadePlugin.getYamlConfig(), "Roll").send(p);

@@ -41,7 +41,7 @@ public class DoubleDropMining extends HabilidadeExtraPercent {
 			if(!block.hasMetadata("playerPlaced")) {
 				ItemStack item = p.getItemInHand();
 				if(item != null && item.getType() != Material.AIR && habilidade.isTool(item.getType())) {
-					HabilidadeUser habilidadePlayer = HabilidadePlugin.getManager().getPlayer(p.getName());
+					HabilidadeUser habilidadePlayer = HabilidadePlugin.getModuleFactory().getUserModule(p.getName());
 					
 					if(isAllowed(block.getType())) {
 						if(use(habilidadePlayer)) {

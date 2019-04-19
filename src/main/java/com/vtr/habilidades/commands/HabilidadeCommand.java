@@ -28,7 +28,7 @@ public class HabilidadeCommand extends CustomCommand {
     public boolean execute(CommandSender sender, String label, String[] args) {
         Player p = (Player) sender;
 
-        HabilidadeUser habilidadePlayer = HabilidadePlugin.getManager().getPlayer(p.getName());
+		HabilidadeUser habilidadePlayer = HabilidadePlugin.getModuleFactory().getUserModule(p.getName());
         if (args.length == 0 || !p.hasPermission("habilidades.admin")) {
             sendHabilidades(p, habilidadePlayer);
             HabilidadesInventory.open(p, p.getName());
@@ -51,8 +51,6 @@ public class HabilidadeCommand extends CustomCommand {
         } else if (args[0].equalsIgnoreCase("addxp")) {
             if (args.length < 4) {
                 MessageUtils.getMessage(HabilidadePlugin.getYamlConfig(), "UseAddXp").send(p);
-            } else if (!HabilidadePlugin.getManager().isPlayer(args[1])) {
-                MessageUtils.getMessage(HabilidadePlugin.getYamlConfig(), "PlayerNotFound").send(p);
             } else if (!StringUtils.isInteger(args[3])) {
                 MessageUtils.getMessage(HabilidadePlugin.getYamlConfig(), "InvalidAmount").send(p);
             } else {
@@ -64,33 +62,25 @@ public class HabilidadeCommand extends CustomCommand {
                 } else {
                     int xp = Integer.parseInt(args[3]);
 
-                    HabilidadeUser targetPlayer = HabilidadePlugin.getManager().getPlayer(args[1]);
-
-                    HabilidadeInfo habilidadeInfo = targetPlayer.getHabilidade(habilidade.getType());
-                    if (habilidadeInfo == null) {
-                        MessageUtils.getMessage(HabilidadePlugin.getYamlConfig(), "HabilidadeNotFound").send(p);
-                    } else {
-                        habilidadeInfo.setXp(habilidadeInfo.getXp() + xp);
-                        habilidadeInfo.getHabilidade().canLevelUP(habilidadePlayer);
-                        habilidadeInfo.save();
-
-                        Map<String, String> replacers = new HashMap<>();
-                        replacers.put("%xp%", Integer.toString(xp));
-                        replacers.put("%player%", targetPlayer.getPlayer());
-
-                        MessageUtils.getMessage(HabilidadePlugin.getYamlConfig(), "XpAdded").replace(replacers).send(p);
+                    HabilidadeUser targetPlayer = HabilidadePlugin.getModuleFactory().getUserModule(args[1]);
+                    if (targetPlayer == null) {
+                    	MessageUtils.getMessage(HabilidadePlugin.getYamlConfig(), "PlayerNotFound").send(p);
+                    }else{
+	                    HabilidadeInfo habilidadeInfo = targetPlayer.getHabilidade(habilidade.getType());
+	                    if (habilidadeInfo == null) {
+	                        MessageUtils.getMessage(HabilidadePlugin.getYamlConfig(), "HabilidadeNotFound").send(p);
+	                    } else {
+	                        habilidadeInfo.setXp(habilidadeInfo.getXp() + xp);
+	                        habilidadeInfo.getHabilidade().canLevelUP(habilidadePlayer);
+	
+	                        Map<String, String> replacers = new HashMap<>();
+	                        replacers.put("%xp%", Integer.toString(xp));
+	                        replacers.put("%player%", targetPlayer.getName());
+	
+	                        MessageUtils.getMessage(HabilidadePlugin.getYamlConfig(), "XpAdded").replace(replacers).send(p);
+	                    }
                     }
                 }
-            }
-        } else if (args[0].equalsIgnoreCase("set")) {
-            if (args.length < 3) {
-                MessageUtils.getMessage(HabilidadePlugin.getYamlConfig(), "UseSet").send(p);
-            } else if (!HabilidadePlugin.getManager().isPlayer(args[0])) {
-                MessageUtils.getMessage(HabilidadePlugin.getYamlConfig(), "PlayerNotFound").send(p);
-            } else if (!StringUtils.isInteger(args[2])) {
-                MessageUtils.getMessage(HabilidadePlugin.getYamlConfig(), "InvalidAmount").send(p);
-            } else {
-                MessageUtils.getMessage(HabilidadePlugin.getYamlConfig(), "InvalidAmount").send(p);
             }
         } else {
             HabilidadesInventory.open(p, p.getName());

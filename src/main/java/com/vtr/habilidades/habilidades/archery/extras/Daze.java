@@ -42,7 +42,7 @@ public class Daze extends HabilidadeExtraPercent {
 			if(arrow.getShooter() != null && arrow.getShooter() instanceof Player) {
 				Player p = (Player) arrow.getShooter();
 				
-				HabilidadeUser habilidadePlayer = HabilidadePlugin.getManager().getPlayer(p.getName());
+				HabilidadeUser habilidadePlayer = HabilidadePlugin.getModuleFactory().getUserModule(p.getName());
 				if(use(habilidadePlayer)) {
 					Player target = (Player) e.getEntity();
 					

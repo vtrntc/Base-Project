@@ -42,7 +42,7 @@ public class TreeCut extends HabilidadeExtraPercent {
 			if(habilidade.isTool(item.getType())) {
 				Block block = e.getBlock();
 				if(isWood(block.getType())) {
-					HabilidadeUser habilidadePlayer = HabilidadePlugin.getManager().getPlayer(p.getName());
+					HabilidadeUser habilidadePlayer = HabilidadePlugin.getModuleFactory().getUserModule(p.getName());
 					
 					HabilidadeInfo habilidadeInfo = habilidadePlayer.getHabilidade(habilidade.getType());
 					if(habilidadeInfo != null) {

@@ -33,7 +33,7 @@ public class Impact extends HabilidadeExtraPerLevel {
 				if(projectile.getShooter() instanceof Player) {
 					Player p = (Player) projectile.getShooter();
 					
-					HabilidadeUser habilidadePlayer = HabilidadePlugin.getManager().getPlayer(p.getName());
+					HabilidadeUser habilidadePlayer = HabilidadePlugin.getModuleFactory().getUserModule(p.getName());
 					
 					HabilidadeInfo habilidadeInfo = habilidadePlayer.getHabilidade(habilidade.getType());
 					if(habilidadeInfo != null) {

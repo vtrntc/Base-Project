@@ -29,7 +29,7 @@ public class Dodge extends HabilidadeExtraPercent {
 			if(e.getEntity() instanceof Player) {
 				Player target = (Player) e.getEntity();
 				
-				HabilidadeUser targetPlayer = HabilidadePlugin.getManager().getPlayer(target.getName());
+				HabilidadeUser targetPlayer = HabilidadePlugin.getModuleFactory().getUserModule(p.getName());
 				if(use(targetPlayer)) {
 					e.setDamage(e.getDamage() / 2);
 					

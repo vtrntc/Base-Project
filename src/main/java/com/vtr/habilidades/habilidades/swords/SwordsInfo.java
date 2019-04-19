@@ -5,7 +5,7 @@ import com.vtr.habilidades.objects.HabilidadeInfo;
 
 public class SwordsInfo extends HabilidadeInfo {
 	
-	public SwordsInfo(String player, Habilidade habilidade, int level, double xp) {
-		super(player, habilidade, level, xp);
+	public SwordsInfo(Habilidade habilidade, int level, double xp) {
+		super(habilidade, level, xp);
 	}
 }

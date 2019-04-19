@@ -44,7 +44,7 @@ public class Mining extends Habilidade {
 				if(miningBlocks.containsKey(block.getType())) {
 					ItemStack item = p.getItemInHand();
 					if(item != null && item.getType() != Material.AIR && isTool(item.getType())) {
-						HabilidadeUser habilidadePlayer = HabilidadePlugin.getManager().getPlayer(p.getName());
+						HabilidadeUser habilidadePlayer = HabilidadePlugin.getModuleFactory().getUserModule(p.getName());
 						
 						HabilidadeInfo habilidadeInfo = habilidadePlayer.getHabilidade(type);
 						if(habilidadeInfo != null) {
