@@ -10,13 +10,45 @@ import com.vtr.api.spigot.user.module.SpigotUserModuleFactory;
  * @author Matheus Santos (Matgsan)
  */
 public class HabilidadeUserModuleFactory extends SpigotUserModuleFactory<HabilidadeUser> {
-    
+
     @Override
-    public HabilidadeUser downloadUserModule(NetworkUser networkUser) {
-        HabilidadeUser user = new HabilidadeUser(networkUser.getId());
-        user.setName(networkUser.getName());
-        return user;
+    public HabilidadeUser getUserModule(int id) {
+        User user = APISpigot.getInstance().getUserFactory().getUser(id);
+        if (user instanceof HabilidadeUserImpl) {
+            return ((HabilidadeUserImpl) user).getHabilidadeUser();
+        }
+        return null;
     }
 
+    @Override
+    public HabilidadeUser getUserModule(String name) {
+        User user = APISpigot.getInstance().getUserFactory().getUser(name);
+        if (user instanceof HabilidadeUserImpl) {
+            return ((HabilidadeUserImpl) user).getHabilidadeUser();
+        }
+        return null;
+    }
+
+    @Override
+    public HabilidadeUser downloadUserModule(NetworkUser user) {
+        return new HabilidadeUser(user);
+    }
+
+    @Override
+    public HabilidadeUser downloadUserModule(int id) {
+        return new HabilidadeUser(new NetworkUser(id));
+    }
+
+    @Override
+    public HabilidadeUser downloadUserModule(int id, String name) {
+        NetworkUser user = new NetworkUser(id);
+        user.setName(name);
+        return new HabilidadeUser(user);
+    }
+
+    @Override
+    public void exportUserModule(HabilidadeUser user) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
 }

@@ -1,5 +1,6 @@
 package com.vtr.habilidades.user;
 
+import com.vtr.api.shared.user.NetworkUser;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -16,7 +17,7 @@ public class HabilidadeUser extends SpigotUserModule {
 
     private Map<HabilidadeType, HabilidadeInfo> habilidades;
 
-    public HabilidadeUser(int user, Map<HabilidadeType, HabilidadeInfo> habilidades) {
+    public HabilidadeUser(NetworkUser user, Map<HabilidadeType, HabilidadeInfo> habilidades) {
         super(user);
         this.habilidades = habilidades;
 
@@ -38,7 +39,7 @@ public class HabilidadeUser extends SpigotUserModule {
         }
     }
 
-    public HabilidadeUser(int user) {
+    public HabilidadeUser(NetworkUser user) {
         this(user, new HashMap<>());
     }
 

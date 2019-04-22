@@ -94,7 +94,7 @@ public abstract class Habilidade implements Listener {
 			int xpToNextLevel = getXpToLevel(habilidadeInfo.getLevel(), habilidadeInfo.getLevel() + 1);
 			if(habilidadeInfo.getXp() >= xpToNextLevel) {
 				Map<String, String> replacers = new HashMap<>();
-				replacers.put("%player%", habilidadePlayer.getName());
+				replacers.put("%player%", habilidadePlayer.getNetworkUser().getName());
 				replacers.put("%level%", Integer.toString(habilidadeInfo.getLevel() + 1));
 				replacers.put("%habilidade%", habilidadeInfo.getHabilidade().getName());
 				

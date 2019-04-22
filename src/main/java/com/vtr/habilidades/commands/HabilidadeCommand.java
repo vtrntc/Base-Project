@@ -75,7 +75,7 @@ public class HabilidadeCommand extends CustomCommand {
 	
 	                        Map<String, String> replacers = new HashMap<>();
 	                        replacers.put("%xp%", Integer.toString(xp));
-	                        replacers.put("%player%", targetPlayer.getName());
+	                        replacers.put("%player%", targetPlayer.getNetworkUser().getName());
 	
 	                        MessageUtils.getMessage(HabilidadePlugin.getYamlConfig(), "XpAdded").replace(replacers).send(p);
 	                    }
