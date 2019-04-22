@@ -55,19 +55,23 @@
             <version>1.8.8-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
-        <!-- Core Shared -->
+        
+        <dependency>
+            <groupId>br.com.redepvp</groupId>
+            <artifactId>core</artifactId>
+            <version>LATEST</version>
+            <scope>provided</scope>
+        </dependency>
+        
         <dependency>
             <groupId>br.com.redepvp</groupId>
             <artifactId>api-shared</artifactId>
             <version>LATEST</version>
-            <scope>provided</scope>
         </dependency>
-        <!-- Core Spigot -->
         <dependency>
             <groupId>br.com.redepvp</groupId>
             <artifactId>api-spigot</artifactId>
             <version>LATEST</version>
-            <scope>provided</scope>
         </dependency>
     </dependencies>
  
