@@ -21,7 +21,7 @@ public abstract class HabilidadeExtraPerLevel extends HabilidadeExtra {
 	}
 	
 	public double getChance(HabilidadeUser habilidadePlayer) {
-		HabilidadeInfo habilidadeInfo = habilidadePlayer.getHabilidade(habilidade.getType());
+		HabilidadeInfo habilidadeInfo = habilidadePlayer.getHabilidade(getHabilidade().getType());
 		if(habilidadeInfo != null) {
 			int lvl = habilidadeInfo.getLevel();
 			if(lvl > maxLevel) {

@@ -34,7 +34,7 @@ public class Dodge extends HabilidadeExtraPercent {
 				
 				HabilidadeUser targetPlayer = HabilidadePlugin.getModuleFactory().getUserModule(target.getName());
 				
-				HabilidadeInfo targetInfo = targetPlayer.getHabilidade(habilidade.getType());
+				HabilidadeInfo targetInfo = targetPlayer.getHabilidade(getHabilidade().getType());
 				if(targetInfo != null) {
 					if(use(targetPlayer)) {
 						MessageUtils.getMessage(HabilidadePlugin.getYamlConfig(), "Dodge").send(target);

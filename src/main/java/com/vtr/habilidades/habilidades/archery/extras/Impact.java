@@ -35,7 +35,7 @@ public class Impact extends HabilidadeExtraPerLevel {
 					
 					HabilidadeUser habilidadePlayer = HabilidadePlugin.getModuleFactory().getUserModule(p.getName());
 					
-					HabilidadeInfo habilidadeInfo = habilidadePlayer.getHabilidade(habilidade.getType());
+					HabilidadeInfo habilidadeInfo = habilidadePlayer.getHabilidade(getHabilidade().getType());
 					if(habilidadeInfo != null) {
 						e.setDamage(e.getDamage() + (damage * perLevel));
 					}

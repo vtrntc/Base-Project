@@ -36,21 +36,13 @@ public class HabilidadeCommand extends CustomCommand {
             for (Habilidade habilidade : HabilidadePlugin.getManager().getHabilidades()) {
             	p.sendMessage(habilidade.getName() + ": " + habilidade.getExtras().size());
             		if (!habilidade.getExtras().isEmpty()) {
-            			p.sendMessage(habilidade.getName() + " not empty:");
                     for (HabilidadeExtra extra : habilidade.getExtras()) {
-                    	p.sendMessage("extra: " + extra.getExtraType().name());
-                    	
                         if (extra instanceof HabilidadeExtraPercent) {
-                        	p.sendMessage("1: " + extra.getExtraType().name());
                             HabilidadeExtraPercent a = (HabilidadeExtraPercent) extra;
-                        	p.sendMessage("2: " + a.getExtraType().name());
-                        	p.sendMessage("3: " + a.getChance(habilidadePlayer));
                             p.sendMessage(extra.getExtraType().name() + ": " + a.getChance(habilidadePlayer));
                         } else if (extra instanceof HabilidadeExtraPerLevel) {
                         	HabilidadeExtraPerLevel a = (HabilidadeExtraPerLevel) extra;
                             p.sendMessage(extra.getExtraType().name() + ": " + a.getChance(habilidadePlayer));
-                        }else{
-                        	p.sendMessage("outro");
                         }
                     }
                 }

@@ -54,7 +54,7 @@ public class Bleed extends HabilidadeExtraPercent {
 			if(p != null) {
 				HabilidadeUser habilidadePlayer = HabilidadePlugin.getModuleFactory().getUserModule(p.getName());
 				
-				HabilidadeInfo habilidadeInfo = habilidadePlayer.getHabilidade(habilidade.getType());
+				HabilidadeInfo habilidadeInfo = habilidadePlayer.getHabilidade(getHabilidade().getType());
 				if(habilidadeInfo != null) {
 					if(use(habilidadePlayer)) {
 						BleedLevel bleed = getBleed(habilidadeInfo.getLevel());

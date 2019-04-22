@@ -30,22 +30,16 @@ public abstract class HabilidadeExtraPercent extends HabilidadeExtra {
 	}
 	
 	public double getChance(HabilidadeUser habilidadePlayer) {
-		System.out.println("get chance1 " + habilidadePlayer);
-		HabilidadeInfo habilidadeInfo = habilidadePlayer.getHabilidade(habilidade.getType());
-		System.out.println("get chance2");
+		HabilidadeInfo habilidadeInfo = habilidadePlayer.getHabilidade(getHabilidade().getType());
 		if(habilidadeInfo != null) {
-			System.out.println("get chance3");
 			double playerChance = habilidadeInfo.getLevel() * chance;
 			if(playerChance > maxChance) {
-				System.out.println("get chance4");
 				playerChance = maxChance;
 			}
 			
-			System.out.println("get chance5");
 			return playerChance;
 		}
 		
-		System.out.println("get chance6");
 		return 0;
 	}
 }
