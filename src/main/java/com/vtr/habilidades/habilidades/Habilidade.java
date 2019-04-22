@@ -46,6 +46,8 @@ public abstract class Habilidade implements Listener {
 		this.extras = extras;
 		this.dropsRandomChooser = new RandomChooser<>();
 		
+		System.out.println("register " + type + " with " + extras.size());
+		
 		for(HabilidadeDrop drop : drops) {
 			dropsRandomChooser.option(drop, drop.getChance());
 		}

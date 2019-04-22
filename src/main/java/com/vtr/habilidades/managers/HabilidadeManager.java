@@ -18,7 +18,6 @@ import com.vtr.habilidades.habilidades.acrobatics.AcrobaticsFallExperience;
 import com.vtr.habilidades.habilidades.acrobatics.extras.Dodge;
 import com.vtr.habilidades.habilidades.acrobatics.extras.PerfectRoll;
 import com.vtr.habilidades.habilidades.acrobatics.extras.Roll;
-import com.vtr.habilidades.habilidades.archery.Archery;
 import com.vtr.habilidades.habilidades.archery.ArcheryDamageExperience;
 import com.vtr.habilidades.habilidades.archery.extras.Daze;
 import com.vtr.habilidades.habilidades.archery.extras.Impact;

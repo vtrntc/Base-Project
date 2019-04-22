@@ -2,7 +2,7 @@ Habilidades:
   SWORDS:
     Name: 'Espada'
     Extras:
-      Counter:
+      Counter_Attack:
         PerLevel: 0.05
         MaxChance: 30
       Bleed:
@@ -68,7 +68,7 @@ Habilidades:
     - 'GOLD_AXE'
     - 'DIAMOND_AXE' 
     Extras:
-      TreeCut:
+      Tree_Cut:
         PerLevel: 0.1
         MaxChance: 100
     Entities:
@@ -197,22 +197,11 @@ Habilidades:
       Roll:
         PerLevel: 0.05
         MaxChance: 100
-      PerfectRoll:
+      Perfect_Roll:
         PerLevel: 0.1
         MaxChance: 100
   HERBALISM:
     Name: 'Herbalismo'
-    DoubleDrop: 
-      Chance: 0.1
-      Blocks:
-      - 'CROPS'
-      - 'PUMPKIN'
-      - 'MELON_BLOCK'
-      - 'CARROT'
-      - 'SUGAR_CANE_BLOCK'
-      - 'CACTUS'
-      - 'COCOA'
-      - 'NETHER_WARTS'
     Blocks:
       CROPS:
         XP: 0.5
@@ -232,6 +221,18 @@ Habilidades:
         XP: 0.5
       NETHER_WARTS:
         XP: 0.5
+    Extras:  
+      Double_Drop: 
+        Chance: 0.1
+        Blocks:
+        - 'CROPS'
+        - 'PUMPKIN'
+        - 'MELON_BLOCK'
+        - 'CARROT'
+        - 'SUGAR_CANE_BLOCK'
+        - 'CACTUS'
+        - 'COCOA'
+        - 'NETHER_WARTS'    
   EXCAVATION:
     Name: 'Excavação'
     Tools:
@@ -442,7 +443,7 @@ Habilidades:
       QUARTZ_ORE: 
         XP: 0.5
     Extras:
-      DoubleDrop:
+      Double_Drop:
         PerLevel: 0.1
         MaxChance: 100 
         Blocks:
