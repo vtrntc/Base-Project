@@ -24,6 +24,7 @@ public class HabilidadeUserModuleFactory extends SpigotUserModuleFactory<Habilid
     public HabilidadeUser getUserModule(String name) {
         User user = APISpigot.getInstance().getUserFactory().getUser(name);
         if (user instanceof HabilidadeUserImpl) {
+        	System.out.println("user is instanceof");
             return ((HabilidadeUserImpl) user).getHabilidadeUser();
         }
         return null;
