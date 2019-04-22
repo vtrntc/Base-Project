@@ -46,18 +46,21 @@
             <groupId>org.spigotmc</groupId>
             <artifactId>spigot-api</artifactId>
             <version>1.8.8-R0.1-SNAPSHOT</version>
+            <scope>provided</scope>
         </dependency>
         <!--Bukkit API -->
         <dependency>
             <groupId>org.bukkit</groupId>
             <artifactId>craftbukkit</artifactId>
             <version>1.8.8-R0.1-SNAPSHOT</version>
+            <scope>provided</scope>
         </dependency>
         
         <dependency>
             <groupId>br.com.redepvp</groupId>
             <artifactId>core</artifactId>
             <version>LATEST</version>
+            <scope>provided</scope>
         </dependency>
         
         <dependency>

@@ -2,4 +2,4 @@ name: ${project.name}
 main: ${project.groupId}.${project.artifactId}.HabilidadesPlugins
 version: ${git.commit.id.describe-short}
 author: [vtr_]
-depends: [Core]
+depend: [Core]
