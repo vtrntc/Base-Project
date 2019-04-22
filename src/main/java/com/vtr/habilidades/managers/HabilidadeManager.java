@@ -2,12 +2,15 @@ package com.vtr.habilidades.managers;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.bukkit.Material;
 import org.bukkit.entity.EntityType;
 
+import com.vtr.api.shared.API;
+import com.vtr.api.shared.utils.SQLUtils;
 import com.vtr.api.spigot.inventory.loader.ItemLoader;
 import com.vtr.api.spigot.misc.YamlConfig;
 import com.vtr.api.spigot.utils.PotionUtils;
@@ -286,6 +289,18 @@ public class HabilidadeManager {
 //				}
 //			}
 //		}.runTaskTimer(HabilidadePlugin.getInstance(), 60 * 20, 60 * 20);
+    }
+    
+    public void setupTables() {
+    	LinkedHashMap<String, String> map = new LinkedHashMap<>();
+    	map.put("user_id", "INTEGER");
+    	
+    	for(HabilidadeType habilidadeType : HabilidadeType.values()) {
+    		map.put(habilidadeType.name().toLowerCase() + "_level", "INTEGER");
+    		map.put(habilidadeType.name().toLowerCase() + "_xp", "DECIMAL(64, 2)");
+    	}
+    	
+    	SQLUtils.createTable(API.Mysql.getServerConnection(), "skills", false, map);
     }
 
     public List<Habilidade> getHabilidades() {

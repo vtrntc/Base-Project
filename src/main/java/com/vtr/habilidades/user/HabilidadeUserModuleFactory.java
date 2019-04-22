@@ -2,7 +2,6 @@ package com.vtr.habilidades.user;
 
 import java.util.LinkedHashMap;
 import java.util.UUID;
-import java.util.concurrent.atomic.AtomicReference;
 
 import com.vtr.api.shared.API;
 import com.vtr.api.shared.user.NetworkUser;
@@ -30,7 +29,6 @@ public class HabilidadeUserModuleFactory extends SpigotUserModuleFactory<Habilid
     public HabilidadeUser getUserModule(String name) {
         User user = APISpigot.getInstance().getUserFactory().getUser(name);
         if (user instanceof HabilidadeUserImpl) {
-            System.out.println("user is instanceof");
             return ((HabilidadeUserImpl) user).getHabilidadeUser();
         }
         return null;
@@ -50,7 +48,7 @@ public class HabilidadeUserModuleFactory extends SpigotUserModuleFactory<Habilid
     	LinkedHashMap<String, Object> map = new LinkedHashMap<>();
     	map.put("user_id", user.getId());
     	
-    	SQLUtils.get(API.Mysql.getServerConnection(), "", false, map, (rs) -> {
+    	SQLUtils.get(API.Mysql.getServerConnection(), "skills", false, map, (rs) -> {
     		if(rs.next()) {
     		}
     	});
