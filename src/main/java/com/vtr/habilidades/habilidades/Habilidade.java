@@ -50,7 +50,7 @@ public abstract class Habilidade implements Listener {
 			dropsRandomChooser.option(drop, drop.getChance());
 		}
 		
-		APISpigot.getInstance().registerListener(HabilidadePlugin.getInstance(), this);
+		APISpigot.registerListener(HabilidadePlugin.getInstance(), this);
 	}
 	
 	public String getName() {

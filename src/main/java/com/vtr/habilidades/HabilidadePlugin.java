@@ -29,7 +29,7 @@ public class HabilidadePlugin extends SpigotPlugin {
         manager = new HabilidadeManager();
         manager.enable();
 
-        APISpigot.getInstance().registerListener(plugin, new HabilidadeListener());
+        APISpigot.registerListener(plugin, new HabilidadeListener());
 
         APISpigot.getInstance().registerCommand(new HabilidadeCommand());
     }

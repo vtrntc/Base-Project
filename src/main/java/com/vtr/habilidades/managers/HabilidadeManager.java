@@ -177,7 +177,7 @@ public class HabilidadeManager {
                                 }
                             }
 
-                            habilidades.add(new Archery(name, drops, tools, extras, damageExperiences));
+//                            habilidades.add(new Archery(name, drops, tools, extras, damageExperiences));
                             break;
                         case ACROBATICS:
                             List<AcrobaticsFallExperience> fallExperience = new ArrayList<>();
