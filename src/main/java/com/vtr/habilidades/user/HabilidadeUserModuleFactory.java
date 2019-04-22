@@ -2,6 +2,7 @@ package com.vtr.habilidades.user;
 
 import java.util.LinkedHashMap;
 import java.util.UUID;
+import java.util.concurrent.atomic.AtomicReference;
 
 import com.vtr.api.shared.API;
 import com.vtr.api.shared.user.NetworkUser;
@@ -47,10 +48,11 @@ public class HabilidadeUserModuleFactory extends SpigotUserModuleFactory<Habilid
     @Override
     public HabilidadeUser downloadUserModule(NetworkUser user) {
     	LinkedHashMap<String, Object> map = new LinkedHashMap<>();
-    	map.put("id", user.getId());
+    	map.put("user_id", user.getId());
     	
     	SQLUtils.get(API.Mysql.getServerConnection(), "", false, map, (rs) -> {
-    		
+    		if(rs.next()) {
+    		}
     	});
     	
         return new HabilidadeUser(user);
