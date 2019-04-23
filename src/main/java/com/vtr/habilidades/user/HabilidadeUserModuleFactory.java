@@ -9,6 +9,7 @@ import com.vtr.api.shared.utils.SQLUtils;
 import com.vtr.api.spigot.APISpigot;
 import com.vtr.api.spigot.user.User;
 import com.vtr.api.spigot.user.module.SpigotUserModuleFactory;
+import com.vtr.habilidades.objects.HabilidadeInfo;
 
 /**
  *
@@ -58,6 +59,17 @@ public class HabilidadeUserModuleFactory extends SpigotUserModuleFactory<Habilid
     
     @Override
     public void exportUserModule(HabilidadeUser user) {
+    	LinkedHashMap<String, Object> map = new LinkedHashMap<>();
+    	map.put("user_id", user.getNetworkUser().getId());
+    	
+    	LinkedHashMap<String, Object> update = new LinkedHashMap<>();
+    	for(HabilidadeInfo info : user.getHabilidades().values()) {
+    		update.put(info.getHabilidade().getType().name().toLowerCase() + "_level", info.getLevel());
+    		update.put(info.getHabilidade().getType().name().toLowerCase() + "_xp", info.getXp());
+    	}
+    	
+    	SQLUtils.insertIfExistUpdate(API.Mysql.getServerConnection(), "skills", false, update, map);
+    	
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
