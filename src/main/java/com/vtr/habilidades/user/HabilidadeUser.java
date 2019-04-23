@@ -38,7 +38,7 @@ public class HabilidadeUser extends SpigotUserModule {
             }
         }
     }
-
+    
     public HabilidadeUser(NetworkUser user) {
         this(user, new HashMap<>());
     }

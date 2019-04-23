@@ -37,30 +37,6 @@ public class HabilidadeCommand extends CustomCommand {
             HabilidadesInventory.open(player, player.getName());
             return;
         }
-        if (args[0].equalsIgnoreCase("tst")) {
-            for (Habilidade habilidade : HabilidadePlugin.getManager().getHabilidades()) {
-                player.sendMessage(habilidade.getName() + ": " + habilidade.getExtras().size());
-                if (!habilidade.getExtras().isEmpty()) {
-                    player.sendMessage(habilidade.getName() + " not empty:");
-                    for (HabilidadeExtra extra : habilidade.getExtras()) {
-                        player.sendMessage("extra: " + extra.getExtraType().name());
-                        if (extra instanceof HabilidadeExtraPercent) {
-                            player.sendMessage("1: " + extra.getExtraType().name());
-                            HabilidadeExtraPercent a = (HabilidadeExtraPercent) extra;
-                            player.sendMessage("2: " + a.getExtraType().name());
-                            player.sendMessage("3: " + a.getChance(habilidadePlayer));
-                            player.sendMessage(extra.getExtraType().name() + ": " + a.getChance(habilidadePlayer));
-                        } else if (extra instanceof HabilidadeExtraPerLevel) {
-                            HabilidadeExtraPerLevel a = (HabilidadeExtraPerLevel) extra;
-                            player.sendMessage(extra.getExtraType().name() + ": " + a.getChance(habilidadePlayer));
-                        } else {
-                            player.sendMessage("outro");
-                        }
-                    }
-                }
-            }
-            return;
-        }
         if (args[0].equalsIgnoreCase("addxp")) {
             if (args.length < 4) {
                 MessageUtils.getMessage(HabilidadePlugin.getYamlConfig(), "UseAddXp").send(player);

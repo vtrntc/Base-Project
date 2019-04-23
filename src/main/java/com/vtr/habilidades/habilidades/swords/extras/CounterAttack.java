@@ -28,7 +28,7 @@ public class CounterAttack extends HabilidadeExtraPercent {
 				
 				HabilidadeUser targetPlayer = HabilidadePlugin.getModuleFactory().getUserModule(target.getName());
 				
-				HabilidadeInfo targetInfo = targetPlayer.getHabilidade(habilidade.getType());
+				HabilidadeInfo targetInfo = targetPlayer.getHabilidade(getHabilidade().getType());
 				if(targetInfo != null) {
 					if(use(targetPlayer)) {
 						p.damage(e.getDamage() / 2);
