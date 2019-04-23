@@ -1,5 +1,6 @@
 package com.vtr.habilidades.commands;
 
+import com.vtr.api.shared.command.CommandRestriction;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -10,6 +11,7 @@ import org.bukkit.entity.Player;
 import com.vtr.api.shared.utils.StringUtils;
 import com.vtr.api.spigot.commands.CustomCommand;
 import com.vtr.api.spigot.message.MessageUtils;
+import com.vtr.api.spigot.user.User;
 import com.vtr.habilidades.HabilidadePlugin;
 import com.vtr.habilidades.habilidades.Habilidade;
 import com.vtr.habilidades.habilidades.extra.HabilidadeExtra;
@@ -22,79 +24,84 @@ import com.vtr.habilidades.user.HabilidadeUser;
 public class HabilidadeCommand extends CustomCommand {
 
     public HabilidadeCommand() {
-        super("habilidade", Arrays.asList("stats", "skills"));
+        super("habilidade", CommandRestriction.CONSOLE_AND_INGAME, "stats", "skills");
     }
 
-    public boolean execute(CommandSender sender, String label, String[] args) {
-        Player p = (Player) sender;
+    @Override
+    public void onCommand(CommandSender sender, User user, String[] args) {
+        Player player = (Player) sender;
 
-		HabilidadeUser habilidadePlayer = HabilidadePlugin.getModuleFactory().getUserModule(p.getName());
-        if (args.length == 0 || !p.hasPermission("habilidades.admin")) {
-            sendHabilidades(p, habilidadePlayer);
-            HabilidadesInventory.open(p, p.getName());
-        } else if (args[0].equalsIgnoreCase("tst")) {
+        HabilidadeUser habilidadePlayer = HabilidadePlugin.getModuleFactory().getUserModule(user.getId());
+        if (args.length == 0 || !player.hasPermission("habilidades.admin")) {
+            sendHabilidades(player, habilidadePlayer);
+            HabilidadesInventory.open(player, player.getName());
+            return;
+        }
+        if (args[0].equalsIgnoreCase("tst")) {
             for (Habilidade habilidade : HabilidadePlugin.getManager().getHabilidades()) {
-            	p.sendMessage(habilidade.getName() + ": " + habilidade.getExtras().size());
-            		if (!habilidade.getExtras().isEmpty()) {
-            			p.sendMessage(habilidade.getName() + " not empty:");
+                player.sendMessage(habilidade.getName() + ": " + habilidade.getExtras().size());
+                if (!habilidade.getExtras().isEmpty()) {
+                    player.sendMessage(habilidade.getName() + " not empty:");
                     for (HabilidadeExtra extra : habilidade.getExtras()) {
-                    	p.sendMessage("extra: " + extra.getExtraType().name());
-                    	
+                        player.sendMessage("extra: " + extra.getExtraType().name());
                         if (extra instanceof HabilidadeExtraPercent) {
-                        	p.sendMessage("1: " + extra.getExtraType().name());
+                            player.sendMessage("1: " + extra.getExtraType().name());
                             HabilidadeExtraPercent a = (HabilidadeExtraPercent) extra;
-                        	p.sendMessage("2: " + a.getExtraType().name());
-                        	p.sendMessage("3: " + a.getChance(habilidadePlayer));
-                            p.sendMessage(extra.getExtraType().name() + ": " + a.getChance(habilidadePlayer));
+                            player.sendMessage("2: " + a.getExtraType().name());
+                            player.sendMessage("3: " + a.getChance(habilidadePlayer));
+                            player.sendMessage(extra.getExtraType().name() + ": " + a.getChance(habilidadePlayer));
                         } else if (extra instanceof HabilidadeExtraPerLevel) {
-                        	HabilidadeExtraPerLevel a = (HabilidadeExtraPerLevel) extra;
-                            p.sendMessage(extra.getExtraType().name() + ": " + a.getChance(habilidadePlayer));
-                        }else{
-                        	p.sendMessage("outro");
+                            HabilidadeExtraPerLevel a = (HabilidadeExtraPerLevel) extra;
+                            player.sendMessage(extra.getExtraType().name() + ": " + a.getChance(habilidadePlayer));
+                        } else {
+                            player.sendMessage("outro");
                         }
                     }
                 }
             }
-        } else if (args[0].equalsIgnoreCase("addxp")) {
-            if (args.length < 4) {
-                MessageUtils.getMessage(HabilidadePlugin.getYamlConfig(), "UseAddXp").send(p);
-            } else if (!StringUtils.isInteger(args[3])) {
-                MessageUtils.getMessage(HabilidadePlugin.getYamlConfig(), "InvalidAmount").send(p);
-            } else {
-                //          [0]   [1]  [2]    [3]
-//				/habilidade addxp vtr_ mining 10
-                Habilidade habilidade = HabilidadePlugin.getManager().getHabilidadeByTypeName(args[2]);
-                if (habilidade == null) {
-                    MessageUtils.getMessage(HabilidadePlugin.getYamlConfig(), "HabilidadeNotFound").send(p);
-                } else {
-                    int xp = Integer.parseInt(args[3]);
-
-                    HabilidadeUser targetPlayer = HabilidadePlugin.getModuleFactory().getUserModule(args[1]);
-                    if (targetPlayer == null) {
-                    	MessageUtils.getMessage(HabilidadePlugin.getYamlConfig(), "PlayerNotFound").send(p);
-                    }else{
-	                    HabilidadeInfo habilidadeInfo = targetPlayer.getHabilidade(habilidade.getType());
-	                    if (habilidadeInfo == null) {
-	                        MessageUtils.getMessage(HabilidadePlugin.getYamlConfig(), "HabilidadeNotFound").send(p);
-	                    } else {
-	                        habilidadeInfo.setXp(habilidadeInfo.getXp() + xp);
-	                        habilidadeInfo.getHabilidade().canLevelUP(habilidadePlayer);
-	
-	                        Map<String, String> replacers = new HashMap<>();
-	                        replacers.put("%xp%", Integer.toString(xp));
-	                        replacers.put("%player%", targetPlayer.getNetworkUser().getName());
-	
-	                        MessageUtils.getMessage(HabilidadePlugin.getYamlConfig(), "XpAdded").replace(replacers).send(p);
-	                    }
-                    }
-                }
-            }
-        } else {
-            HabilidadesInventory.open(p, p.getName());
-            sendHabilidades(p, habilidadePlayer);
+            return;
         }
+        if (args[0].equalsIgnoreCase("addxp")) {
+            if (args.length < 4) {
+                MessageUtils.getMessage(HabilidadePlugin.getYamlConfig(), "UseAddXp").send(player);
+                return;
+            }
+            if (!StringUtils.isInteger(args[3])) {
+                MessageUtils.getMessage(HabilidadePlugin.getYamlConfig(), "InvalidAmount").send(player);
+                return;
+            }
+            //          [0]   [1]  [2]    [3]
+//				/habilidade addxp vtr_ mining 10
+            Habilidade habilidade = HabilidadePlugin.getManager().getHabilidadeByTypeName(args[2]);
+            if (habilidade == null) {
+                MessageUtils.getMessage(HabilidadePlugin.getYamlConfig(), "HabilidadeNotFound").send(player);
+                return;
+            }
+            int xp = Integer.parseInt(args[3]);
 
-        return false;
+            HabilidadeUser targetPlayer = HabilidadePlugin.getModuleFactory().getUserModule(args[1]);
+            if (targetPlayer == null) {
+                MessageUtils.getMessage(HabilidadePlugin.getYamlConfig(), "PlayerNotFound").send(player);
+            } else {
+                HabilidadeInfo habilidadeInfo = targetPlayer.getHabilidade(habilidade.getType());
+                if (habilidadeInfo == null) {
+                    MessageUtils.getMessage(HabilidadePlugin.getYamlConfig(), "HabilidadeNotFound").send(player);
+                    return;
+                }
+                habilidadeInfo.setXp(habilidadeInfo.getXp() + xp);
+                habilidadeInfo.getHabilidade().canLevelUP(habilidadePlayer);
+
+                Map<String, String> replacers = new HashMap<>();
+                replacers.put("%xp%", Integer.toString(xp));
+                replacers.put("%player%", targetPlayer.getNetworkUser().getName());
+
+                MessageUtils.getMessage(HabilidadePlugin.getYamlConfig(), "XpAdded").replace(replacers).send(player);
+
+            }
+            return;
+        }
+        HabilidadesInventory.open(player, player.getName());
+        sendHabilidades(player, habilidadePlayer);
     }
 
     private void sendHabilidades(Player player, HabilidadeUser habilidadePlayer) {
@@ -113,4 +120,5 @@ public class HabilidadeCommand extends CustomCommand {
 
         MessageUtils.getMessage(HabilidadePlugin.getYamlConfig(), "HabilidadesInfo").replace(replacers).send(player);
     }
+
 }
