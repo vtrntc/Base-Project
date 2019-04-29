@@ -17,7 +17,7 @@ import com.vtr.habilidades.user.HabilidadeUser;
 public class RemoveXpCommand extends SubCommand {
 
 	public RemoveXpCommand() {
-		super("addxp", "skills.addxp");
+		super("removexp", "skills.removexp");
 	}
 
 	public boolean execute(CommandSender sender, String label, String[] args) {
@@ -43,14 +43,14 @@ public class RemoveXpCommand extends SubCommand {
 		            if (habilidadeInfo == null) {
 		                MessageUtils.getMessage(HabilidadePlugin.getYamlConfig(), "HabilidadeNotFound").send(player);
 		            }else{
-			            habilidadeInfo.setXp(habilidadeInfo.getXp() + xp);
-			            habilidadeInfo.getHabilidade().canLevelUP(habilidadePlayer);
+			            habilidadeInfo.setXp(habilidadeInfo.getXp() - xp);
+			            habilidadeInfo.getHabilidade().canLevelUP(targetPlayer);
 			
 			            Map<String, String> replacers = new HashMap<>();
 			            replacers.put("%xp%", Integer.toString(xp));
 			            replacers.put("%player%", targetPlayer.getNetworkUser().getName());
 			
-			            MessageUtils.getMessage(HabilidadePlugin.getYamlConfig(), "XpAdded").replace(replacers).send(player);
+			            MessageUtils.getMessage(HabilidadePlugin.getYamlConfig(), "XpRemoved").replace(replacers).send(player);
 		            }
 		        }
 	        }

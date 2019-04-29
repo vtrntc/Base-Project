@@ -44,7 +44,7 @@ public class AddXpCommand extends SubCommand {
 		                MessageUtils.getMessage(HabilidadePlugin.getYamlConfig(), "HabilidadeNotFound").send(player);
 		            }else{
 			            habilidadeInfo.setXp(habilidadeInfo.getXp() + xp);
-			            habilidadeInfo.getHabilidade().canLevelUP(habilidadePlayer);
+			            habilidadeInfo.getHabilidade().canLevelUP(targetPlayer);
 			
 			            Map<String, String> replacers = new HashMap<>();
 			            replacers.put("%xp%", Integer.toString(xp));

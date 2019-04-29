@@ -17,7 +17,7 @@ import com.vtr.habilidades.user.HabilidadeUser;
 public class RemoveLevelCommand extends SubCommand {
 
 	public RemoveLevelCommand() {
-		super("addxp", "skills.addxp");
+		super("removelevel", "skills.removelevel");
 	}
 
 	public boolean execute(CommandSender sender, String label, String[] args) {
@@ -28,12 +28,12 @@ public class RemoveLevelCommand extends SubCommand {
             MessageUtils.getMessage(HabilidadePlugin.getYamlConfig(), "InvalidAmount").send(player);
         }else{
 	        //          [0]   [1]  [2]    [3]
-	//			/habilidade addxp vtr_ mining 10
+	//			/habilidade removelevel vtr_ mining 10
 	        Habilidade habilidade = HabilidadePlugin.getManager().getHabilidadeByTypeName(args[2]);
 	        if (habilidade == null) {
 	            MessageUtils.getMessage(HabilidadePlugin.getYamlConfig(), "HabilidadeNotFound").send(player);
 	        }else{
-		        int xp = Integer.parseInt(args[3]);
+		        int level = Integer.parseInt(args[3]);
 		
 		        HabilidadeUser targetPlayer = HabilidadePlugin.getModuleFactory().getUserModule(args[1]);
 		        if (targetPlayer == null) {
@@ -43,14 +43,14 @@ public class RemoveLevelCommand extends SubCommand {
 		            if (habilidadeInfo == null) {
 		                MessageUtils.getMessage(HabilidadePlugin.getYamlConfig(), "HabilidadeNotFound").send(player);
 		            }else{
-			            habilidadeInfo.setXp(habilidadeInfo.getXp() + xp);
-			            habilidadeInfo.getHabilidade().canLevelUP(habilidadePlayer);
+			            habilidadeInfo.setLevel(habilidadeInfo.getLevel() - level);
+			            habilidadeInfo.getHabilidade().canLevelUP(targetPlayer);
 			
 			            Map<String, String> replacers = new HashMap<>();
-			            replacers.put("%xp%", Integer.toString(xp));
+			            replacers.put("%level%", Integer.toString(level));
 			            replacers.put("%player%", targetPlayer.getNetworkUser().getName());
 			
-			            MessageUtils.getMessage(HabilidadePlugin.getYamlConfig(), "XpAdded").replace(replacers).send(player);
+			            MessageUtils.getMessage(HabilidadePlugin.getYamlConfig(), "LevelRemoved").replace(replacers).send(player);
 		            }
 		        }
 	        }
