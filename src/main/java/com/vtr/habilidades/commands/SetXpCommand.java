@@ -7,7 +7,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import com.vtr.api.shared.utils.StringUtils;
-import com.vtr.api.spigot.commands.old.SubCommand;
+import com.vtr.api.spigot.commands.SubCommand;
 import com.vtr.api.spigot.message.MessageUtils;
 import com.vtr.habilidades.HabilidadePlugin;
 import com.vtr.habilidades.habilidades.Habilidade;
