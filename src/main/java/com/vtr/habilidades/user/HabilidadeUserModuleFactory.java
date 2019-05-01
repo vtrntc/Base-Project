@@ -49,10 +49,10 @@ public class HabilidadeUserModuleFactory extends SpigotUserModuleFactory<Habilid
     	LinkedHashMap<String, Object> map = new LinkedHashMap<>();
     	map.put("user_id", user.getId());
     	
-    	SQLUtils.get(API.Mysql.getServerConnection(), "skills", false, map, (rs) -> {
-    		if(rs.next()) {
-    		}
-    	});
+//    	SQLUtils.get(API.Mysql.getServerConnection(), "skills", false, map, (rs) -> {
+//    		if(rs.next()) {
+//    		}
+//    	});
     	
         return new HabilidadeUser(user);
     }
@@ -72,5 +72,4 @@ public class HabilidadeUserModuleFactory extends SpigotUserModuleFactory<Habilid
     	
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
 }

@@ -9,6 +9,7 @@ import org.bukkit.entity.Player;
 import com.vtr.api.shared.utils.StringUtils;
 import com.vtr.api.spigot.commands.SubCommand;
 import com.vtr.api.spigot.message.MessageUtils;
+import com.vtr.api.spigot.user.User;
 import com.vtr.habilidades.HabilidadePlugin;
 import com.vtr.habilidades.habilidades.Habilidade;
 import com.vtr.habilidades.objects.HabilidadeInfo;
@@ -20,7 +21,7 @@ public class SetXpCommand extends SubCommand {
 		super("addxp", "skills.addxp");
 	}
 
-	public boolean execute(CommandSender sender, String label, String[] args) {
+	public void onCommand(CommandSender sender, User user, String[] args) {
 		Player player = (Player) sender;
         if (args.length < 4) {
             MessageUtils.getMessage(HabilidadePlugin.getYamlConfig(), "UseAddXp").send(player);
@@ -55,6 +56,5 @@ public class SetXpCommand extends SubCommand {
 		        }
 	        }
         }
-		return false;
 	}
 }

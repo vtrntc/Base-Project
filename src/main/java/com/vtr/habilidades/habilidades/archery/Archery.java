@@ -27,7 +27,7 @@ public class Archery extends Habilidade {
 	public Archery(String name, List<HabilidadeDrop> drops, List<Material> tools, List<HabilidadeExtra> extras, List<ArcheryDamageExperience> experience) {
 		super(HabilidadeType.ARCHERY, name, drops, tools, extras);
 		this.experience = experience;
-		this.maxLevel = experience.get(experience.size());
+		this.maxLevel = experience.get(experience.size() - 1);
 	}
 	
 	public ArcheryDamageExperience getExperience(int distance) {

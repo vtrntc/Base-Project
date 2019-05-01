@@ -71,9 +71,11 @@ Habilidades:
       Tree_Cut:
         PerLevel: 0.1
         MaxChance: 100
-    Entities:
-      PLAYER:
-        XP: 1.0
+    Blocks:
+      LOG:
+        XP: 0.5
+      LOG_2:
+        XP: 0.5         
   FISHING:
     Name: 'Pescador'
     Fishs:
@@ -645,3 +647,5 @@ TreeCut: '&aVoce quebrou a arvore inteira!'
 Daze: '&aVoce deixou &f%player% &aatordoado'
 DazeTarget: '&f%player% &adeixou voce atordoado'
 LevelRemoved: '&aVoce removeu &e%level% levels do jogador &f%player%'
+LevelSet: '&aSetou nivel &f%level% &ana skill &f%skill% &apara &f%player%'
+LevelAdded: '&aAdicionou &f%level% &aniveis na skill &f%skill% &apara &f%player%'

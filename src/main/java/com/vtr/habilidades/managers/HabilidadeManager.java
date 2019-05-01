@@ -21,6 +21,7 @@ import com.vtr.habilidades.habilidades.acrobatics.AcrobaticsFallExperience;
 import com.vtr.habilidades.habilidades.acrobatics.extras.Dodge;
 import com.vtr.habilidades.habilidades.acrobatics.extras.PerfectRoll;
 import com.vtr.habilidades.habilidades.acrobatics.extras.Roll;
+import com.vtr.habilidades.habilidades.archery.Archery;
 import com.vtr.habilidades.habilidades.archery.ArcheryDamageExperience;
 import com.vtr.habilidades.habilidades.archery.extras.Daze;
 import com.vtr.habilidades.habilidades.archery.extras.Impact;
@@ -179,7 +180,7 @@ public class HabilidadeManager {
                                 }
                             }
 
-//                            habilidades.add(new Archery(name, drops, tools, extras, damageExperiences));
+                            habilidades.add(new Archery(name, drops, tools, extras, damageExperiences));
                             break;
                         case ACROBATICS:
                             List<AcrobaticsFallExperience> fallExperience = new ArrayList<>();
@@ -330,7 +331,7 @@ public class HabilidadeManager {
                             }
                         }
                     }
-
+                    
                     blocks.put(material, new HabilidadeBlock(material, config.getDouble("Habilidades." + skill + ".Blocks." + m + ".XP"), blockDrops));
                 }
             }
