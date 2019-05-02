@@ -227,69 +227,6 @@ public class HabilidadeManager {
                 }
             }
         }
-
-//		Map<String, String> sql = new LinkedHashMap<>();
-//		sql.put("name", "VARCHAR(32)");
-//		sql.put("habilidade", "VARCHAR(64)");
-//		sql.put("level", "INTEGER");
-//		sql.put("xp", "DECIMAL(16, 2)");
-//		
-//		DatabaseUtils.createTable("player_habilidades", sql);
-//		
-//		sql.clear();
-//		
-//		DatabaseUtils.getInfo("player_habilidades", sql).whenComplete((rs, error) -> {
-//			try {
-//				Map<String, Map<HabilidadeType, HabilidadeInfo>> infos = new HashMap<>();
-//				while(rs.next()) {
-//					Habilidade habilidade = getHabilidadeByTypeName(rs.getString("habilidade"));
-//					if(habilidade != null) {
-//						String name = rs.getString("name");
-//						if(!infos.containsKey(name.toLowerCase())) {
-//							infos.put(name.toLowerCase(), new HashMap<>());
-//						}
-//						
-//						int level = rs.getInt("level");
-//						
-//						double xp = rs.getDouble("xp");
-//						
-//						switch(habilidade.getType()) {
-//							case SWORDS:
-//								infos.get(name.toLowerCase()).put(habilidade.getType(), new SwordsInfo(name, habilidade, level, xp));
-//								break;
-//							case ACROBATICS:
-//								infos.get(name.toLowerCase()).put(habilidade.getType(), new AcrobaticsInfo(name, habilidade, level, xp));
-//								break;
-//							default:
-//								infos.get(name.toLowerCase()).put(habilidade.getType(), new HabilidadeInfo(name, habilidade, level, xp));
-//								break;
-//						}
-//					}
-//				}
-//				
-//				for(Entry<String, Map<HabilidadeType, HabilidadeInfo>> e : infos.entrySet()) {
-//					players.put(e.getKey().toLowerCase(), new HabilidadeUser(e.getKey(), e.getValue()));
-//				}
-//			}catch(SQLException e) {
-//				e.printStackTrace();
-//			}
-//		});
-//		new BukkitRunnable() {
-//			public void run() {
-//				for(HabilidadeUser habilidadePlayer : players.values()) {
-//					if(habilidadePlayer.isNeedUpdate()) {
-//						for(HabilidadeInfo habilidadeInfo : habilidadePlayer.getHabilidades().values()) {
-//							if(habilidadeInfo.isNeedUpdate()) {
-//								habilidadeInfo.setNeedUpdate(false);
-//								habilidadeInfo.save();
-//							}
-//						}
-//						
-//						habilidadePlayer.setNeedUpdate(false);
-//					}
-//				}
-//			}
-//		}.runTaskTimer(HabilidadePlugin.getInstance(), 60 * 20, 60 * 20);
     }
     
     public void setupTables() {
