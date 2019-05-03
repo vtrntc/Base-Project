@@ -105,14 +105,11 @@ public abstract class Habilidade implements Listener {
 					abstractMessage.send(on);
 				}
 				
-				habilidadePlayer.setNeedUpdate(false);
-				
 				double xp = habilidadeInfo.getXp() - xpToNextLevel;
 				
 				habilidadeInfo.setLevel(habilidadeInfo.getLevel() + 1);
 				habilidadeInfo.setXp(xp);
-//				habilidadeInfo.save();
-				//TODO save?
+				
 				return true;
 			}
 		}

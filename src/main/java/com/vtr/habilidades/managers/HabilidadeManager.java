@@ -42,10 +42,13 @@ import com.vtr.habilidades.habilidades.swords.extras.bleed.Bleed;
 import com.vtr.habilidades.habilidades.swords.extras.bleed.BleedLevel;
 import com.vtr.habilidades.objects.HabilidadeBlock;
 import com.vtr.habilidades.objects.HabilidadeDrop;
+import com.vtr.habilidades.objects.HabilidadeTopUpdater;
 import com.vtr.habilidades.objects.HabilidadeType;
 
 public class HabilidadeManager {
 
+	private HabilidadeTopUpdater topUpdater;
+	
     private List<Habilidade> habilidades;
 
     public HabilidadeManager() {
@@ -227,6 +230,8 @@ public class HabilidadeManager {
                 }
             }
         }
+        
+        topUpdater = new HabilidadeTopUpdater();
     }
     
     public void setupTables() {
@@ -240,6 +245,10 @@ public class HabilidadeManager {
     	
     	SQLUtils.createTable(API.Mysql.getServerConnection(), "skills", false, map);
     }
+    
+    public HabilidadeTopUpdater getTopUpdater() {
+		return topUpdater;
+	}
 
     public List<Habilidade> getHabilidades() {
         return habilidades;
