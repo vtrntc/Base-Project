@@ -5,16 +5,16 @@
     <modelVersion>4.0.0</modelVersion>
  
     <parent>
-        <groupId>br.com.redepvp</groupId>
+        <groupId>com.worldnetwork</groupId>
         <artifactId>parent</artifactId>
         <version>0.1</version>
     </parent>
    
-    <groupId>br.com.redepvp</groupId>
-    <artifactId>skills</artifactId>
+    <groupId>com.worldnetwork</groupId>
+    <artifactId>projectname</artifactId>
     <version>0.1</version>
  
-    <name>Skills</name>
+    <name>ProjectName</name>
    
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
@@ -57,19 +57,19 @@
         </dependency>
         
         <dependency>
-            <groupId>br.com.redepvp</groupId>
+            <groupId>com.worldnetwork</groupId>
             <artifactId>core</artifactId>
             <version>LATEST</version>
             <scope>provided</scope>
         </dependency>
         
         <dependency>
-            <groupId>br.com.redepvp</groupId>
+            <groupId>com.worldnetwork</groupId>
             <artifactId>api-shared</artifactId>
             <version>LATEST</version>
         </dependency>
         <dependency>
-            <groupId>br.com.redepvp</groupId>
+            <groupId>com.worldnetwork</groupId>
             <artifactId>api-spigot</artifactId>
             <version>LATEST</version>
         </dependency>
