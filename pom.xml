@@ -38,18 +38,6 @@
             <id>mvnrepository</id>
             <url>https://mvnrepository.com/artifact/</url>
         </repository>
-        
-        <!-- WorldGuard -->        
-    	<repository>
-	      	<id>sk89q-repo</id>
-	      	<url>https://maven.enginehub.org/repo/</url>
-    	</repository>
-    	
-    	<!-- Vault -->
-        <repository>
-            <id>vault-repo</id>
-            <url>http://nexus.hc.to/content/repositories/pub_releases</url>
-        </repository>    
     </repositories>
  
     <dependencies>
@@ -68,35 +56,31 @@
             <scope>provided</scope>
         </dependency>
         
-        <!-- WorldGuard -->
         <dependency>
-            <groupId>com.sk89q.worldguard</groupId>
-            <artifactId>worldguard-legacy</artifactId>
-            <version>6.1.3-SNAPSHOT</version>
-            <scope>provided</scope>
-        </dependency>
-        
-        <!-- Vault -->
-        <dependency>
-	        <groupId>net.milkbowl.vault</groupId>
-	        <artifactId>VaultAPI</artifactId>
-	        <version>1.7</version>
-	        <scope>provided</scope>
+		    <groupId>com.worldnetwork</groupId>
+		    <artifactId>worldstackermaven</artifactId>
+		    <version>LATEST</version>
+		    <scope>provided</scope>
         </dependency>
         
         <dependency>
             <groupId>com.worldnetwork</groupId>
-            <artifactId>worldutils</artifactId>
+            <artifactId>core</artifactId>
             <version>LATEST</version>
             <scope>provided</scope>
-        </dependency>        
+        </dependency>
         
         <dependency>
-        	<groupId>com.worldnetwork</groupId>
-            <artifactId>worldspawnermaven</artifactId>
+            <groupId>com.worldnetwork</groupId>
+            <artifactId>api-shared</artifactId>
             <version>LATEST</version>
-            <scope>provided</scope>
-        </dependency> 
+        </dependency>
+        
+        <dependency>
+            <groupId>com.worldnetwork</groupId>
+            <artifactId>api-spigot</artifactId>
+            <version>LATEST</version>
+         </dependency>
     </dependencies>
  
 </project>
