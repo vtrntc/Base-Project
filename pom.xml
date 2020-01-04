@@ -11,10 +11,10 @@
     </parent>
    
     <groupId>com.worldnetwork</groupId>
-    <artifactId>worldterrenosmaven</artifactId>
+    <artifactId>baseproject</artifactId>
     <version>0.1</version>
  
-    <name>WorldTerrenosMaven</name>
+    <name>BaseProject</name>
    
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
